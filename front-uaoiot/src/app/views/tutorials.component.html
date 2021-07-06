@@ -1,0 +1,118 @@
+<div id="content">
+    <div id="libraries-div">
+
+        <div class="row">
+            <!--<div class="col s4">
+                <div routerLink="/tutorial-java" class="card small" >
+                    <div class="card-image">
+                        <img src="assets/images/java_card.jpg">
+                        
+                    </div>
+                    <div class="card-content">
+                        <p>Práctica con cliente Java</p>
+                    </div>
+                    
+                </div>
+            </div>-->
+
+            <div class="col s4">
+                <div routerLink="/tutorial-arduino-send" class="card small">
+                    <div class="card-image">
+                        <img id="image_arduino" src="assets/images/arduino_card.jpg">
+                    </div>
+                    <div class="card-content">
+                        <p>Práctica de envío de mensajes con Arduino</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col s4">
+                <div routerLink="/tutorial-arduino-recive" class="card small">
+                    <div class="card-image">
+                        <img src="assets/images/arduino_card.jpg">
+
+                    </div>
+                    <div class="card-content">
+                        <p>Práctica de recepción de mensajes con Arduino</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col s4">
+                <div routerLink="/tutorial-java" class="card small">
+                    <div class="card-image">
+                        <img src="assets/images/java_card.jpg">
+
+                    </div>
+                    <div class="card-content">
+                        <p>Práctica cliente Java</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--<p-accordion [multiple]="true">
+    <p-accordionTab header="Enviar datos con Arduino">
+
+        <pre class="language-arduino">
+            <code >
+
+                #include < UAOIOTClient.h>
+
+                UAOIOTClient client;
+                unsigned long lastMillis = 0;
+                            
+                void setup() {{'{'}}
+                    Serial.begin(9600);  // initialize serial communication
+                    while (!Serial);     // do nothing until the serial monitor is opened
+                    Serial.println("Iniciando...");
+                    client.setDebugPrinter(true);
+                    //client.connect("172.16.3.27","ard01","prueba","123456");//IP INTERNA UAOIOT
+                    client.connect("192.168.0.23","ard01","user1","123456");//IP INTERNA UAOIOT
+                    Serial.println("Conectado al servidor...");
+                {{'}'}}
+                            
+                void loop() {{'{'}}
+                    client.loop();
+                            
+                    //if(!client.connected()){{'{'}}
+                    //  client.connect("181.118.150.147","ard01","grupo1","123456");
+                    //{{'}'}}else{{'{'}}
+                    //int register0Value=random(100);
+                    //int register1Value=random(100);
+                    //int register2Value=random(100);
+                    //client.setTempRegisterValue(0,register0Value); //VALOR ALEATORIO EN EL REGISTRO 0
+                    //client.setTempRegisterValue(1,register1Value); //VALOR ALEATORIO EN EL REGISTRO 1
+                    //client.setTempRegisterValue(2,register2Value); //VALOR ALEATORIO EN EL REGISTRO 2
+                    client.publishRegisters("test2","fd", 3);
+                    Serial.print("Enviando -> (");
+                    //Serial.print(register0Value);
+                    Serial.print(", ");
+                    //Serial.print(register1Value);
+                    Serial.print(", ");
+                    //Serial.print(register2Value);
+                    Serial.println(")");
+                    delay(10000);
+                //{{'}'}}
+                {{'}'}}
+                            
+                void onPublishDataArrive(String messageType,String srcObject,int registerLength){{'{'}} {{'}'}}
+                
+            </code>
+        </pre>
+    </p-accordionTab>
+
+    <p-accordionTab header="Recibir datos con Arduino">
+        <h1>hdhsh</h1>
+    </p-accordionTab>
+
+    <p-accordionTab header="Ejemplo con cliente Java">
+        <h1>hdhsh</h1>
+    </p-accordionTab>
+</p-accordion>-->

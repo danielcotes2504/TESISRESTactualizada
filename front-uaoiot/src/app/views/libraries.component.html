@@ -1,0 +1,24 @@
+<p-growl [(value)]="msg"></p-growl>
+<div id="content">
+    <div id="libraries-div">
+        <div class="row">
+
+            <div *ngFor="let library of librariesArray; let i = index" class="col s4">
+                <div class="card small">
+                    <div class="card-image">
+                        <img [src]="library.imgUrl" />
+
+                    </div>
+                    <div class="card-content">
+                        <p>{{library.name}}</p>
+                    </div>
+                    <div class="card-action right-align">
+                        <a [href]='library.fileUrl' pTooltip="Descargar" tooltipPosition="bottom"><i
+                                class="material-icons">cloud_download</i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<section>
+    <div class="container container-1">
+        <div class="project-container project-1">
+            <div class="container-title title-1">
+                <h3> Proyecto 1 </h3>
+            </div>
+            <div class="devices-cards">
+                <p-card [style]="{width: '13em'}" styleClass="ui-card" class="rest-card card-1">
+                    <p-header class="card-header">
+                    </p-header>
+                    <h5>Dispositivo 1</h5>
+                    <p>Tipo de dispositivo</p>
+                    <div class="card-action right-align">
+                        <a><i class="material-icons">create</i></a>
+                        <a><i class="material-icons">delete</i></a>
+                    </div>
+                </p-card>
+                <p-card [style]="{width: '13em'}" styleClass="ui-card" class="rest-card">
+                    <p-header class="card-header">
+                    </p-header>
+                    <h5>Dispositivo 2</h5>
+                    <p>Tipo de dispositivo</p>
+                    <div class="card-action right-align">
+                        <a><i class="material-icons">create</i></a>
+                        <a><i class="material-icons">delete</i></a>
+                    </div>
+                </p-card>
+            </div>
+            <div class="new-device-container">
+                <i class="medium material-icons add-icon">add</i>
+            </div>
+        </div>
+
+        <div class="project-container">
+            <div class="container-title">
+                <h3> Proyecto 2 </h3>
+            </div>
+            <div class="devices-cards">
+                <p-card [style]="{width: '13em'}" styleClass="ui-card" class="rest-card">
+                    <p-header class="card-header">
+                    </p-header>
+                    <h5>Dispositivo 3</h5>
+                    <p>Tipo de dispositivo</p>
+                    <div class="card-action right-align bottom-1">
+                        <a><i class="material-icons">create</i></a>
+                        <a><i class="material-icons">delete</i></a>
+                    </div>
+                </p-card>
+                <p-card [style]="{width: '13em'}" styleClass="ui-card" class="rest-card">
+                    <p-header class="card-header">
+                    </p-header>
+                    <h5>Dispositivo 4</h5>
+                    <p>Tipo de dispositivo</p>
+                    <div class="card-action right-align">
+                        <a><i class="material-icons">create</i></a>
+                        <a><i class="material-icons">delete</i></a>
+                    </div>
+                </p-card>
+            </div>
+            <div class="new-device-container add-device-1">
+                <i class="medium material-icons add-icon">add</i>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="bottom">
+    <button class="ui-button-danger" type="button" pButton [routerLink]="['/restDevices']"
+        label="Usar la plataforma"></button>
+</footer>

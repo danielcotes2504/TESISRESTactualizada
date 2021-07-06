@@ -1,0 +1,127 @@
+<p-growl [(value)]="msg"></p-growl>
+<h5 id="title">Administrar usuarios</h5>
+
+<p-table [columns]="cols" [value]="users" selectionMode="single" [(selection)]="selectedUser">
+
+    <ng-template pTemplate="header" let-columns class="header-col">
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+            <th style="width:8em; text-align:center;">Acciones</th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-user let-columns="columns">
+        <tr>
+
+            <td *ngFor="let col of columns; let i = index">
+                {{user[col.field]}}
+            </td>
+
+            <td>
+                <a id="table-button-edit" class="btn-floating blue darken-1" pTooltip="Editar" tooltipPosition="bottom"
+                    (click)="showDialogEditUser(user)">
+                    <i class="material-icons">edit</i></a>
+
+                <a id="table-button-delete" class="btn-floating blue darken-1" pTooltip="Eliminar"
+                    tooltipPosition="bottom" (click)="showDialogDeleteUser(user)">
+                    <i class="material-icons">delete</i></a>
+
+            </td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="summary" let-rowData>
+        <div style="text-align:left;">
+            <div class="listen button-section" class="left-align">
+
+                <a id="table-button" class="btn-floating blue darken-1" pTooltip="Agregar" tooltipPosition="bottom"
+                    (click)="showDialogAddUser()">
+                    <i class="material-icons">add</i></a>
+
+
+            </div>
+            <!--<button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Agregar"></button>-->
+        </div>
+    </ng-template>
+</p-table>
+
+<!--ADD DIALOG-->
+<p-dialog header="Crear usuario" [(visible)]="displayAdd" [dismissableMask]="true" [responsive]="true" showEffect="fade"
+    [modal]="true" [style]="{width: '500', minWidth:'400'}" [resizable]="true">
+
+
+    <div class="ui-fluid name-section">
+        <p>Nombre</p>
+        <div class="ui-inputgroup">
+            <input type="text" pInputText name="name" [(ngModel)]="name">
+        </div>
+    </div>
+
+    <div class="ui-fluid username-section">
+        <p>Usuario</p>
+        <div class="ui-inputgroup">
+            <input type="text" pInputText name="userName" [(ngModel)]="userName">
+        </div>
+    </div>
+
+    <div class="ui-fluid" id="password-section">
+        <p>Contraseña</p>
+        <div class="ui-inputgroup">
+            <input type="password" pInputText name="password" [(ngModel)]="password">
+        </div>
+    </div>
+
+    <p-footer>
+        <a class="btn-flat red-text" (click)="displayAdd=false">Cancelar</a>
+        <a class="btn-flat blue-text" (click)="addUser()">Crear</a>
+    </p-footer>
+
+</p-dialog>
+
+<!--EDIT DIALOG-->
+<p-dialog header="Editar usuario" [(visible)]="displayUpdate" [dismissableMask]="true" [responsive]="true"
+    showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}" [resizable]="true">
+
+    <div class="ui-fluid name-section">
+        <p>Nombre</p>
+        <div class="ui-inputgroup">
+            <input type="text" pInputText name="name" [(ngModel)]="name">
+        </div>
+    </div>
+
+    <div class="ui-fluid username-section">
+        <p>Usuario</p>
+        <div class="ui-inputgroup">
+            <input type="text" pInputText name="userName" [(ngModel)]="userName">
+        </div>
+    </div>
+
+    <!--<div class="ui-fluid">
+        <p>Contraseña</p>
+        <div class="ui-inputgroup">
+            <input type="text" pInputText  name="password" [(ngModel)]="password">
+        </div>
+    </div>-->
+
+    <p-footer>
+        <a class="btn-flat red-text" (click)="displayUpdate=false">Cancelar</a>
+        <a class="btn-flat blue-text" (click)="updateUser()">Actualizar</a>
+    </p-footer>
+
+</p-dialog>
+
+<!--DELETE DIALOG-->
+<p-dialog header="¿Deseas eliminar este usuario?" [(visible)]="displayDelete" [dismissableMask]="true"
+    [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '600', minWidth:'500'}">
+
+    <p>Recuerda que al realizar esta acción todo lo relacionado a este usuario como proyectos, dispositivos y variables
+        también serán eliminados.</p>
+
+    <p-footer>
+        <a class="btn-flat blue-text" (click)="deleteUser()">Si</a>
+        <a class="btn-flat blue-text" (click)="displayDelete=false">No</a>
+    </p-footer>
+
+</p-dialog>

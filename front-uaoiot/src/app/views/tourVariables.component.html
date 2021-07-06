@@ -1,0 +1,32 @@
+<section>
+    <div class="variables-container">
+        <p-card [style]="{width: '20em'}" styleClass="ui-card" class="rest-card old-card">
+            <p-header class="card-header">
+                <h5>Nombre de la variable</h5>
+            </p-header>
+            <div class="card-action">
+                <div>
+                    <p>Tipo de variable</p>
+                </div>
+                <div class="right-align previous-card-bottom">
+                    <a><i class="material-icons">create</i></a>
+                    <a><i class="material-icons">delete</i></a>
+                </div>
+            </div>
+        </p-card>
+        <p-card [style]="{width: '20em'}" styleClass="ui-card" class="rest-card new-card">
+            <p-header>
+                <div class="new-card-header">
+                    <h5>Añadir variable</h5>
+                </div>
+            </p-header>
+            <div class="card-action">
+                <p>Has click aquí para añadir una nueva variable a tu projecto. </p>
+            </div>
+        </p-card>
+    </div>
+    <footer class="bottom">
+        <button class="ui-button-danger" type="button" pButton [routerLink]="['/restVariables']"
+            label="Usar la plataforma"></button>
+    </footer>
+</section>

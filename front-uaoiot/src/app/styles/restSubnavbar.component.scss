@@ -1,0 +1,14 @@
+nav {
+    background-color: #EC1C24;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 2.5em;
+
+    .subnav-elements{   
+        margin: 0 1em 0 1em;      
+    }
+}
+.subnav-elements a:hover {
+    background-color: #EC1C24;
+}

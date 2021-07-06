@@ -1,0 +1,84 @@
+<p-growl [(value)]="msg"></p-growl>
+<!--DELETE DIALOG-->
+<p-dialog header="¿Deseas eliminar esta libreria?" [(visible)]="displayDelete" [dismissableMask]="true"
+    [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '600', minWidth:'500'}">
+
+    <p>¿Estás seguro que deseas eliminar esta libreria?</p>
+
+    <p-footer>
+        <a class="btn-flat blue-text" (click)="deleteLibrary()">Si</a>
+        <a class="btn-flat blue-text" (click)="displayDelete=false">No</a>
+    </p-footer>
+
+</p-dialog>
+<!--ADD DIALOG-->
+<p-dialog header="Agregar libreria" [(visible)]="displayAdd" [dismissableMask]="true" [responsive]="true"
+    showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
+
+    <div class="ui-inputgroup" id="name-section">
+        <input type="text" pInputText placeholder="Nombre de la libreria" [size]="50" name="name"
+            [(ngModel)]="nameLibrary">
+    </div>
+
+    <div id="language-section">
+        <p-dropdown [options]="languages" [(ngModel)]="languageLibrary" placeholder="Seleccione un lenguaje"
+            optionLabel="name" [showClear]="true"></p-dropdown>
+    </div>
+
+    <div id="file-section">
+        <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+    </div>
+
+
+    <p-footer>
+        <a class="btn-flat red-text" (click)="displayAdd=false">Cancelar</a>
+        <button type="button" class="btn-flat blue-text" (click)="uploader.uploadAll()"
+            [disabled]="!uploader.getNotUploadedItems().length">
+            Agregar
+        </button>
+
+    </p-footer>
+
+</p-dialog>
+
+
+<div id="libraries-div">
+    <div class="row">
+        <div *ngFor="let library of librariesArray; let i = index" class="col s4">
+            <div class="card small">
+                <div class="card-image">
+                    <img [src]="library.imgUrl" />
+
+                </div>
+                <div class="card-content">
+                    <p>{{library.name}}</p>
+                </div>
+                <div class="card-action right-align">
+                    <a pTooltip="Eliminar" tooltipPosition="bottom" (click)="showDialogDeleteLibrary(i)"><i
+                            class="material-icons">delete</i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s4">
+            <div class="card" id="addLibraryButton" (click)="showDialogAddLibrary()">
+
+                <div id="content-add">
+                    <a id="add-button" class="btn-floating blue-grey">
+                        <i class="material-icons" id="add-button">add</i>
+                    </a>
+                    <p>Agregar libreria</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+
+<button type="button" class="btn btn-success btn-s" 
+  (click)="uploader.uploadAll()" 
+  [disabled]="!uploader.getNotUploadedItems().length" >
+    Cargar archivo
+</button>-->

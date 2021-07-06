@@ -1,0 +1,41 @@
+<!--TOASTS-->
+<p-growl [(value)]="msg"></p-growl>
+<div>
+    <h2>Agregar usuarios</h2>
+    <div class="row">
+        <form #formRegistro="ngForm" (ngSubmit)="onRegisterSubmit()" class="col s12">
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="name" type="text" class="validate" name="name" [(ngModel)]="name">
+                    <label for="name">Ingresar nombre</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="userName" type="text" class="validate" name="userName" [(ngModel)]="userName">
+                    <label for="userName">Ingresar usuario</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate" name="password" [(ngModel)]="password">
+                    <label for="password">Ingresar contraseña</label>
+                </div>
+            </div>
+
+            <span>Permisos</span>
+            <div class="row">
+                <p-checkbox [(ngModel)]="readPermission" binary="true" name="readPermission" label="Leer"></p-checkbox>
+                <p-checkbox [(ngModel)]="writePermission" binary="true" name="writePermission" label="Escribir">
+                </p-checkbox>
+            </div>
+
+            <div class="row">
+                <input type="submit" class="blue darken-1 btn" value="Registrar">
+
+            </div>
+        </form>
+    </div>
+</div>

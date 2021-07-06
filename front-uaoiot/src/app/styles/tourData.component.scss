@@ -1,0 +1,23 @@
+section {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    .chart-container {
+        width: 90%;
+        margin: 0;
+        padding: 1em;
+        display: flex;
+        flex-direction: row;
+    }
+}
+.bottom {
+    width: 100%;
+    padding: 2em;
+    display: flex;
+    justify-content: flex-start;
+}

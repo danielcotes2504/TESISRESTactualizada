@@ -1,0 +1,131 @@
+<div id="tutorial-section">
+
+    <h5 id="tutorial-title">Tutorial para la recepción de datos en Arduino</h5>
+
+    <div class="code-section">
+        <p-accordion [multiple]="true">
+
+            <p-accordionTab header="Crear un proyecto">
+                <div id="create-project-section">
+                    <div class="text-section">
+                        <p class="text-block">Una vez que hayas ingresado a la plataforma, podrás ver tus proyectos. Si
+                            aún no has creado ninguno, deberás crearlo para continuar.</p>
+                    </div>
+                    <div class="image-section">
+                        <div class="row">
+                            <div class="col s6">
+                                <img class="align-center" id="img-project" src="assets/images/proyectos.JPG" alt="">
+                                <p>Selecciona la opción crear.</p>
+                            </div>
+
+                            <div class="col s6">
+                                <img id="img-add-project" src="assets/images/nombre_proyecto.JPG" alt="">
+                                <p>Asigna un nombre para el proyecto y presiona "Crear".</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </p-accordionTab>
+
+            <p-accordionTab header="Agregar un dispositivo">
+                <div id="create-project-section">
+                    <div class="text-section">
+                        <p class="text-block">Una vez creado un proyecto, podrás agregar un dispositivo y asociarlo.</p>
+                    </div>
+                    <div class="image-section">
+                        <div class="row">
+                            <div class="col s6">
+                                <img class="align-center" id="img-device" src="assets/images/dispositivos.JPG" alt="">
+                                <p>Selecciona la opción crear.</p>
+                            </div>
+
+                            <div class="col s6">
+                                <img id="img-add-device" src="assets/images/crear_dispositivo.JPG" alt="">
+                                <p>Completa los campos para crear tu dispositivo. Recuerda presionar ENTER despúes de
+                                    escribir el nombre de la variale para agregarla.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-accordionTab>
+
+
+            <p-accordionTab header="Enviar mensajes a un dispositivo">
+                <div id="create-project-section">
+                    <div class="text-section">
+                        <p class="text-block">Para enviar mensajes a un dispositivo, éste debe estar suscrito al tópico
+                            "unicast_[NOMBRE_DE USUARIO]". Posteriormente, debes completar los campos necesarios para el
+                            envío de mensajes</p>
+                    </div>
+                    <div class="image-section">
+                        <div class="row">
+                            <div class="col s6">
+                                <img class="align-center" id="img-device" src="assets/images/enviar_mensajes.JPG"
+                                    alt="">
+                                <p>Completar los campos necesarios y presionar el botón Enviar.</p>
+                            </div>
+
+                            <div class="col s6">
+                                <img id="img-add-device" src="" alt="">
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-accordionTab>
+
+
+            <p-accordionTab header="Código para recibir datos con Arduino">
+                <div id="code-div">
+                    <div class="text-section">
+                        <p class="text-block">A continuación encontrarás el ejemplo de arduino disponible en la librería
+                            de UAOIOT para recibir mensajes en tu dispositivo. En este ejemplo debes configurar los
+                            datos de conexión de tu dispositivo.</p>
+                    </div>
+                    <pre class="language-arduino" id="pre-code">
+                            <!--<button type="button" (click)="copyToClipboard(code)" pButton icon="pi pi-copy" 
+                            style="font-size: 1em" pTooltip="Copiar" tooltipPosition="bottom"></button>-->
+                            <code #code>
+                                #include < UAOIOTClient.h>
+
+                                UAOIOTClient client;
+                                unsigned long lastMillis = 0;
+                                            
+                                void setup() {{'{'}}
+                                    pinMode(13, OUTPUT);
+                                    Serial.begin(9600);  // initialize serial communication
+                                    while (!Serial);     // do nothing until the serial monitor is opened
+                                    Serial.println("Iniciando...");
+                                    client.connect("[IP_SERVIDOR]","[NOMBRE_DISPOSITIVO]","[USUARIO]","[TOKEN]");//IP INTERNA UAOIOT
+                                    Serial.println("Conectado al servidor...");            
+                                {{'}'}}
+                                            
+                                void loop() {{'{'}}
+                                    client.loop();
+                                            
+                                    if(!client.connected()){{'{'}}
+                                        client.connect("[IP_SERVIDOR]","[NOMBRE_DISPOSITIVO]","[USUARIO]","[TOKEN]");
+                                    {{'}'}}else{{'{'}}
+
+                                    {{'}'}}
+
+                                {{'}'}}
+                                            
+                                void onPublishDataArrive(String messageType,String srcObject,int registerLength){{'{'}}
+                                    int register0=client.getRegisterValue(0);
+                                    Serial.println(messageType+"->"+srcObject+" ("+String(client.getRegisterValue(0))+","+String(client.getRegisterValue(1))+")");
+                                    if(register0==1){{'{'}}
+                                        digitalWrite(13, HIGH);
+                                    {{'}'}}else{{'{'}}
+                                        digitalWrite(13, LOW);
+                                    {{'}'}}
+                                {{'}'}}
+                            </code>
+                        </pre>
+                </div>
+            </p-accordionTab>
+
+        </p-accordion>
+    </div>
+</div>

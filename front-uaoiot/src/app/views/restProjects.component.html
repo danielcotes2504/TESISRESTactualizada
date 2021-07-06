@@ -1,0 +1,64 @@
+<app-rest-sub-navbar></app-rest-sub-navbar>
+<section>
+    <div class="project-container">
+        <p-card *ngFor="let project of  projects" [style]="{width: '20em'}" styleClass="ui-card" class="rest-card">
+            <p-header (click)="previusProjectsClick($event, project)">
+                <div class="card-header">
+                    <h5>{{ project.project }}</h5>
+                </div>
+            </p-header>
+            <div class="card-action right-align">
+                <a (click)="editClick($event, project)"><i class="material-icons">create</i>
+                </a>
+                <a (click)="trashClick($event, project)"><i class="material-icons">delete</i>
+                </a>
+            </div>
+        </p-card>
+        <p-card [style]="{width: '20em'}" styleClass="ui-card" class="rest-card">
+            <p-header (click)="newProjectClick()">
+                <div class="new-card-header">
+                    <h5>Crear proyecto</h5>
+                </div>
+            </p-header>
+            <div class="card-action">
+                <p>Has click aquí para crear un nuevo proyecto.</p>
+            </div>
+        </p-card>
+    </div>
+</section>
+<footer class="bottom">
+    <button class="ui-button-danger" type="button" pButton [routerLink]="['/tourProjects']"
+        label="Ir al tutorial"></button>
+</footer>
+
+<p-dialog header="Crear proyecto" [(visible)]="displayNewProject" [modal]="true" [responsive]="true"
+    [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
+    <p-messages [value]="msgs"></p-messages>
+    <div class="dialog-content">
+        <span class="ui-float-label">
+            <input #projectName class="text-input" id="float-input" type="text" pInputText>
+            <label for="float-input">Nombre del proyecto</label>
+        </span>
+    </div>
+    <p-footer>
+        <button class="ui-button" type="button" pButton (click)="addProjectClick($event, projectName.value)"
+            label="Crear"></button>
+        <button class="ui-button" type="button" pButton (click)="clear()" label="Cancelar"></button>
+    </p-footer>
+</p-dialog>
+
+<p-dialog header="Editar proyecto" [(visible)]="displayEditProject" [modal]="true" [responsive]="true"
+    [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
+    <p-messages [value]="msgs"></p-messages>
+    <div class="dialog-content">
+        <span class="ui-float-label">
+            <input #newProjectName class="text-input" id="float-input" type="text" size="30" pInputText>
+            <label for="float-input">Nombre del proyecto</label>
+        </span>
+    </div>
+    <p-footer>
+        <button class="ui-button" type="button" pButton (click)="updateProjectClick($event, newProjectName.value)"
+            label="Aceptar"></button>
+        <button class="ui-button" type="button" pButton (click)="clear()" label="Cancelar"></button>
+    </p-footer>
+</p-dialog>

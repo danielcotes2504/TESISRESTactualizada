@@ -1,0 +1,260 @@
+<div id="tutorial-section">
+
+    <h5 id="tutorial-title">Tutorial para el uso del cliente de UAOIoT en Java</h5>
+
+
+    <div class="code-section">
+        <p-accordion [multiple]="true">
+
+            <p-accordionTab header="Crear un proyecto">
+                <div id="create-project-section">
+                    <div class="text-section">
+                        <p class="text-block">Una vez que hayas ingresado a la plataforma, podrás ver tus proyectos. Si
+                            aún no has creado ninguno, deberás crearlo para continuar.</p>
+                    </div>
+                    <div class="image-section">
+                        <div class="row">
+                            <div class="col s6">
+                                <img class="align-center" id="img-project" src="assets/images/proyectos.JPG" alt="">
+                                <p>Selecciona la opción crear.</p>
+                            </div>
+
+                            <div class="col s6">
+                                <img id="img-add-project" src="assets/images/nombre_proyecto.JPG" alt="">
+                                <p>Asigna un nombre para el proyecto y presiona "Crear".</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </p-accordionTab>
+
+            <p-accordionTab header="Agregar un dispositivo">
+                <div id="create-project-section">
+                    <div class="text-section">
+                        <p class="text-block">Una vez creado un proyecto, podrás agregar un dispositivo y asociarlo.</p>
+                    </div>
+                    <div class="image-section">
+                        <div class="row">
+                            <div class="col s6">
+                                <img class="align-center" id="img-device" src="assets/images/dispositivos.JPG" alt="">
+                                <p>Selecciona la opción crear.</p>
+                            </div>
+
+                            <div class="col s6">
+                                <img id="img-add-device" src="assets/images/crear_dispositivo.JPG" alt="">
+                                <p>Completa los campos para crear tu dispositivo. Recuerda presionar ENTER despúes de
+                                    escribir el nombre de la variale para agregarla.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-accordionTab>
+
+
+            <p-accordionTab header="Recibir mensajes de un dispositivo">
+                <div id="create-project-section">
+                    <div class="text-section">
+                        <p class="text-block">Para recibir mensajes de un dispositivo, éste debe estar suscrito al
+                            tópico "broadcast_[NOMBRE_DE USUARIO]". Posteriormente, puedes elegir el dispositivo a
+                            escuchar y un límite de mensajes; si no deseas un límite, deja el campo vacío.</p>
+                    </div>
+                    <div class="image-section">
+                        <div class="row">
+                            <div class="col s6">
+                                <img class="align-center" id="img-listen" src="assets/images/recibir_mensajes.JPG"
+                                    alt="">
+                                <p>Completar los campos necesarios y presionar el botón Escuchar.</p>
+                            </div>
+
+                            <div class="col s6">
+                                <img id="img-add-device" src="" alt="">
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-accordionTab>
+
+            <p-accordionTab header="Crear gráficas">
+                <div id="create-project-section">
+                    <div class="text-section">
+                        <p class="text-block">Para crear una gráfica, se debe asegurar que la lista de mensajes no se
+                            encuentre vacía. Después, configura los atributos de la gráfica en el paso a paso.</p>
+                    </div>
+                    <div class="image-section">
+                        <div class="row">
+                            <div class="col s6">
+                                <img class="align-center" id="img-list" src="assets/images/lista_mensajes.JPG" alt="">
+                                <p>Seleccionar el ícono de graficar en la lista de mensajes.</p>
+                            </div>
+
+                            <div class="col s6">
+                                <img id="img-type-chart" src="assets/images/tipo_grafica.JPG" alt="">
+                                <p>Configurar la gráfica paso a paso.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-accordionTab>
+
+
+            <p-accordionTab header="Crear tablas">
+                <div id="create-project-section">
+                    <div class="text-section">
+                        <p class="text-block">Para crear una tabla, se debe asegurar que la lista de mensajes no se
+                            encuentre vacía, después de esto configura los atributos de la tabla.</p>
+                    </div>
+                    <div class="image-section">
+                        <div class="row">
+                            <div class="col s6">
+                                <img class="align-center" id="img-list" src="assets/images/lista_mensajes.JPG" alt="">
+                                <p>Seleccionar el ícono de tabular en la lista de mensajes.</p>
+                            </div>
+
+                            <div class="col s6">
+                                <img id="img-type-chart" src="assets/images/config_tabla.JPG" alt="">
+                                <p>Configurar la tabla.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-accordionTab>
+
+            <p-accordionTab header="Enviar datos con el cliente de Java">
+
+                <div id="code-div">
+                    <div class="text-section">
+                        <p class="text-block">A continuación, encontrarás el ejemplo de JAVA disponible en la librería
+                            de UAOIOT para enviar mensajes. En este ejemplo debes configurar los datos de conexión de tu
+                            dispositivo. Debes tener en cuenta que si se van a enviar múltiples registros estos serán
+                            asignados a las variables en el mismo orden que fueron creadas.</p>
+                    </div>
+                    <pre class="language-java" id="pre-code">
+                        <!--<button type="button" (click)="copyToClipboard(code)" pButton icon="pi pi-copy" 
+                        style="font-size: 1em" pTooltip="Copiar" tooltipPosition="bottom"></button>-->
+    
+                        <code #code>
+                            public class UaoiotSenderObject {{'{'}}
+                                public static void main(String[] args) throws MqttException {{'{'}}
+                                    final UaoiotClient uaoiotClient = new UaoiotClient();;
+                                    uaoiotClient.connect (“inteocav.uao.edu.co”, “nombre del objeto”, “usuario”, “token”);
+                                    System.out.println("conectado al servidor");
+                                    new Thread() {{'{'}}
+                                        @Override
+                                        public void run() {{'{'}}
+                            
+                                            Random rand = new Random();
+                                            while (true) {{'{'}}
+                                                if (uaoiotClient.isClientConnected()) {{'{'}}
+                                                    uaoiotClient.setTempRegisterValue(0, [Dato a enviar]);
+                                                    uaoiotClient.setTempRegisterValue(1, [Dato a enviar]);
+                                                    uaoiotClient.publishRegisters("Broadcast o Unicast", "Objeto que envía el mensaje", Cantidad de datos que llegan en el registro);
+                            
+                                                    try {{'{'}}
+                                                        Thread.sleep(1000);
+                                                    {{'}'}} catch (InterruptedException ex) {{'{'}}
+                            
+                                                    {{'}'}}
+                                                {{'}'}}
+                                            {{'}'}}
+                                        {{'}'}}
+                                    {{'}'}}.start();
+                                {{'}'}}
+                            {{'}'}}
+                            
+                                
+                        </code>
+                    </pre>
+                </div>
+
+            </p-accordionTab>
+
+
+            <p-accordionTab header="Recibir datos en el cliente de Java">
+
+                <div id="code-div">
+                    <div class="text-section">
+                        <p class="text-block">A continuación, encontrarás el ejemplo de JAVA disponible en la librería
+                            de UAOIOT para recibir mensajes en tu dispositivo. En este ejemplo debes configurar los
+                            datos de conexión de tu dispositivo.</p>
+                    </div>
+                    <pre class="language-java" id="pre-code">
+                        <!--<button type="button" (click)="copyToClipboard(code)" pButton icon="pi pi-copy" 
+                        style="font-size: 1em" pTooltip="Copiar" tooltipPosition="bottom"></button>-->
+                        <code #code>
+
+                            public class UaoiotReceiverObject {{'{'}}
+
+                                static double valorfinal;
+                                public static void main(String[] args) throws MqttException {{'{'}}
+                                    final UaoiotClient uaoiotClient = new UaoiotClient();;
+                                    
+                                    uaoiotClient.connect (“inteocav.uao.edu.co”, “nombre del objeto”, “usuario”, “token”);
+                                    System.out.println("conectado al servidor");
+                            
+                                    uaoiotClient.setUaoiotCallback(new UaoiotCallback() {{'{'}}
+                            
+                                        public void onPublishDataArrive(String messageType, String srcObject, int registerCount) {{'{'}}
+                                            if (messageType.equals("broadcast")) {{'{'}}
+                                                System.out.print("Recibiendo Broadcast= [");
+                                                for (int i = 0; i < registerCount; i++) {{'{'}}
+                                                System.out.print(uaoiotClient.getRegisterValue(i)+" | ");
+                                            {{'}'}}
+                                            
+                                                System.out.println("]");
+                                                valorfinal = uaoiotClient.getRegisterValue(0)*uaoiotClient.getRegisterValue(1);
+                                            {{'}'}}
+
+                                            if (messageType.equals("unicast")) {{'{'}}
+                                                System.out.print("Recibiendo Unicast= [");
+                                                for (int i = 0; i < registerCount; i++) {{'{'}}
+                                                    System.out.print(uaoiotClient.getRegisterValue(i)+",");
+                                                {{'}'}}
+                                                System.out.println("]");
+                                            {{'}'}}
+                                        {{'}'}}
+                                    {{'}'}});
+
+
+                                    new Thread() {{'{'}}
+                                        @Override
+                                        public void run() {{'{'}}
+                            
+                                            Random rand=new Random();
+                                            while (true) {{'{'}}
+                                                if (uaoiotClient.isClientConnected()) {{'{'}}
+                                                    if (valorfinal>1000){{'{'}}
+                                                        uaoiotClient.setTempRegisterValue(0, 1);
+                                                    {{'}'}}
+                                                    else
+                                                        uaoiotClient.setTempRegisterValue(0, 0);
+                                                    uaoiotClient.publishRegisters("Broadcast o Unicast", "Objeto que envía el mensaje", Cantidad de datos que llegan en el registro);
+                                                    System.out.print("Enviado = [");
+                                                    //for (int j = 0; j < 2; j++) {{'{'}}
+                                                        System.out.print(uaoiotClient.getTempRegistersValue(0) + " | ");
+                                                    //{{'}'}}
+                                                    System.out.println("]");
+                            
+                                                    try {{'{'}}
+                                                        Thread.sleep(2000);
+                                                    {{'}'}} catch (InterruptedException ex) {{'{'}}
+                            
+                                                    {{'}'}}
+                                                {{'}'}}
+                                            {{'}'}}
+                                        {{'}'}}
+                                    {{'}'}}.start();
+                                {{'}'}}
+                            {{'}'}}
+                            
+                                
+                        </code>
+                    </pre>
+                </div>
+
+            </p-accordionTab>
+
+        </p-accordion>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+.btn-floating {
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+    line-height: 35px;
+    padding: 0;
+    background-color: #e83e44;
+    border-radius: 50%;
+    transition: background-color .3s;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.btn-floating i {
+    width: inherit;
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 20px;
+}
+
+#title{
+    margin: 2em 0 1em 0;
+}
+
+#table-button-edit{
+    margin-left: 0.5em;
+}
+
+#table-button-delete{
+    margin-left: 1em;
+}
+
+.name-section, .username-section {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#password-section{
+    margin-bottom: 1em;
+}

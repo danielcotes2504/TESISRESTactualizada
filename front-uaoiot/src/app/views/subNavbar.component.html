@@ -1,0 +1,26 @@
+<nav>
+
+    <div id="nav-content">
+        <div id="project-section">
+            <span id="project-text">Proyecto: </span> <span class="chip blue lighten-2"> {{nameProject}}</span>
+        </div>
+
+        <div id="devices-section">
+            <span id="device-text">Dispositivos: </span>
+            <div id="devices" *ngFor="let device of devicesArray"><span class="chip blue lighten-2">
+                    {{device.name}}</span></div>
+        </div>
+    </div>
+
+
+    <!--<div id="buttons" >
+        <ul class="center-align">
+            <li><a id="chart-button" class="btn-floating blue darken-1" pTooltip="Graficar" 
+            tooltipPosition="bottom"><i class="material-icons"(click)="showDialogTypeChart()" >insert_chart</i></a></li>
+            
+            <li><a id="table-button" class="btn-floating blue darken-1" pTooltip="Tabular" tooltipPosition="bottom"
+                (click)="showDialogConfigTable()"><i class="material-icons">table_chart</i></a></li>
+    
+        </ul>
+    </div>-->
+</nav>

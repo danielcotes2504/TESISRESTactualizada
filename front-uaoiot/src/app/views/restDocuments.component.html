@@ -1,0 +1,497 @@
+<section>
+  <div class="panel-container Arduino">
+    <div class="panel-header">
+      <img src="./assets/images/arduino.png" class="panel-img">
+    </div>
+    <p-panel header="Arduino GET" [toggleable]="true" [transitionOptions]="'500ms'" collapsed="true">
+      <p-scrollPanel [style]="{width: '100%', height:'30em'}">
+        <pre>
+  <code class="c-gray">//Incluir librerias</code>
+  <code class="c-green">#include</code><code class="c-orange"> {{'<'}}HttpClient.h{{'>'}}</code>
+  <code class="c-green">#include</code><code class="c-orange"> {{'<'}}Bridge.h{{'>'}}</code>
+
+  <code class="c-aqua">void</code><code class="c-green"> setup</code><code class="c-gray">(){{'{'}}</code>
+    <code class="c-gray">//Puente tarda unos dos segundos en arrancar,
+    //puede ser útil usar el LED como indicador
+    //para cuando se ha inicializado</code>
+    <code class="c-orange">pinMode</code><code class="c-gray">(13,</code><code class="c-aqua">OUTPUT</code><code class="c-gray">);</code>
+    <code class="c-orange">digitalWrite</code><code class="c-gray">(13,</code><code class="c-aqua">LOW</code><code class="c-gray">);</code>
+    <code class="c-orange">Bridge.begin</code><code class="c-gray">();</code>
+    <code class="c-orange">pinMode</code><code class="c-gray">(13,</code><code class="c-aqua">OUTPUT</code><code class="c-gray">);</code>
+    <code class="c-orange">digitalWrite</code><code class="c-gray">(13,</code><code class="c-aqua">HIGH</code><code class="c-gray">);</code>
+    <code class="c-orange">SerialUSB.begin</code><code class="c-gray">(9600);</code>
+    <code class="c-green">while </code><code class="c-gray">(!</code><code class="c-orange">Serial</code><code class="c-gray">);</code>
+  <code class="c-gray">{{'}'}}</code>
+
+  <code class="c-aqua">void</code><code class="c-green"> loop</code><code class="c-gray">(){{'{'}}</code>
+    <code class="c-orange">Serial.println</code><code class="c-gray">("Listo para recibir");</code>
+    <code class="c-gray">//Se crea el cliente HTTP</code>
+    <code class="c-orange">HttpClient</code><code class="c-gray">client;</code>
+    <code class="c-gray">client.</code><code class="c-orange">setHeader</code><code class="c-gray">("Content-Type: application/json");</code>
+
+    <code class="c-gray">//URL para petición GET</code>
+    <code class="c-aqua">String</code> <code class="c-gray">httpDestination = "http://inteocav.uao.edu.co:8000/usuario/proyecto/dispositivo/variable";</code>
+
+    <code class="c-gray">//Petición GET</code>
+    <code class="c-gray">client.</code><code class="c-orange">get</code><code class="c-gray">(httpDestination);</code>
+    <code class="c-orange">Serial.println</code><code class="c-gray">("recibiendo:");</code>
+
+    <code class="c-gray">//Lectura e impresión de los datos</code>
+    <code class="c-green">while </code><code class="c-gray">(client.</code><code class="c-orange">available</code><code class="c-gray">()) {{'{'}}</code>
+      <code class="c-green">char </code><code class="c-gray">c = client.</code><code class="c-orange">read</code><code class="c-gray">();</code>
+      <code class="c-orange">Serial.print</code><code class="c-gray">(c);</code>
+    <code class="c-gray">{{'}'}}</code>
+
+    <code class="c-orange">Serial.flush</code><code class="c-gray">();</code>
+    <code class="c-orange">delay</code><code class="c-gray">(2000);</code>
+  <code class="c-gray">{{'}'}}</code>
+        </pre>
+      </p-scrollPanel>
+    </p-panel>
+
+    <p-panel header="Arduino POST" [toggleable]="true" [transitionOptions]="'500ms'" collapsed="true">
+      <p-scrollPanel [style]="{width: '100%', height:'30em'}" styleClass="custom">
+        <pre>
+  <code class="c-gray">//Incluir librerias</code>
+  <code class="c-green">#include</code><code class="c-orange"> {{'<'}}HttpClient.h{{'>'}}</code>
+  <code class="c-green">#include</code><code class="c-orange"> {{'<'}}Bridge.h{{'>'}}</code>
+
+  <code class="c-aqua">void</code><code class="c-green"> setup</code><code class="c-gray">(){{'{'}}</code>
+    <code class="c-gray">//Puente tarda unos dos segundos en arrancar,
+    //puede ser útil usar el LED como indicador
+    //para cuando se ha inicializado</code>
+    <code class="c-orange">pinMode</code><code class="c-gray">(13,</code><code class="c-aqua">OUTPUT</code><code class="c-gray">);</code>
+    <code class="c-orange">digitalWrite</code><code class="c-gray">(13,</code><code class="c-aqua">LOW</code><code class="c-gray">);</code>
+    <code class="c-orange">Bridge.begin</code><code class="c-gray">();</code>
+    <code class="c-orange">pinMode</code><code class="c-gray">(13,</code><code class="c-aqua">OUTPUT</code><code class="c-gray">);</code>
+    <code class="c-orange">digitalWrite</code><code class="c-gray">(13,</code><code class="c-aqua">HIGH</code><code class="c-gray">);</code>
+    <code class="c-orange">SerialUSB.begin</code><code class="c-gray">(9600);</code>
+    <code class="c-green">while </code><code class="c-gray">(!</code><code class="c-orange">Serial</code><code class="c-gray">);</code>
+  <code class="c-gray">{{'}'}}</code>
+
+  <code class="c-aqua">void</code><code class="c-green"> loop</code><code class="c-gray">(){{'{'}}</code>
+    <code class="c-gray">//Se crea la variable a enviar</code>
+    <code class="c-aqua">String</code> <code class="c-gray">variable = "{{'{'}}\"value\":6{{'}'}}";</code>
+    <code class="c-orange">Serial.println</code><code class="c-gray">("dato a enviar: "+ variable);</code>
+
+    <code class="c-gray">//Se crea el cliente HTTP</code>
+    <code class="c-orange">HttpClient</code><code class="c-gray">client;</code>
+
+    <code class="c-gray">//Se especifica la cabecera de envío</code>
+    <code class="c-gray">//Se especifica la dirección URL para peticion POST</code>
+    <code class="c-gray">client.</code><code class="c-orange">setHeader</code><code class="c-gray">("Content-Type: application/json");</code>
+    <code class="c-aqua">String</code> <code class="c-gray">httpDestination = "http://inteocav.uao.edu.co:8000/usuario/proyecto/dispositivo/variable";</code>
+
+    <code class="c-gray">//Petición POST</code>
+    <code class="c-gray">client.</code><code class="c-orange">post</code><code class="c-gray">(httpDestination, variable);</code>
+
+    <code class="c-gray">//Validar envío</code>
+    <code class="c-green">if </code><code class="c-gray">(client.</code><code class="c-orange">read</code><code class="c-gray">() == 123) {{'{'}}</code>
+      <code class="c-orange">Serial.print</code><code class="c-gray">("OK");</code>
+    <code class="c-gray">{{'}'}}</code> <code class="c-green">else</code> <code class="c-gray">{{'{'}}</code>
+      <code class="c-orange">Serial.print</code><code class="c-gray">("ERROR");</code>
+    <code class="c-gray">{{'}'}}</code>
+
+    <code class="c-orange">delay</code><code class="c-gray">(1000);</code>
+    <code class="c-orange">Serial.flush</code><code class="c-gray">();</code>
+
+  <code class="c-gray">{{'}'}}</code>
+              </pre>
+      </p-scrollPanel>
+    </p-panel>
+  </div>
+
+  <div class="panel-container LinkItONE">
+    <div class="panel-header">
+      <img src="./assets/images/linkitone.png" class="panel-img">
+    </div>
+    <p-panel header="LinkIt ONE GET" [toggleable]="true" [transitionOptions]="'500ms'" collapsed="true">
+      <p-scrollPanel [style]="{width: '100%', height:'30em'}">
+        <pre>
+  <code class="c-gray">//Incluir librerias</code>
+  <code class="c-green">#include</code> <code class="c-orange">{{'<'}}Wire.h{{'>'}}</code>
+  <code class="c-green">#include</code> <code class="c-orange">{{'<'}}LWiFi.h{{'>'}}</code>
+  <code class="c-green">#include</code> <code class="c-orange">{{'<'}}LWiFiClient.h{{'>'}}</code>
+
+  <code class="c-gray">//Declarar variables</code>
+  <code class="c-green">#define</code> <code class="c-gray">WIFI_AP</code> <code>"Nombre_red"</code> <code class="c-gray">//Nombre de la red WiFi</code>
+  <code class="c-green">#define</code> <code class="c-gray">WIFI_PASSWORD</code> <code>"Contraseña"</code> <code class="c-gray">//Contraseña de la red WiFi</code>
+  <code class="c-green">#define</code> <code class="c-gray">WIFI_AUTH</code> <code>LWIFI_WPA</code> <code class="c-gray">//Seguridad de la red WiFi</code>
+
+  <code class="c-gray">//Dirección del servidor</code>
+  <code class="c-green">#define</code> <code class="c-gray">SITE_URL</code> <code>"inteocav.uao.edu.co"</code>
+
+  <code class="c-gray">//Se crea el cliente</code>
+  <code class="c-gray">LWiFiClient c;</code>
+
+  <code class="c-aqua">void</code><code class="c-green"> setup</code><code class="c-gray">(){{'{'}}</code>
+    <code class="c-gray">//Inicialización del puerto serial</code>
+    <code class="c-orange">Serial.begin</code><code class="c-gray">(115200);</code>
+    <code class="c-orange">Wire.begin</code><code class="c-gray">();</code>
+    <code class="c-gray">LWiFi.</code><code class="c-orange">begin</code><code class="c-gray">();</code>
+
+    <code class="c-gray">//Conectando a la red WiFi</code>
+    <code class="c-orange">Serial.println</code><code class="c-gray">("Conecting to AP:");</code>
+    <code class="c-green">while </code><code class="c-gray">(0 == LWiFi.</code><code class="c-orange">connect</code><code class="c-gray">(WIFI_AP, LWiFiLoginInfo(WIFI_AUTH, WIFI_PASSWORD))) {{'{'}}</code>
+      <code class="c-orange">delay</code><code class="c-gray">(1000);</code>
+    <code class="c-gray">{{'}'}}</code>
+    <code class="c-orange">Serial.print</code><code class="c-gray">("Connected");</code>
+  <code class="c-gray">{{'}'}}</code>
+
+  <code class="c-aqua">void</code><code class="c-green"> loop</code><code class="c-gray">(){{'{'}}</code>
+    <code class="c-gray">//Conectando al servidor</code>
+    <code class="c-orange">Serial.println</code><code class="c-gray">("Conecting to website");</code>
+    <code class="c-green">while </code><code class="c-gray">(0 == c.</code><code class="c-orange">connect</code><code class="c-gray">(SITE_URL, 8000)) {{'{'}}</code>
+      <code class="c-orange">Serial.println</code><code class="c-gray">("Re-Connecting to website");</code>
+      <code class="c-orange">delay</code><code class="c-gray">(1000);</code>
+    <code class="c-gray">{{'}'}}</code>
+
+    <code class="c-gray">//Petición GET</code>
+    <code class="c-orange">Serial.println</code><code class="c-gray">("send HTTP GET request");</code>
+
+    <code class="c-gray">//Se agrega la URL para realizar la petición GET</code>
+    <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">("GET /usuario/proyecto/dispositivo/variable");</code>
+    <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">("Host: " SITE_URL");</code>
+    <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">("Connection: close");</code>
+    <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">();</code>
+
+    <code class="c-gray">//Esperando respuesta del servidor</code>
+    <code class="c-orange">Serial.println</code><code class="c-gray">("waiting HTTP response:");</code>
+    <code class="c-green">while </code><code class="c-gray">(c.</code><code class="c-orange">available</code><code class="c-gray">()) {{'{'}}</code>
+      <code class="c-orange">delay</code><code class="c-gray">(1000);</code>
+    <code class="c-gray">{{'}'}}</code>
+
+    <code class="c-green">while </code><code class="c-gray">(c)) {{'{'}}</code>
+      <code class="c-orange">Serial.print</code><code class="c-gray">((</code><code class="c-aqua">char</code><code class="c-gray">))c.</code><code class="c-orange">read</code><code class="c-gray">();</code>
+    <code class="c-gray">{{'}'}}</code>
+
+    <code class="c-gray">c.</code><code class="c-orange">stop</code><code class="c-gray">();</code>
+
+    <code class="c-orange">delay</code><code class="c-gray">(5000);</code>
+  <code class="c-gray">{{'}'}}</code>
+            </pre>
+      </p-scrollPanel>
+    </p-panel>
+
+    <p-panel header="LinkIt ONE POST" [toggleable]="true" [transitionOptions]="'500ms'" collapsed="true">
+      <p-scrollPanel [style]="{width: '100%', height:'30em'}" styleClass="custom">
+        <pre>
+  <code class="c-gray">//Incluir librerias</code>
+  <code class="c-green">#include</code> <code class="c-orange">{{'<'}}Wire.h{{'>'}}</code>
+  <code class="c-green">#include</code> <code class="c-orange">{{'<'}}LWiFi.h{{'>'}}</code>
+  <code class="c-green">#include</code> <code class="c-orange">{{'<'}}LWiFiClient.h{{'>'}}</code>
+
+  <code class="c-gray">//Declarar variables</code>
+  <code class="c-green">#define</code> <code class="c-gray">WIFI_AP</code> <code>"Nombre_red"</code> <code class="c-gray">//Nombre de la red WiFi</code>
+  <code class="c-green">#define</code> <code class="c-gray">WIFI_PASSWORD</code> <code>"Contraseña"</code> <code class="c-gray">//Contraseña de la red WiFi</code>
+  <code class="c-green">#define</code> <code class="c-gray">WIFI_AUTH</code> <code>LWIFI_WPA</code> <code class="c-gray">//Seguridad de la red WiFi</code>
+
+  <code class="c-gray">//Dirección del servidor</code>
+  <code class="c-green">#define</code> <code class="c-gray">SITE_URL</code> <code>"inteocav.uao.edu.co"</code>
+
+  <code class="c-gray">//Se crea el cliente</code>
+  <code class="c-gray">LWiFiClient c;</code>
+
+  <code class="c-aqua">void</code><code class="c-green"> setup</code><code class="c-gray">(){{'{'}}</code>
+    <code class="c-gray">//Inicialización del puerto serial</code>
+    <code class="c-orange">Serial.begin</code><code class="c-gray">(115200);</code>
+    <code class="c-orange">Wire.begin</code><code class="c-gray">();</code>
+    <code class="c-gray">LWiFi.</code><code class="c-orange">begin</code><code class="c-gray">();</code>
+
+    <code class="c-gray">//Conectando a la red WiFi</code>
+    <code class="c-orange">Serial.println</code><code class="c-gray">("Conecting to AP:");</code>
+    <code class="c-green">while </code><code class="c-gray">(0 == LWiFi.</code><code class="c-orange">connect</code><code class="c-gray">(WIFI_AP, LWiFiLoginInfo(WIFI_AUTH, WIFI_PASSWORD))) {{'{'}}</code>
+      <code class="c-orange">delay</code><code class="c-gray">(1000);</code>
+    <code class="c-gray">{{'}'}}</code>
+    <code class="c-orange">Serial.print</code><code class="c-gray">("Connected");</code>
+  <code class="c-gray">{{'}'}}</code>
+
+  <code class="c-aqua">void</code><code class="c-green"> loop</code><code class="c-gray">(){{'{'}}</code>
+    <code class="c-gray">//Conectando al servidor</code>
+    <code class="c-orange">Serial.println</code><code class="c-gray">("Conecting to website");</code>
+    <code class="c-green">while </code><code class="c-gray">(0 == c.</code><code class="c-orange">connect</code><code class="c-gray">(SITE_URL, 8000)) {{'{'}}</code>
+      <code class="c-orange">Serial.println</code><code class="c-gray">("Re-Connecting to website");</code>
+      <code class="c-orange">delay</code><code class="c-gray">(1000);</code>
+    <code class="c-gray">{{'}'}}</code>
+
+    <code class="c-orange">Serial.println</code><code class="c-gray">("Enviando datos...");</code>
+
+    <code class="c-gray">//Creación de la variable a enviar</code>
+    <code class="c-aqua">String</code> <code class="c-gray">value =</code> <code>"{{'{'}}\"value\": + 5 {{'}'}}"</code>
+    <code class="c-aqua">String</code> <code class="c-gray">thisLength =</code> <code class="c-aqua">String</code><code class="c-gray">(value.</code><code class="c-orange">length</code><code class="c-gray">());</code>
+
+    <code class="c-gray">//Petición POST</code>
+    <code class="c-orange">Serial.println</code><code class="c-gray">("Connected. Sending HTTP POST Request...");</code>
+    <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">("POST /usuario/proyecto/dispositivo/variable");</code><code class="c-gray">//Modificar POST path</code>
+    <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">("Host: " SITE_URL");</code>
+    <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">("Content-Type: application/json");</code>
+    <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">(thisLength);</code>
+    <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">();</code>
+    <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">(value);</code><code class="c-gray">//Enviar la petición POST</code>
+
+    <code class="c-gray">//Esperando respuesta del servidor</code>
+    <code class="c-orange">Serial.println</code><code class="c-gray">("waiting HTTP response:");</code>
+    <code class="c-green">while </code><code class="c-gray">(c.</code><code class="c-orange">available</code><code class="c-gray">()) {{'{'}}</code>
+      <code class="c-orange">delay</code><code class="c-gray">(1000);</code>
+    <code class="c-gray">{{'}'}}</code>
+
+    <code class="c-green">while </code><code class="c-gray">(c)) {{'{'}}</code>
+      <code class="c-orange">Serial.print</code><code class="c-gray">((</code><code class="c-aqua">char</code><code class="c-gray">))c.</code><code class="c-orange">read</code><code class="c-gray">();</code>
+    <code class="c-gray">{{'}'}}</code>
+
+    <code class="c-gray">c.</code><code class="c-orange">stop</code><code class="c-gray">();</code>
+
+    <code class="c-orange">delay</code><code class="c-gray">(5000);</code>
+  <code class="c-gray">{{'}'}}</code>
+              </pre>
+      </p-scrollPanel>
+    </p-panel>
+  </div>
+
+  <div class="panel-container Raspberry Pi">
+    <div class=panel-header>
+      <img src="./assets/images/raspberry_pi.png" class="panel-img">
+    </div>
+    <p-panel header="Raspberry Pi GET" [toggleable]="true" [transitionOptions]="'500ms'" collapsed="true">
+      <p-scrollPanel [style]="{width: '100%', height:'30em'}">
+        <pre>
+  <code class="c-red">##Se importan las librerias necesarias</code>
+  <code class="c-orange">import </code> <code class="c-gray">requests, json</code>
+
+
+  <code class="c-red">##Se crea la URL</code>
+  <code class="c-red">##Debe cambiar user, project, device y variable por los respctivos nombres</code>
+  <code class="c-red">##de usuario, proyecto, dispositivo y variable</code>
+  <code class="c-gray">url =</code> <code class="c-green">"http://inteocav.uao.edu.co:8000/usuario/proyecto/dispositivo/variable"</code>
+  
+  <code class="c-red">##Petición GET</code>
+  <code class="c-gray">r = requests.get(url)</code>
+  <code class="c-yellow">if</code> <code class="c-gray">r.status.code == 200:</code>
+    <code class="c-purple">print</code> <code class="c-gray">r.json()</code> <code class="c-red"> ##Imprime la respuesta</code>
+  <code class="c-yellow">else:</code>
+    <code class="c-purple">print</code> <code class="c-gray">r</code>
+        </pre>
+      </p-scrollPanel>
+    </p-panel>
+
+    <p-panel header="Raspberry Pi POST" [toggleable]="true" [transitionOptions]="'500ms'" collapsed="true">
+      <p-scrollPanel [style]="{width: '100%', height:'30em'}" styleClass="custom">
+        <pre>
+  <code class="c-red">##Se importan las librerias necesarias</code>
+  <code class="c-orange">import </code> <code class="c-gray">requests, json</code>
+
+  <code class="c-red">##Se importan las librerias para utilizar</code>
+  <code class="c-red">##las entradas y salidas de la Raspberry</code>
+  <code class="c-orange">from</code> <code class="c-gray">gpiozero</code> <code class="c-orange">import</code> <code class="c-gray">Button</code>
+
+
+  <code class="c-red">##Se inicializan las variables</code>
+  <code class="c-gray">button = Button(2)</code>
+
+  <code class="c-red">##Se crea la URL</code>
+  <code class="c-red">##Debe cambiar user, project, device y variable por los respctivos nombres</code>
+  <code class="c-red">##de usuario, proyecto, dispositivo y variable</code>
+  <code class="c-gray">url =</code> <code class="c-green">"http://inteocav.uao.edu.co:8000/usuario/proyecto/dispositivo/variable"</code>
+
+  <code class="c-red">##Petición POST</code>
+  <code class="c-red">##Se modifica la cabecera para el envío de datos</code>
+  <code class="c-gray">headers = {{'{'}}</code><code class="c-green">"content-type" : "aplication/json"</code><code class="c-gray">{{'}'}}</code>
+
+  <code class="c-yellow">if</code> <code class="c-gray">button.is_pressed:</code>
+    <code class="c-gray">data = 1</code>
+  <code class="c-yellow">else:</code>
+    <code class="c-gray">data = 1</code>
+
+  <code class="c-red">##Se crea la variable a enviar</code>
+  <code class="c-gray">payload = {{'{'}}</code> <code class="c-green">"value"</code> <code class="c-gray">: data{{'}'}}</code>
+  
+  <code class="c-red">##Se realiza la petición POST</code>
+  <code class="c-gray">r = requests.get(url, data=json.dumps(payload), headers=headers)</code>
+        </pre>
+      </p-scrollPanel>
+    </p-panel>
+  </div>
+
+  <div class="panel-container NodeMCU">
+    <div class="panel-header">
+      <img src="./assets/images/nodemcu.png" class="panel-img-node">
+    </div>
+    <p-panel header="NodeMCU GET" [toggleable]="true" [transitionOptions]="'500ms'" collapsed="true">
+      <p-scrollPanel [style]="{width: '100%', height:'30em'}" styleClass="custom">
+        <pre>
+  <code class="c-gray">//Incluir librerias</code>
+  <code class="c-green">#include</code> <code class="c-gray">{{'<'}}ESP8266WiFi.h{{'>'}}</code>
+  <code class="c-green">#include</code> <code class="c-orange">{{'<'}}ESP8266HTTPClient.h{{'>'}}</code>
+
+  <code class="c-gray">//Declarar variables</code>
+  <code class="c-green">#ifndef</code> <code class="c-gray">STASSID</code>
+  <code class="c-green">#define</code> <code class="c-gray">STASSID</code> <code class="c-aqua">"Nombre_red"</code> <code class="c-gray">//Nombre de la red WiFi</code>
+  <code class="c-green">#define</code> <code class="c-gray">STAPSK</code> <code class="c-aqua">"Contraseña"</code> <code class="c-gray">//Contraseña de la red WiFi</code>
+  <code class="c-green">#endif</code> 
+
+  <code class="c-aqua">const char*</code> <code>ssid = STASSID</code>
+  <code class="c-aqua">const char*</code> <code>password = STAPSK</code>
+
+  <code class="c-gray">//Dirección del servidor</code>
+  <code class="c-aqua">const char</code><code>* host =</code> <code class="c-aqua">"inteocav.uao.edu.co"</code>
+
+  <code class="c-gray">//Puerto del servidor</code>
+  <code class="c-aqua">const int</code><code>* hostPort = 8000</code>
+  
+  <code class="c-aqua">void</code><code class="c-green"> setup</code><code class="c-gray">(){{'{'}}</code>
+    <code class="c-gray">//Inicialización del puerto serial</code>
+    <code class="c-orange">Serial.begin</code><code class="c-gray">(115200);</code>
+
+    <code class="c-gray">//Conectando a la red WiFi</code>
+    <code class="c-orange">Serial.print</code><code class="c-gray">("Conecting to...");</code>
+    <code class="c-orange">Serial.println</code><code class="c-gray">(ssid);</code>
+
+    <code class="c-gray">//Configuramos el ESP8266 como cliente WiFi. Si no lo hacemos
+    //Se configurará como cliente y punto de acceso al mismo tiempo
+    </code>
+    <code class="c-orange">WiFi</code><code>.mode(WIFI_STA);</code>
+    <code class="c-orange">WiFi.begin</code><code>(ssid, password);</code>
+
+    <code class="c-gray">//Esperamos a conectarnos a la red WIFI</code>
+    <code class="c-green">while </code><code>(</code><code class="c-orange">WiFi.status</code><code>() != WL_CONNECTED) {{'{'}}</code>
+      <code class="c-orange">delay</code><code class="c-gray">(500);</code>
+    <code class="c-gray">{{'}'}}</code>
+    <code class="c-orange">Serial.print</code><code class="c-aqua">("Connected");</code>
+  <code class="c-gray">{{'}'}}</code>
+
+  <code class="c-aqua">void</code><code class="c-green"> loop</code><code class="c-gray">(){{'{'}}</code>
+    <code class="c-gray">//Se crea al cliente</code>
+    <code class="c-orange">WiFiClient</code> <code>client;</code>
+    <code class="c-gray">//Conectando al servidor</code>
+    <code class="c-orange">Serial.println</code><code class="c-aqua">("Conecting to website");</code>
+
+    <code class="c-gray">//Esperamos a que se conecte al servidor</code>
+    <code class="c-green">if</code><code class="c-gray">(!client.</code><code class="c-orange">connect</code><code>(host, 8000)) {{'{'}}</code>
+      <code class="c-orange">Serial.println</code><code class="c-aqua">("Conection failed");</code>
+      <code class="c-green">return</code><code class="c-gray">;</code>
+    <code class="c-gray">{{'}'}}</code>
+
+    <code class="c-gray">//URL para la petición GET</code>
+    <code class="c-aqua">String</code> <code>url =</code> <code class="c-aqua">/usuario/proyecto/dispositivo/variable</code>
+    <code class="c-orange">Serial.print</code><code class="c-aqua">("requesting URL:");</code>
+    <code class="c-orange">Serial.println</code><code>(url);</code>
+
+    <code class="c-gray">//Se crea la petición GET</code>
+    <code>client.</code><code class="c-orange">print</code><code>(<code class="c-aqua">String</code>(<code class="c-aqua">"GET"</code>) + url +
+        <code class="c-aqua">" HTTP/1.1\r\n"</code> +  <code class="c-aqua">"Host"</code> + host + 
+        <code class="c-aqua">"\r\n"</code> + <code class="c-aqua">"User-Agent: BuildFailureDetectorESP8266\r\n"</code> +
+        <code class="c-aqua">"Connection: close\r\n\r\n"</code>);</code>
+    
+    <code class="c-orange">Serial.println</code><code class="c-aqua">("Request sent");</code>
+
+    <code class="c-green">while </code><code>(client.</code><code class="c-orange">connected()</code><code>()) {{'{'}}</code>
+      <code class="c-aqua">String</code> <code>line = client</code><code class="c-orange">readStringUntil</code><code>(<code class="c-aqua">'\n'</code>)</code>
+      <code class="c-green">if</code><code>(line == <code class="c-aqua">"\r"</code>) {{'{'}}</code>
+        <code class="c-orange">Serial.println</code><code>(<code class="c-aqua">"headers received"</code>);</code>
+        <code class="c-green">break;</code>
+      <code>{{'}'}}</code>
+    <code>{{'}'}}</code>
+
+    <code class="c-gray">//Lectura e impresión de datos</code>
+    <code class="c-aqua">String</code> <code>line = client.</code><code class="c-orange">readStringUntil</code><code>(<code class="c-aqua">"\n"</code>);</code>
+    
+    <code class="c-orange">Serial.println</code><code>(<code class="c-aqua">"reply was:"</code>);</code>
+    <code class="c-orange">Serial.println</code><code>(line);</code>
+    <code class="c-orange">Serial.println</code><code>(<code class="c-aqua">"closing connection"</code>);</code>
+    
+    <code>client.</code><code class="c-orange">stop</code><code>();</code>
+
+    <code class="c-orange">delay</code><code>(10000);</code>
+  <code>{{'}'}}</code>
+        </pre>
+      </p-scrollPanel>
+    </p-panel>
+
+    <p-panel header="NodeMCU POST" [toggleable]="true" [transitionOptions]="'500ms'" collapsed="true">
+      <p-scrollPanel [style]="{width: '100%', height:'30em'}" styleClass="custom">
+        <pre>
+  <code class="c-gray">//Incluir librerias</code>
+  <code class="c-green">#include</code> <code class="c-gray">{{'<'}}ESP8266WiFi.h{{'>'}}</code>
+  <code class="c-green">#include</code> <code class="c-orange">{{'<'}}ESP8266HTTPClient.h{{'>'}}</code>
+
+  <code class="c-gray">//Declarar variables</code>
+  <code class="c-green">#ifndef</code> <code class="c-gray">STASSID</code>
+  <code class="c-green">#define</code> <code class="c-gray">STASSID</code> <code class="c-aqua">"Nombre_red"</code> <code class="c-gray">//Nombre de la red WiFi</code>
+  <code class="c-green">#define</code> <code class="c-gray">STAPSK</code> <code class="c-aqua">"Contraseña"</code> <code class="c-gray">//Contraseña de la red WiFi</code>
+  <code class="c-green">#endif</code> 
+
+  <code class="c-aqua">const char*</code> <code>ssid = STASSID</code>
+  <code class="c-aqua">const char*</code> <code>password = STAPSK</code>
+
+  <code class="c-gray">//Dirección del servidor</code>
+  <code class="c-aqua">const char</code><code>* host =</code> <code class="c-aqua">"inteocav.uao.edu.co"</code>
+
+  <code class="c-gray">//Puerto del servidor</code>
+  <code class="c-aqua">const int</code><code>* hostPort = 8000</code>
+  
+  <code class="c-aqua">void</code><code class="c-green"> setup</code><code class="c-gray">(){{'{'}}</code>
+    <code class="c-gray">//Inicialización del puerto serial</code>
+    <code class="c-orange">Serial.begin</code><code class="c-gray">(115200);</code>
+
+    <code class="c-gray">//Conectando a la red WiFi</code>
+    <code class="c-orange">Serial.print</code><code class="c-gray">("Conecting to...");</code>
+    <code class="c-orange">Serial.println</code><code class="c-gray">(ssid);</code>
+
+    <code class="c-gray">//Configuramos el ESP8266 como cliente WiFi. Si no lo hacemos
+    //Se configurará como cliente y punto de acceso al mismo tiempo
+    </code>
+    <code class="c-orange">WiFi</code><code>.mode(WIFI_STA);</code>
+    <code class="c-orange">WiFi.begin</code><code>(ssid, password);</code>
+
+    <code class="c-gray">//Esperamos a conectarnos a la red WIFI</code>
+    <code class="c-green">while </code><code>(</code><code class="c-orange">WiFi.status</code><code>() != WL_CONNECTED) {{'{'}}</code>
+      <code class="c-orange">delay</code><code class="c-gray">(500);</code>
+    <code class="c-gray">{{'}'}}</code>
+    <code class="c-orange">Serial.print</code><code class="c-aqua">("Connected");</code>
+  <code class="c-gray">{{'}'}}</code>
+
+  <code class="c-aqua">void</code><code class="c-green"> loop</code><code class="c-gray">(){{'{'}}</code>
+    <code class="c-gray">//Se crea al cliente</code>
+    <code class="c-orange">WiFiClient</code> <code>client;</code>
+    <code class="c-gray">//Conectando al servidor</code>
+    <code class="c-orange">Serial.println</code><code class="c-aqua">("Conecting to website");</code>
+
+    <code class="c-gray">//Esperamos a que se conecte al servidor</code>
+    <code class="c-green">if</code><code class="c-gray">(client.</code><code class="c-orange">connect</code><code>(host, 8000)) {{'{'}}</code>
+      <code class="c-orange">Serial.println</code><code class="c-aqua">("Connected to server");</code>
+      <code class="c-gray">//Hacemos la petición HTTP</code>
+      <code class="c-aqua">String <code class="c-gray">PostData =</code> "{{'{'}} \"value\" : 3 {{'}'}}";</code>
+      <code class="c-aqua">String <code class="c-gray">thisLenght = </code>String</code><code class="c-gray">(PostData.<code class="c-orange">length</code>());</code> 
+      
+      <code>client.</code><code class="c-orange">println</code><code>(<code class="c-aqua">"POST /usuario/proyecto/dispositivo/variable"</code>);</code>
+      <code>client.</code><code class="c-orange">println</code><code>(<code class="c-aqua">"Host: "</code>host);</code>
+      <code>client.</code><code class="c-orange">println</code><code>(<code class="c-aqua">"Connection: close"</code>);</code>
+      <code>client.</code><code class="c-orange">println</code><code>(<code class="c-aqua">"Content-Type: application/json"</code>);</code>
+      <code>client.</code><code class="c-orange">println</code><code>(<code class="c-aqua">"Content-Lenght: "</code>thisLenght);</code>
+      <code>client.</code><code class="c-orange">println</code><code>();</code>
+      <code>client.</code><code class="c-orange">println</code><code>(PostData);</code>
+
+      <code class="c-orange">Serial.println</code><code class="c-aqua">("Waiting HTTP Response");</code>
+      <code class="c-green">while </code><code>(client.</code><code class="c-orange">available</code><code>()) {{'{'}}</code>
+        <code class="c-orange">delay</code><code>(100);</code>
+      <code class="c-gray">{{'}'}}</code>
+
+      <code class="c-green">while </code><code>(client) {{'{'}}</code>
+        <code class="c-orange">Serial.println</code><code>((<code class="c-aqua">char</code>)client.<code class="c-orange">read</code>());</code>
+      <code class="c-gray">{{'}'}}</code>
+      <code class="c-gray">client.<code class="c-orange">stop</code>();</code>
+      <code class="c-orange">Serial.println</code><code class="c-aqua">("Disconnecting from server");</code>
+    <code class="c-gray">{{'}'}}</code>
+    <code class="c-green">else</code><code class="c-gray">{{'{'}}</code>
+      <code class="c-orange">Serial.println</code><code class="c-aqua">("Disconnected from server");</code>
+    <code class="c-gray">{{'}'}}</code>
+
+    <code class="c-orange">delay</code><code>(5000);</code>
+  <code>{{'}'}}</code>
+        </pre>
+      </p-scrollPanel>
+    </p-panel>
+
+
+  </div>
+</section>

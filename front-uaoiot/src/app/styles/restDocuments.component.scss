@@ -1,0 +1,53 @@
+section {
+    width: 90%;
+    margin: 0 auto;
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.panel-container{
+    width: 40%;
+    margin-bottom: 2em;
+
+    .panel-header{
+        display: flex;
+        justify-content: center;
+
+        .panel-img{
+            width: auto;
+            height: 10em;
+        }
+        .panel-img-node{
+            width: 10em;
+            height: 10em;
+            padding: 1em;
+        }
+    }
+    
+    .c-gray {
+        color: #434F54;
+    }
+    .c-orange{
+        color: #D35400;
+        background-color: none;
+    }
+    .c-green {
+        color: #728E00;
+    }
+    .c-aqua{
+        color: #00979C;
+    }
+    .c-red {
+        color: rgb(175, 19, 19);
+    }
+    .c-yellow{
+        color: rgb(197, 197, 46);
+    }
+    .c-purple{
+        color: rgb(99, 13, 99);
+    }
+}
+

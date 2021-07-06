@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/shepherd.js/dist/css/shepherd-theme-default.css';
+@font-face {
+    font-family: lato;
+    src: url(assets/fonts/OpenSans-Regular.ttf) format("opentype");
+}
+$rojo-principal: "#ff00cc";
+html,
+body {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F0F0F7;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1.3em;
+    display: grid;
+    grid-template-columns: 30% auto;
+
+    a {
+        color: white;
+    }
+}
+
+body .ui-breadcrumb {
+  background-color: #EC1C24;
+  border: 0;
+  //padding: 0.571em 1em;
+  //padding: 0;
+}
+
+body .ui-breadcrumb ul li.ui-breadcrumb-chevron {
+  //margin: 0 0.5em 0 0.5em;
+  margin: 0;
+  color: white;
+}
+

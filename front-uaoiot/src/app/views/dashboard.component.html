@@ -1,0 +1,346 @@
+<!--TOASTS-->
+<p-growl [(value)]="msg"></p-growl>
+<!--STEPS CHARTS-->
+<p-dialog header={{titleDialog}} [(visible)]="displayChart" [dismissableMask]="true" [responsive]="true"
+    showEffect="fade" [modal]="true" [style]="{width: '500px', height: '200px'}">
+
+    <div id="config-section">
+
+        <ng-container *ngIf="activeIndexChart === 0; else second">
+            <div class="center-align" id="type-section">
+                <div class="row">
+                    <div class="col s6">
+                        <div id="line-chart-div">
+                            <img src="assets/images/line-chart.png">
+                            <p-radioButton name="group1" value="line" label="Lineas" [(ngModel)]="paramsToChart.type"
+                                inputId="opt1"></p-radioButton>
+                        </div>
+
+                    </div>
+
+                    <div class="col s6">
+                        <div id="bar-chart-div">
+                            <img src="assets/images/bar-chart.png">
+                            <p-radioButton name="group1" value="bar" label="Barras" [(ngModel)]="paramsToChart.type"
+                                inputId="opt2"></p-radioButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-template #second>
+            <ng-container *ngIf="activeIndexChart === 1; else third">
+                <div id="title-div">
+                    <span>Título de Gráfica</span>
+                    <input type="text" [size]="45" pInputText [(ngModel)]="paramsToChart.title" />
+                </div>
+            </ng-container>
+        </ng-template>
+
+        <ng-template #third>
+            <ng-container *ngIf="activeIndexChart === 2; else four">
+
+                <div class="col s4">
+                    <div id="variables-div">
+                        <p>Variables de este dispositivo</p>
+
+                        <div *ngFor="let device of deviceVariables; let i = index">
+                            <!--<p-radioButton name="group1" value="data" label={{device}} 
+                            [(ngModel)]="variablesData" inputId="opt2"></p-radioButton>-->
+                            <div class="var-div">
+                                <span>{{device}}</span>
+                                <p-colorPicker id="picker" [(ngModel)]="colors[i]"></p-colorPicker>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </ng-container>
+        </ng-template>
+
+        <ng-template #four>
+            <ng-container *ngIf="activeIndexChart === 3;">
+                <div id="value-div">
+
+                    <p>Seleccina la cantidad de datos que deseas graficar</p>
+
+                    <div id="options">
+                        <div id="all-option">
+                            <p-radioButton name="group1" value="allData" label="Todos los datos"
+                                [(ngModel)]="paramsToChart.amount" inputId="opt1"></p-radioButton>
+                        </div>
+
+                        <div>
+                            <p-radioButton name="group1" value="lastData" label="Último dato"
+                                [(ngModel)]="paramsToChart.amount" inputId="opt2"></p-radioButton>
+                        </div>
+                    </div>
+
+
+                </div>
+            </ng-container>
+        </ng-template>
+
+
+    </div>
+
+
+    <div id="step-section">
+        <div class="p-grid p-align-end vertical-container">
+            <div class="p-col">
+                <p-steps [model]="stepItems" [(activeIndex)]="activeIndexChart" [readonly]="false"></p-steps>
+            </div>
+        </div>
+    </div>
+
+    <!--{{typeDataChart}}-->
+
+    <!--<p-footer>
+        <a class="btn-flat blue-text" (click)="sendData()">CREAR</a>
+    </p-footer>-->
+
+</p-dialog>
+
+
+<!--STEPS TABLE-->
+<p-dialog header="Configurar tabla" [(visible)]="displayTable" [dismissableMask]="true" [responsive]="true"
+    showEffect="fade" [modal]="true" [style]="{width: '500px', height: '200px'}">
+
+    <div id="title-table">
+        <p>Título de la tabla</p>
+        <input type="text" pInputText [size]="45" [(ngModel)]="dataToChart.title" />
+    </div>
+
+    <div id="data-options">
+        <p>Seleccionar datos a graficar</p>
+        <div class="row">
+            <div class="col s4">
+                <p-radioButton name="group1" value="allData" label="Todos los datos" [(ngModel)]="dataToChart.amount"
+                    inputId="opt1"></p-radioButton>
+            </div>
+
+            <div class="col s4">
+                <p-radioButton name="group1" value="lastData" label="Último dato" [(ngModel)]="dataToChart.amount"
+                    inputId="opt2"></p-radioButton>
+            </div>
+        </div>
+
+    </div>
+
+
+    <p-footer>
+        <a class="btn-flat red-text" (click)="displayTable=false">Cancelar</a>
+        <a class="btn-flat blue-text" (click)="addTable()">Crear</a>
+    </p-footer>
+
+</p-dialog>
+
+<!--FIN DIALOGS-->
+<div>
+    <app-sub-navbar (subNavbarEvent)="getTypeChart($event)" [devicesArray]="devicesArray"></app-sub-navbar>
+</div>
+
+<div id="content-dashboard">
+    <div id="sender-section">
+        <div class="title-section">
+            <h6>Envío de mensajes</h6>
+        </div>
+
+        <div class="row">
+            <div class="col s5">
+                <div class="card" id="sender-card">
+                    <span class="card-title">Datos de envío</span>
+                    <div id="sender-user-section">
+                        <div class="row">
+                            <div class="col s5"><span>Nombre usuario:</span></div>
+                            <div class="col s7"><input id="send_msg" type="text" pInputText class="validate"
+                                    name="userToSendMsg" [size]="35" [(ngModel)]="userToSendMsg"></div>
+                            <!--<i class="material-icons add-button">add_circle</i>-->
+                        </div>
+                    </div>
+
+                    <div id="sender-device-section">
+                        <div class="row">
+                            <div class="col s5"><span>Nombre dispositivo:</span></div>
+                            <div class="col s7"><input id="send_msg" type="text" pInputText class="validate"
+                                    name="deviceToSendMsg" [size]="35" [(ngModel)]="deviceToSendMsg"></div>
+                            <!--<i class="material-icons add-button">add_circle</i>-->
+                        </div>
+                    </div>
+
+
+                    <div id="sender-msg-section">
+                        <div class="row">
+                            <div class="col s5"><label for="text">Mensaje a enviar</label></div>
+                            <div class="col s7"><input id="send_msg" type="text" pInputText class="validate"
+                                    name="messageToSend" [size]="35" [(ngModel)]="messageToSend"></div>
+                        </div>
+                    </div>
+
+                    <div id="send-button-section" class="right-align">
+                        <p-button label="Enviar" (click)="sendMsg()"></p-button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<span>JSON CHART: {{dataChart}}</span>-->
+
+    <div id="listen-setion">
+
+        <div class="title-section">
+            <h6>Recepción de mensajes</h6>
+        </div>
+        <div class="row">
+            <div class="col s5">
+                <div class="card" id="device-card">
+
+                    <span class="card-title">Datos de recepción</span>
+                    <div id="listen-device-section">
+
+                        <!--<div class="row">
+                            <div class="col s5"></div>
+                            <div class="col s7">
+                                <p-dropdown [options]="devicesArray" [(ngModel)]="languageLibrary"  placeholder="Seleccione un lenguaje" 
+                                optionLabel="name" [showClear]="true"></p-dropdown>
+                            </div>
+                        </div>-->
+
+                        <div class="row">
+                            <div class="col s5"><span>Dispositivo escuchado:</span></div>
+                            <div class="col s7">
+                                <p-autoComplete #autoComplete [(ngModel)]="nameDevice"
+                                    [suggestions]="filteredDevicesArray" (completeMethod)="filterDevice($event)"
+                                    [minLength]="0" [dropdown]="true" [size]="30" (onFocus)="autoComplete.show()">
+                                </p-autoComplete>
+                            </div>
+                        </div>
+                        <!--<span id="add-listener-icon"><i class="material-icons add-button">add_circle</i>Agregar dispositivo</span>-->
+                    </div>
+
+                    <div id="listen-amount-section">
+
+                        <div class="row">
+                            <div class="col s5"><label for="text">Límite de mensajes:</label></div>
+                            <div class="col s7"><input id="amount_data" placeholder="Sin límite" [size]="35"
+                                    type="number" [(ngModel)]="amountData" pInputText class="validate"></div>
+                        </div>
+
+                    </div>
+
+                    <div id="listen-button-section" class="right-align">
+
+                        <p-toggleButton (click)="listenDevice()" [(ngModel)]="listenChecked" onLabel="Escuchar"
+                            offLabel="Desconectar"></p-toggleButton>
+                        <!--<a class="blue darken-1 btn-small" (click)="listenDevice()">Escuchar</a>-->
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col s7">
+                <div class="card" id="msg-card">
+
+                    <span class="card-title">Lista de mensajes</span>
+
+                    <div id="msg-content-card">
+                        <div id="listado-msj">
+                            <p-table [columns]="cols" [value]="dataToChart" [scrollable]="true" scrollHeight="115px">
+
+                                <ng-template pTemplate="header" let-columns>
+                                    <tr>
+                                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                            {{col.header}}
+                                            <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                                                ariaLabelDesc="Activate to sort in descending order"
+                                                ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                                        </th>
+                                        <!--<th>Mensaje</th>
+                                                <th field="hour">Hora
+                                                    <p-sortIcon></p-sortIcon>
+                                                </th>-->
+
+                                    </tr>
+                                </ng-template>
+
+                                <ng-template pTemplate="body" let-data let-columns="columns">
+                                    <tr>
+                                        <td *ngFor="let col of columns">
+                                            {{data[col.field]}}
+                                        </td>
+                                        <!--<td>
+                                                    <h6>{{data.payload}}</h6>
+                                                </td>
+                                                
+                                                <td>
+                                                    <h6>{{data.date}}</h6>
+                                                </td>-->
+
+                                    </tr>
+
+                                </ng-template>
+                            </p-table>
+
+                        </div>
+
+                        <div id="action-button-section" class="right-align">
+
+                            <a id="chart-button" class="btn-floating blue darken-1" pTooltip="Graficar"
+                                tooltipPosition="bottom"><i class="material-icons"
+                                    (click)="showDialogTypeChart()">insert_chart</i></a>
+
+
+                            <a id="table-button" class="btn-floating blue darken-1" pTooltip="Tabular"
+                                tooltipPosition="bottom" (click)="showDialogConfigTable()">
+                                <i class="material-icons">table_chart</i></a>
+
+                            <a id="table-button" class="btn-floating blue darken-1" pTooltip="Limpiar"
+                                tooltipPosition="bottom" (click)="clearData()">
+                                <i class="material-icons">delete</i></a>
+                            <!--<p-toggleButton [(ngModel)]="listenChecked" onLabel="Limpiar" offLabel="Desconectar" ></p-toggleButton>-->
+                            <!--<a class="blue darken-1 btn-small" (click)="listenDevice()">Escuchar</a>-->
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p-accordion [multiple]="true">
+
+        <p-accordionTab header="Gráficas">
+            <app-chart></app-chart>
+        </p-accordionTab>
+
+        <p-accordionTab header="Tablas">
+            <app-tables></app-tables>
+        </p-accordionTab>
+
+    </p-accordion>
+</div>
+
+
+
+
+
+<!--<canvas #charts *ngFor="let chart of charts; let i = index" id="charts">{{chart}}</canvas>-->
+
+<!--<chart [chartDataMessage]="parentMMessage"></chart>-->
+
+<!--<div class="listado-msj">
+    <h3>Listado de mensajes</h3>
+    <ul>
+        <li>
+            <h5 *ngFor="let data of dataToChart">{{data}}</h5>
+        </li>
+    </ul>
+</div>-->
+
+<!--<chart></chart>-->
