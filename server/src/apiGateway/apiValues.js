@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+require("../requestMethods/post.js")();
 const request = require("request");
 
 var port = process.env.PORT1 || 8000;
@@ -9,6 +9,13 @@ var hostURL = "http://localhost:" + port;
 var portToken = process.env.PORT || 3000;
 //var hostToken = "http://192.168.20.42:" + portToken + "/api/tokenuser/";
 var hostToken = "http://localhost:" + portToken + "/api/tokenuser/";
+
+const postMqttData = async(string, body) => {
+    const url = string
+    const data = await postData(url, body)
+    console.log(data)
+
+}
 router.get("/:user/:project/:deviceN/:variableN", (req, res) => {
     const { user } = req.params;
     const { project } = req.params;
@@ -41,12 +48,14 @@ router.get("/:user/:project/:deviceN/:variableN", (req, res) => {
 router.get(
     "/:user/:project/:deviceN/:deviceH/:variableN/:variableT",
     (req, res) => {
+
         const { user } = req.params;
         const { project } = req.params;
         const { deviceN } = req.params;
         const { deviceH } = req.params;
         const { variableN } = req.params;
         const { variableT } = req.params;
+        const uriPost = hostURL + "/mqtt/apiValuesMQTT/";
         const uri =
             hostURL +
             "/values/" +
@@ -62,6 +71,7 @@ router.get(
             "/" +
             variableT;
 
+
         request.get(uri, (err, resp, body) => {
             body = JSON.parse(body);
 
@@ -69,7 +79,9 @@ router.get(
                 res.status(500).send({ ERROR: "Error searching" });
             } else {
                 res.status(resp.statusCode).send(body);
-               
+
+                postMqttData(uriPost, req.params)
+
             }
         });
     }

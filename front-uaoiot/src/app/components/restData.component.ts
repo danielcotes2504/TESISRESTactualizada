@@ -54,6 +54,7 @@ export class RestDataComponent implements OnInit {
             + this.currentVariable.deviceH + '/' + this.currentVariable.variableN + '/' + this.currentVariable.variableT;
         this.apiService.getValues(this.url).subscribe(resValues => {
             this.values = resValues.body;
+            
             if (this.values.length < 2) {
                 this.show();
             }
