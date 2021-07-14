@@ -60,13 +60,13 @@ function postUser(req, res) {
     var params = req.body;
     user.login = params.login;
     user.password = params.password;
-   // User.find({ login: user.login},(err,user) => {
-   //     if(err){
-   //         res.status(500).send({ message: "Error al comprobar"});
-   //     }else{
-            //if(user){
-            //    res.status(200).send({ message: 'Este usuario ya existe'});
-            //}else{
+    // User.find({ login: user.login},(err,user) => {
+    //     if(err){
+    //         res.status(500).send({ message: "Error al comprobar"});
+    //     }else{
+    //if(user){
+    //    res.status(200).send({ message: 'Este usuario ya existe'});
+    //}else{
 
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(user.password, salt, (err, hash) => {
@@ -76,36 +76,36 @@ function postUser(req, res) {
 
             console.log("HASH USERLOGIN: " + hash);
 
-            let hash256 = crypto.createHash('sha256').update(new Buffer(user.password,'utf8')).digest('hex');
+            let hash256 = crypto.createHash('sha256').update(new Buffer(user.password, 'utf8')).digest('hex');
             console.log("HASH256 USER: " + hash256);
 
             token.value = hash;
             token.user = user.login;
-            
+
             user.password = hash256;
-            
+
             user.save((err, userStored) => {
                 if (err) {
-                    res.status(500).send({ message: 'Error al guardar ' + err});
+                    res.status(500).send({ message: 'Error al guardar ' + err });
 
                 } else {
 
-                    token.save((err, tokenStored) =>{
-                        if(err){
-                            res.status(500).send({message: 'Error ' + err});
-                        }else{
-                            res.status(200).send({user: userStored, token: tokenStored});
+                    token.save((err, tokenStored) => {
+                        if (err) {
+                            res.status(500).send({ message: 'Error ' + err });
+                        } else {
+                            res.status(200).send({ user: userStored, token: tokenStored });
                         }
 
                     });
-                    
+
                 }
-        
+
             });
         });
     });
-            //}
-        //}
+    //}
+    //}
     //});
     //console.log("HASH USERLOGIN PASS: " + user.password);
 }
@@ -136,12 +136,12 @@ function updateUser(req, res) {
 function deleteUser(req, res) {
     var user = req.params.login;
 
-    User.findOneAndRemove({login: user}, (err, user) => {
+    User.findOneAndRemove({ login: user }, (err, user) => {
         if (err) {
             res.status(500).send({ message: "Error " + err });
-        }else if (!user) {
+        } else if (!user) {
             res.status(404).send({ message: 'No existen usuarios' });
-        }else if(!err) {
+        } else if (!err) {
             res.status(200).send({ message: "Usuario eliminado" });
             /*User.remove((err) => {
                 if (err) {
