@@ -16,6 +16,7 @@
     "express": "^4.16.4",
     "mongoose": "^5.4.9",
     "mqtt": "^4.2.8",
+    "node-fetch": "^2.6.1",
     "request": "^2.88.0"
   },
   "devDependencies": {
