@@ -36,6 +36,8 @@ router.get("/:user/:project/:deviceN/:variableN", (req, res) => {
     });
 });
 
+
+
 router.get(
     "/:user/:project/:deviceN/:deviceH/:variableN/:variableT",
     (req, res) => {
@@ -67,6 +69,7 @@ router.get(
                 res.status(500).send({ ERROR: "Error searching" });
             } else {
                 res.status(resp.statusCode).send(body);
+               
             }
         });
     }

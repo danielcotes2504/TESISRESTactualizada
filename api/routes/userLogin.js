@@ -82,11 +82,15 @@ router.get('/usersLogin',(req,res,next) =>{
                 res.status(404).send({ message: 'No existen usuarios' });
             } else {
                 res.status(200).send({ users });
+                
             }
         }
 
     });
 });
+
+
+
 
 
 module.exports = router;
