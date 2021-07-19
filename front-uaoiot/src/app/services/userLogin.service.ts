@@ -23,6 +23,7 @@ export class UserLoginService {
     }
 
     getUsers() {
+        
         this.loaderService.show();
         return this._http.get(this.url + 'api/usersLogin').pipe(
             map(res => res.json()),
@@ -65,6 +66,8 @@ export class UserLoginService {
     }
 
     deleteUser(user) {
+        
         return this._http.delete(this.url + 'api/userLogin/' + user).pipe(map(res => res.json()));
+        
     }
 }
