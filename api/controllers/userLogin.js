@@ -4,7 +4,11 @@ var UserLogin = require('../models/userLogin');
 var bcrypt = require("bcryptjs");
 require("../request_api_methods/get.js")();
 require("../request_api_methods/post.js")();
-/*
+var fs = require('file-system');
+const { exec } = require("child_process");
+
+
+
 
 //GET ALL TOKENS
 const getAllTokens = async () => {
@@ -14,7 +18,22 @@ const getAllTokens = async () => {
     // console.log(tokens)
     return tokens;
 
-}*/
+}
+
+//CREATE TXT FILE FOR USER TOKENS AND
+function saveTokensInFile() {
+   /* var blob = new Blob([":)"],
+        { type: "text/plain;charset=utf-8" });
+    saveAs(blob, "passwords.txt");*/
+
+    fs.writeFile('D:/mosquitto/passwords.txt', '', function (err) {
+        if (err) throw err;               
+        console.log('Results Received');
+      }); 
+}
+
+
+
 let MongoClient = require('mongodb').MongoClient;
 let url = `mongodb://localhost:27017/`;
 /**
@@ -87,6 +106,42 @@ function getUsers(req, res) {
             } else {
                 res.status(200).send({ users });
                 console.log("Se realizó el get")
+                const token = getAllTokens().then(meta => {
+                    saveTokensInFile()
+                    // console.log(meta.token)
+
+                    let user;
+                    let usertoken1;
+                    let mosquittoCmd;
+
+                    for (var i = 0; i < meta.token.length; i++) {
+
+                        user = meta.token[i].user;
+                        usertoken1 = meta.token[i].value;
+
+                       // console.log("user: " + user + ", token " + usertoken1)
+                        mosquittoCmd = "mosquitto_passwd -b passwords.txt " + user + " " + usertoken1
+                        console.log(mosquittoCmd)
+
+                       // exec("dir /w", (error, stdout, stderr) => { 
+                        exec(mosquittoCmd, { cwd:'D:/mosquitto'}, (error, stdout, stderr) => {
+                            if (error) {
+                                console.log(`error: ${error.message}`);
+                                return;
+                            }
+                            if (stderr) {
+                                console.log(`stderr: ${stderr}`);
+                                return;
+                            }
+                            console.log(`stdout: ${stdout}`);
+                        });
+
+
+                    }
+
+
+                });
+
             }
         }
 
@@ -150,35 +205,35 @@ function deleteUserLogin(req, res) {
             res.status(200).send({ message: "Usuario eliminado" });
         }
     });
-    MongoClient.connect(url, function(err, db) {
+    MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         const query = { user: user }
         let dbo = db.db("server");
         let dbo2 = db.db("uaoiotmqtt");
-        dbo2.collection("tokens").deleteMany(query, function(err, res) {
+        dbo2.collection("tokens").deleteMany(query, function (err, res) {
             if (err) throw err;
             console.log("All tokens deleted");
 
 
         });
-        dbo.collection("values").deleteMany(query, function(err, res) {
+        dbo.collection("values").deleteMany(query, function (err, res) {
             if (err) throw err;
             console.log("All values deleted");
 
         });
-        dbo.collection("variables").deleteMany(query, function(err, res) {
+        dbo.collection("variables").deleteMany(query, function (err, res) {
             if (err) throw err;
             console.log("All variables deleted");
 
 
         });
-        dbo.collection("devices").deleteMany(query, function(err, res) {
+        dbo.collection("devices").deleteMany(query, function (err, res) {
             if (err) throw err;
             console.log("All devices deleted");
 
 
         });
-        dbo.collection("projects").deleteMany(query, function(err, res) {
+        dbo.collection("projects").deleteMany(query, function (err, res) {
             if (err) throw err;
             console.log("All projects deleted");
 
