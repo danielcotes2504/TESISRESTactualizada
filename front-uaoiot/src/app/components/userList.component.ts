@@ -78,7 +78,7 @@ export class UserListComponent implements OnInit {
      * Inciar listadod de usuarios.
      */
     initUserList() {
-
+      
         this.users = [];
         this._userService.getUsers().subscribe(
             result => {
@@ -190,7 +190,7 @@ export class UserListComponent implements OnInit {
                 this.initUserList();
                 this.showToast('success', 'Eliminado', 'Usuario eliminado exitosamente.');
                 this.displayDelete = false;
-                this.projectSevice.deleteProjectByUser(this.userToDelete).subscribe(data2 => { }, Error => { });
+                //this.projectSevice.deleteProjectByUser(this.userToDelete).subscribe(data2 => { }, Error => { });
             }, Error => {
                 this.showToast('error', 'Error', 'Error al aliminar el usuario.');
             });

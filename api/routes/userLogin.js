@@ -96,9 +96,6 @@ router.get('/usersLogin', (req, res, next) => {
 });
 
 
-
-
-
 module.exports = router;
 //module.exports = api;
 

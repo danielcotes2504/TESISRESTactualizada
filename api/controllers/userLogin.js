@@ -15,6 +15,8 @@ const getAllTokens = async () => {
     return tokens;
 
 }*/
+let MongoClient = require('mongodb').MongoClient;
+let url = `mongodb://localhost:27017/`;
 /**
  * Método para crear un usuerio para el login.
  * @param {*} req 
@@ -84,13 +86,7 @@ function getUsers(req, res) {
                 res.status(404).send({ message: 'No existen usuarios' });
             } else {
                 res.status(200).send({ users });
-                //console.log(users)
-
-                /* const allToken = getAllTokens().then(meta => {
- 
- 
- 
-                 });*/
+                console.log("Se realizó el get")
             }
         }
 
@@ -149,9 +145,47 @@ function deleteUserLogin(req, res) {
         } else if (!user) {
             res.status(404).send({ message: "No existen usuarios" });
         } else if (!err) {
+            console.log("Se realizó el Delete vironcha")
+
             res.status(200).send({ message: "Usuario eliminado" });
         }
     });
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        const query = { user: user }
+        let dbo = db.db("server");
+        let dbo2 = db.db("uaoiotmqtt");
+        dbo2.collection("tokens").deleteMany(query, function(err, res) {
+            if (err) throw err;
+            console.log("All tokens deleted");
+
+
+        });
+        dbo.collection("values").deleteMany(query, function(err, res) {
+            if (err) throw err;
+            console.log("All values deleted");
+
+        });
+        dbo.collection("variables").deleteMany(query, function(err, res) {
+            if (err) throw err;
+            console.log("All variables deleted");
+
+
+        });
+        dbo.collection("devices").deleteMany(query, function(err, res) {
+            if (err) throw err;
+            console.log("All devices deleted");
+
+
+        });
+        dbo.collection("projects").deleteMany(query, function(err, res) {
+            if (err) throw err;
+            console.log("All projects deleted");
+
+            db.close();
+        });
+    });
+
 }
 
 module.exports = {

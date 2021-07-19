@@ -4,7 +4,8 @@ var User = require('../models/user');
 var Token = require('../models/token');
 var bcrypt = require("bcryptjs");
 var crypto = require("crypto");
-
+let MongoClient = require('mongodb').MongoClient;
+let url = `mongodb://localhost:27017/`;
 /**
  * Metodo para consultar un usuario de la base de datos mediante su id.
  * @param {*} req 
@@ -151,6 +152,8 @@ function deleteUser(req, res) {
                 }
             });*/
         }
+
+
     });
 }
 
