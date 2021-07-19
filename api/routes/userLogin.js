@@ -1,21 +1,22 @@
 var express = require("express");
 var router = express.Router();
 var passport = require("passport");
-var api = express.Router();
 var jwt = require("jsonwebtoken");
 var Userlogin = require("../models/userLogin");
 var UserLoginController = require("../controllers/userLogin");
 const config = require('../config/database');
+require("../request_api_methods/get.js")();
+
 
 //var auth = jwt({secret: 'MY_SECRET',userProperty: 'payload'});
 router.get('/usersLogin', UserLoginController.getUsers);
 router.get('/userName/:user', UserLoginController.getUserByName);
-router.post('/userLogin',UserLoginController.postUserLogin);
+router.post('/userLogin', UserLoginController.postUserLogin);
 router.put('/userLogin/:id', UserLoginController.updateUserLogin);
-router.delete('/userLogin/:user',UserLoginController.deleteUserLogin);
+router.delete('/userLogin/:user', UserLoginController.deleteUserLogin);
 
 //REGISTRO
-router.post('/register',(req, res, next) => {
+router.post('/register', (req, res, next) => {
     let newUser = new Userlogin({
         user: req.body.user,
         name: req.body.name,
@@ -23,11 +24,11 @@ router.post('/register',(req, res, next) => {
     });
 
     Userlogin.addUser(newUser, (err, user) => {
-        if(err){
-            res.json({success: false, msg: 'Fallo en el registro'});
-        }else{
+        if (err) {
+            res.json({ success: false, msg: 'Fallo en el registro' });
+        } else {
             console.log("POST USER LOGIN: REGISTER");
-            res.json({success: true, msg: "Usuario registrado"});
+            res.json({ success: true, msg: "Usuario registrado" });
         }
     });
 });
@@ -38,15 +39,15 @@ router.post('/auth', (req, res, next) => {
     var password = req.body.password;
 
     Userlogin.getUserByUsername(username, (err, user) => {
-        if(err) throw err;
-        if(!user){
-            return res.json({success: false, msg: 'USUARIO NO ENCONTRADO' + user + username});
+        if (err) throw err;
+        if (!user) {
+            return res.json({ success: false, msg: 'USUARIO NO ENCONTRADO' + user + username });
         }
 
         Userlogin.comparePassword(password, user.password, (err, isMatch) => {
-            if(err) throw err;
-            if(isMatch){
-                const token = jwt.sign({data: user}, config.secret, {
+            if (err) throw err;
+            if (isMatch) {
+                const token = jwt.sign({ data: user }, config.secret, {
                     expiresIn: 604800 // Una semana
                 });
 
@@ -59,20 +60,22 @@ router.post('/auth', (req, res, next) => {
                         name: user.name
                     }
                 });
-            }else{
-                return res.json({success: false, msg: 'Contraseña incorrecta'});
+            } else {
+                return res.json({ success: false, msg: 'Contraseña incorrecta' });
             }
         });
     });
 });
 
 //PERFIL
-router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
-    res.json({user: req.user});
+router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+    res.json({ user: req.user });
 });
 
+
+
 //GET USERS
-router.get('/usersLogin',(req,res,next) =>{
+router.get('/usersLogin', (req, res, next) => {
 
     Userlogin.getUsers({}, (err, users) => {
         if (err) {
@@ -81,12 +84,15 @@ router.get('/usersLogin',(req,res,next) =>{
             if (!users) {
                 res.status(404).send({ message: 'No existen usuarios' });
             } else {
+
                 res.status(200).send({ users });
-                
+
+
             }
         }
 
     });
+
 });
 
 
