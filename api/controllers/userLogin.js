@@ -21,15 +21,15 @@ const getAllTokens = async () => {
 }
 
 //CREATE TXT FILE FOR USER TOKENS AND
-function saveTokensInFile() {
-   /* var blob = new Blob([":)"],
-        { type: "text/plain;charset=utf-8" });
-    saveAs(blob, "passwords.txt");*/
+function saveTokensInFile(texto) {
+    /* var blob = new Blob([":)"],
+         { type: "text/plain;charset=utf-8" });
+     saveAs(blob, "passwords.txt");*/
 
-    fs.writeFile('D:/mosquitto/passwords.txt', '', function (err) {
-        if (err) throw err;               
+    fs.writeFile('D:/mosquitto/passwords.txt', texto, function (err) {
+        if (err) throw err;
         console.log('Results Received');
-      }); 
+    });
 }
 
 
@@ -105,39 +105,61 @@ function getUsers(req, res) {
                 res.status(404).send({ message: 'No existen usuarios' });
             } else {
                 res.status(200).send({ users });
+                saveTokensInFile();
                 console.log("Se realizó el get")
+
                 const token = getAllTokens().then(meta => {
-                    saveTokensInFile()
+
                     // console.log(meta.token)
 
                     let user;
                     let usertoken1;
-                    let mosquittoCmd;
+                    let mosquittoCmd = "mosquitto_passwd -U passwords.txt";
+                    
+                    let txtfileText = "";
 
                     for (var i = 0; i < meta.token.length; i++) {
 
                         user = meta.token[i].user;
                         usertoken1 = meta.token[i].value;
+                        console.log("tamaño: " + meta.token.length)
+                        txtfileText += user + ":" + usertoken1 + " " + "\n"
 
-                       // console.log("user: " + user + ", token " + usertoken1)
-                        mosquittoCmd = "mosquitto_passwd -b passwords.txt " + user + " " + usertoken1
-                        console.log(mosquittoCmd)
+                        // mosquittoCmd = "mosquitto_passwd -b passwords.txt " + user + " " + usertoken1
+                        // console.log("cada usuario " + mosquittoCmd)
 
-                       // exec("dir /w", (error, stdout, stderr) => { 
-                        exec(mosquittoCmd, { cwd:'D:/mosquitto'}, (error, stdout, stderr) => {
-                            if (error) {
-                                console.log(`error: ${error.message}`);
-                                return;
-                            }
-                            if (stderr) {
-                                console.log(`stderr: ${stderr}`);
-                                return;
-                            }
-                            console.log(`stdout: ${stdout}`);
-                        });
+                        // exec("dir /w", (error, stdout, stderr) => { 
+                        /*   exec(mosquittoCmd, { cwd: 'D:/mosquitto' }, (error, stdout, stderr) => {
+                               if (error) {
+                                   console.log(`error: ${error.message}`);
+                                   return;
+                               }
+                               if (stderr) {
+                                   console.log(`stderr: ${stderr}`);
+                                   return;
+                               }
+                               console.log(`stdout: ${stdout}`);
+                           });*/
 
 
                     }
+                    console.log("el etxto es" + txtfileText);
+                    saveTokensInFile(txtfileText);
+                    
+                    exec(mosquittoCmd, { cwd: 'D:/mosquitto' }, (error, stdout, stderr) => {
+                        if (error) {
+                            console.log(`error: ${error.message}`);
+                            return;
+                        }
+                        if (stderr) {
+                            console.log(`stderr: ${stderr}`);
+                            return;
+                        }
+                        console.log(`stdout: ${stdout}`);
+                    });
+
+
+
 
 
                 });
