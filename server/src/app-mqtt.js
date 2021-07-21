@@ -58,8 +58,7 @@ router.post("/apiValuesMQTT", (req, res) => {
 
         })
     });
-
-
+    
     res.send({ state: "success" });
 
 });
