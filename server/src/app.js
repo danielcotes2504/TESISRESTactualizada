@@ -50,7 +50,7 @@ app.use("/apiProjects", apiProjects);
 app.use("/apiDevices", apiDevices);
 app.use("/apiVariables", apiVariables);
 app.use("/", apiValues);
-app.use("/mqtt", apiValuesMQTT);
+app.use("/", apiValuesMQTT);
 
 
 //starting the server

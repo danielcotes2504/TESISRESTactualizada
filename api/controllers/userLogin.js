@@ -11,7 +11,7 @@ const { exec } = require("child_process");
 
 
 //GET ALL TOKENS
-const getAllTokens = async () => {
+const getAllTokens = async() => {
     const url = `http://localhost:3000/api/tokenusers`
     const data = await requestData(url)
     const tokens = data;
@@ -26,7 +26,8 @@ function saveTokensInFile(texto) {
          { type: "text/plain;charset=utf-8" });
      saveAs(blob, "passwords.txt");*/
 
-    fs.writeFile('D:/mosquitto/passwords.txt', texto, function (err) {
+    //fs.writeFile('D:/mosquitto/passwords.txt', texto, function(err) {
+    fs.writeFile('C:/Program Files (x86)/Mosquitto/passwords.txt', texto, function(err) {
         if (err) throw err;
         console.log('Results Received');
     });
@@ -115,7 +116,7 @@ function getUsers(req, res) {
                     let user;
                     let usertoken1;
                     let mosquittoCmd = "mosquitto_passwd -U passwords.txt";
-                    
+
                     let txtfileText = "";
 
                     for (var i = 0; i < meta.token.length; i++) {
@@ -129,12 +130,13 @@ function getUsers(req, res) {
                         // console.log("cada usuario " + mosquittoCmd)
 
                         // exec("dir /w", (error, stdout, stderr) => { 
-                       
+
                     }
                     console.log("el etxto es " + txtfileText);
                     saveTokensInFile(txtfileText);
-                    
-                    exec(mosquittoCmd, { cwd: 'D:/mosquitto' }, (error, stdout, stderr) => {
+
+                    // exec(mosquittoCmd, { cwd: 'D:/mosquitto' }, (error, stdout, stderr) => {
+                    exec(mosquittoCmd, { cwd: 'C:/Program Files (x86)/Mosquitto' }, (error, stdout, stderr) => {
                         if (error) {
                             console.log(`error: ${error.message}`);
                             return;
@@ -215,35 +217,35 @@ function deleteUserLogin(req, res) {
             res.status(200).send({ message: "Usuario eliminado" });
         }
     });
-    MongoClient.connect(url, function (err, db) {
+    MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         const query = { user: user }
         let dbo = db.db("server");
         let dbo2 = db.db("uaoiotmqtt");
-        dbo2.collection("tokens").deleteMany(query, function (err, res) {
+        dbo2.collection("tokens").deleteMany(query, function(err, res) {
             if (err) throw err;
             console.log("All tokens deleted");
 
 
         });
-        dbo.collection("values").deleteMany(query, function (err, res) {
+        dbo.collection("values").deleteMany(query, function(err, res) {
             if (err) throw err;
             console.log("All values deleted");
 
         });
-        dbo.collection("variables").deleteMany(query, function (err, res) {
+        dbo.collection("variables").deleteMany(query, function(err, res) {
             if (err) throw err;
             console.log("All variables deleted");
 
 
         });
-        dbo.collection("devices").deleteMany(query, function (err, res) {
+        dbo.collection("devices").deleteMany(query, function(err, res) {
             if (err) throw err;
             console.log("All devices deleted");
 
 
         });
-        dbo.collection("projects").deleteMany(query, function (err, res) {
+        dbo.collection("projects").deleteMany(query, function(err, res) {
             if (err) throw err;
             console.log("All projects deleted");
 

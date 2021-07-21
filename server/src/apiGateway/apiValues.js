@@ -48,7 +48,7 @@ router.get("/:user/:project/:deviceN/:variableN", (req, res) => {
 router.get(
     "/:user/:project/:deviceN/:deviceH/:variableN/:variableT",
     (req, res) => {
-
+        // console.log("bienvenido a apivalues")
         const { user } = req.params;
         const { project } = req.params;
         const { deviceN } = req.params;
@@ -80,7 +80,7 @@ router.get(
             } else {
                 res.status(resp.statusCode).send(body);
 
-                postMqttData(uriPost, req.params)
+                // postMqttData(uriPost, req.params)
 
             }
         });

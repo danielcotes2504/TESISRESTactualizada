@@ -19,6 +19,13 @@ export interface ValueModel {
     date: Date;
 }
 
+export interface MQTTModel {
+    user:string;
+    project: string;
+    deviceN: string;
+    variableN: string;
+}
+
 export interface VariableModel {
     user: string;
     project: string;
@@ -184,6 +191,13 @@ export class ApiService {
 
     getValues(valueURL: string): Observable<HttpResponse<ValueModel[]>> {
         return this.http.get<ValueModel[]>(valueURL, { observe: 'response' })
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    getMQTTURL(valueURL: string): Observable<HttpResponse<MQTTModel[]>> {
+        return this.http.get<MQTTModel[]>(valueURL, { observe: 'response' })
             .pipe(
                 catchError(this.handleError)
             );
