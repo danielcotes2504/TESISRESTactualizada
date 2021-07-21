@@ -11,6 +11,7 @@ import { environment } from '../../environments/environment';
 })
 export class RestDataComponent implements OnInit {
     url: string;
+    Mqtt_url: string;
     values: any[] = [];
     variables: VariableModel[] = [];
     independentVariables: VariableModel[] = [];
@@ -21,19 +22,24 @@ export class RestDataComponent implements OnInit {
     interval: any;
     currentVariable: VariableModel;
     postURL: string;
+  
 
     constructor(private apiService: ApiService, private router: Router) {
         this.interval = setInterval(() => {
             this.getData();
+           
         }, 60000);
     }
 
     ngOnInit() {
         this.currentVariable = this.apiService.getCurrentVariable();
         this.getData();
+       this.getMqttData();
         this.postURL = environment.restUrl + this.currentVariable.user + '/'
             + this.currentVariable.project + '/' + this.currentVariable.deviceN + '/' + this.currentVariable.variableN
             + '/' + 'token_de_usuario';
+
+       
     }
 
     show() {
@@ -52,6 +58,7 @@ export class RestDataComponent implements OnInit {
         this.url = environment.restUrl + this.currentVariable.user + '/'
             + this.currentVariable.project + '/' + this.currentVariable.deviceN + '/'
             + this.currentVariable.deviceH + '/' + this.currentVariable.variableN + '/' + this.currentVariable.variableT;
+            console.log(this.url)
         this.apiService.getValues(this.url).subscribe(resValues => {
             this.values = resValues.body;
             
@@ -60,7 +67,17 @@ export class RestDataComponent implements OnInit {
             }
         });
     }
-
+    getMqttData() {
+       
+        this.Mqtt_url = environment.restUrl +"apiValuesMQTT"+"/"+ this.currentVariable.user + '/'
+        + this.currentVariable.project + '/' + this.currentVariable.deviceN + '/' + this.currentVariable.variableN;
+        this.apiService.getMQTTURL(this.Mqtt_url).subscribe();
+            
+            
+        
+        console.log(this.Mqtt_url);
+    }
+    
     isVariableIndependent() {
         if (this.currentVariable.variableT === 'Independiente') {
             return true;

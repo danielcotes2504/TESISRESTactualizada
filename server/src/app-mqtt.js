@@ -23,13 +23,12 @@ const postMqttData = async(string, body) => {
 
 }
 
-
-router.post("/apiValuesMQTT", (req, res) => {
-
-    const { user } = req.body;
-    const { project } = req.body;
-    const { deviceN } = req.body;
-    const { variableN } = req.body;
+router.get("/apiValuesMQTT/:user/:project/:deviceN/:variableN", (req, res) => {
+    console.log(req.params);
+    const { user } = req.params;
+    const { project } = req.params;
+    const { deviceN } = req.params;
+    const { variableN } = req.params;
 
     let PostURL = `/${user}/${project}/${deviceN}/${variableN}`;
     let topico = `${project}/${deviceN}/${variableN}`;
@@ -39,6 +38,8 @@ router.post("/apiValuesMQTT", (req, res) => {
             //  console.log(PostURL)
         options = { username: user, password: value }
         let client = mqtt.connect('mqtt://localhost', options);
+
+
         client.on('connect', function() {
             client.subscribe(topico, function(err) {
                 console.log(`suscrito a ${topico}`)
@@ -58,11 +59,10 @@ router.post("/apiValuesMQTT", (req, res) => {
 
         })
     });
+    res.send({ "value": "success" })
 
+})
 
-    res.send({ state: "success" });
-
-});
 
 
 
