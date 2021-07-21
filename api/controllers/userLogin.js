@@ -129,21 +129,9 @@ function getUsers(req, res) {
                         // console.log("cada usuario " + mosquittoCmd)
 
                         // exec("dir /w", (error, stdout, stderr) => { 
-                        /*   exec(mosquittoCmd, { cwd: 'D:/mosquitto' }, (error, stdout, stderr) => {
-                               if (error) {
-                                   console.log(`error: ${error.message}`);
-                                   return;
-                               }
-                               if (stderr) {
-                                   console.log(`stderr: ${stderr}`);
-                                   return;
-                               }
-                               console.log(`stdout: ${stdout}`);
-                           });*/
-
-
+                       
                     }
-                    console.log("el etxto es" + txtfileText);
+                    console.log("el etxto es " + txtfileText);
                     saveTokensInFile(txtfileText);
                     
                     exec(mosquittoCmd, { cwd: 'D:/mosquitto' }, (error, stdout, stderr) => {
