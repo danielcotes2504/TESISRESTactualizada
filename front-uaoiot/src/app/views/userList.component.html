@@ -20,12 +20,10 @@
             </td>
 
             <td>
-                <a id="table-button-edit" class="btn-floating blue darken-1" pTooltip="Editar" tooltipPosition="bottom"
-                    (click)="showDialogEditUser(user)">
+                <a id="table-button-edit" class="btn-floating blue darken-1" pTooltip="Editar" tooltipPosition="bottom" (click)="showDialogEditUser(user)">
                     <i class="material-icons">edit</i></a>
 
-                <a id="table-button-delete" class="btn-floating blue darken-1" pTooltip="Eliminar"
-                    tooltipPosition="bottom" (click)="showDialogDeleteUser(user)">
+                <a id="table-button-delete" class="btn-floating blue darken-1" pTooltip="Eliminar" tooltipPosition="bottom" (click)="showDialogDeleteUser(user)">
                     <i class="material-icons">delete</i></a>
 
             </td>
@@ -36,8 +34,7 @@
         <div style="text-align:left;">
             <div class="listen button-section" class="left-align">
 
-                <a id="table-button" class="btn-floating blue darken-1" pTooltip="Agregar" tooltipPosition="bottom"
-                    (click)="showDialogAddUser()">
+                <a id="table-button" class="btn-floating blue darken-1" pTooltip="Agregar" tooltipPosition="bottom" (click)="showDialogAddUser()">
                     <i class="material-icons">add</i></a>
 
 
@@ -48,8 +45,7 @@
 </p-table>
 
 <!--ADD DIALOG-->
-<p-dialog header="Crear usuario" [(visible)]="displayAdd" [dismissableMask]="true" [responsive]="true" showEffect="fade"
-    [modal]="true" [style]="{width: '500', minWidth:'400'}" [resizable]="true">
+<p-dialog header="Crear usuario" [(visible)]="displayAdd" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '500', minWidth:'400'}" [resizable]="true">
 
 
     <div class="ui-fluid name-section">
@@ -81,29 +77,28 @@
 </p-dialog>
 
 <!--EDIT DIALOG-->
-<p-dialog header="Editar usuario" [(visible)]="displayUpdate" [dismissableMask]="true" [responsive]="true"
-    showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}" [resizable]="true">
+<p-dialog header="Editar usuario" [(visible)]="displayUpdate" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}" [resizable]="true">
 
-    <div class="ui-fluid name-section">
+    <!--<div class="ui-fluid name-section">
         <p>Nombre</p>
         <div class="ui-inputgroup">
             <input type="text" pInputText name="name" [(ngModel)]="name">
         </div>
     </div>
 
-    <div class="ui-fluid username-section">
+    <<div class="ui-fluid username-section">
         <p>Usuario</p>
         <div class="ui-inputgroup">
             <input type="text" pInputText name="userName" [(ngModel)]="userName">
         </div>
-    </div>
-
-    <!--<div class="ui-fluid">
-        <p>Contraseña</p>
-        <div class="ui-inputgroup">
-            <input type="text" pInputText  name="password" [(ngModel)]="password">
-        </div>
     </div>-->
+
+    <div class="ui-fluid">
+        <p>Nueva Contraseña</p>
+        <div class="ui-inputgroup">
+            <input type="password" pInputText name="password" [(ngModel)]="password">
+        </div>
+    </div>
 
     <p-footer>
         <a class="btn-flat red-text" (click)="displayUpdate=false">Cancelar</a>
@@ -113,11 +108,9 @@
 </p-dialog>
 
 <!--DELETE DIALOG-->
-<p-dialog header="¿Deseas eliminar este usuario?" [(visible)]="displayDelete" [dismissableMask]="true"
-    [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '600', minWidth:'500'}">
+<p-dialog header="¿Deseas eliminar este usuario?" [(visible)]="displayDelete" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '600', minWidth:'500'}">
 
-    <p>Recuerda que al realizar esta acción todo lo relacionado a este usuario como proyectos, dispositivos y variables
-        también serán eliminados.</p>
+    <p>Recuerda que al realizar esta acción todo lo relacionado a este usuario como proyectos, dispositivos y variables también serán eliminados.</p>
 
     <p-footer>
         <a class="btn-flat blue-text" (click)="deleteUser()">Si</a>
