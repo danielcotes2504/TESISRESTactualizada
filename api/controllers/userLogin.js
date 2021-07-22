@@ -18,7 +18,7 @@ const getAllTokens = async () => {
     //  const tokens = data;
     // console.log("tokens async" + tokens.token[tokens.token.length - 1].user)
     //  return tokens;
-    console.log("tokens no async" + meta.token[meta.token.length - 1].user)
+   // console.log("tokens no async" + meta.token[meta.token.length - 1].user)
     let user;
     let usertoken1;
     let mosquittoCmd = "mosquitto_passwd -U passwords.txt";
@@ -117,13 +117,6 @@ function postUserLogin(req, res) {
 
     });
 
-
-
-
-    //}
-    //    }
-    //});
-
 }
 
 /**
@@ -187,7 +180,7 @@ function updateUserLogin(req, res) {
     var userId = req.params.id;
     var update = req.body;
 
-    console.log(userId);
+    console.log("esta es la info que llega " + req.body);
 
     UserLogin.findByIdAndUpdate(userId, update, (err, userUpdate) => {
         if (err) {

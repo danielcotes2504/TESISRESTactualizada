@@ -55,14 +55,14 @@ export class UserLoginService {
         const json = JSON.stringify(user);
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http.post(this.url + 'api/userLogin', json, { headers: headers }).pipe(map(res => res.json()));
+        return this._http.post(this.url + 'api/userLogin/', json, { headers: headers }).pipe(map(res => res.json()));
     }
 
     updateUser(user, idUser) {
         const json = JSON.stringify(user);
         const headers = new Headers();
         headers.append('Content-type', 'appliccation/json');
-        return this._http.put(this.url + 'api/userLogin' + idUser, json, { headers: headers }).pipe(map(res => res.json()));
+        return this._http.put(this.url + 'api/userLogin/' + idUser, json, { headers: headers }).pipe(map(res => res.json()));
     }
 
     deleteUser(user) {
