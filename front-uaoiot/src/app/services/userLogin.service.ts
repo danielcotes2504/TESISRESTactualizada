@@ -61,7 +61,7 @@ export class UserLoginService {
     updateUser(user, idUser) {
         const json = JSON.stringify(user);
         const headers = new Headers();
-        headers.append('Content-type', 'appliccation/json');
+        headers.append('Content-type', 'application/json');
         return this._http.put(this.url + 'api/userLogin/' + idUser, json, { headers: headers }).pipe(map(res => res.json()));
     }
 
