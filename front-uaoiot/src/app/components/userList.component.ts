@@ -148,11 +148,14 @@ export class UserListComponent implements OnInit {
      * Actualizar usuario.
      */
     updateUser() {
-
+       
         const userJson = {
-            user: this.userName,
-            name: this.name,
+            password: this.password
+           // user: this.userName,
+            //name: this.name,
+           
         };
+        
         this._userService.updateUser(userJson, this.idUserToUpdate).subscribe(data => {
             this.showToast('success', 'Actualizado', 'Usuario actualizado exitosamente.');
             this.initUserList();
@@ -213,7 +216,7 @@ export class UserListComponent implements OnInit {
         this.userToDelete = user.userName;
         this.userName = user.userName;
         this.name = user.name;
-        this.password = user.password;
+        this.password = " ";
     }
 
     showDialogDeleteUser(user) {

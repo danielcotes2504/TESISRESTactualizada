@@ -188,11 +188,15 @@ function getUserByName(req, res) {
 
 }
 
+
 function updateUserLogin(req, res) {
     var userId = req.params.id;
     var update = req.body;
-
+    const json = JSON.stringify(update);
     console.log(userId);
+    console.log("EL DATO DEL UPDATE ES " + update.password);
+
+
 
     UserLogin.findByIdAndUpdate(userId, update, (err, userUpdate) => {
         if (err) {
