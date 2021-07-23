@@ -34,6 +34,7 @@ export class UserListComponent implements OnInit {
     displayAdd = false;
     msg: Message[] = [];
     userToDelete;
+    clickable = true;
 
     constructor(
         private _userService: UserLoginService,
@@ -104,6 +105,8 @@ export class UserListComponent implements OnInit {
      * Agregar un usuario.
      */
     addUser() {
+        if(this.clickable==true){
+            this.clickable =false;
         if (this.readPermission && this.writePermission) {
             this.permission = 'READWRITE';
         } else if (this.readPermission) {
@@ -142,6 +145,7 @@ export class UserListComponent implements OnInit {
         }, Error => {
             this.showToast('error', 'Error', 'Error al crear el usuario.');
         });
+    }
     }
 
     /**
@@ -204,6 +208,7 @@ export class UserListComponent implements OnInit {
     }
 
     showDialogAddUser() {
+        this.clickable= true;
         this.displayAdd = true;
         this.userName = '';
         this.name = '';

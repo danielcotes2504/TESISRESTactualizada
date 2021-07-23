@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     public isLogged: boolean;
     public stringName: String;
     public protocolOptions: SelectItem[];
-    public selectedProtocol: String;
+    public selectedProtocol: String= 'REST';
 
     constructor(
         private authService: AuthService,
@@ -84,6 +84,6 @@ export class LoginComponent implements OnInit {
     showError() {
         this.msgs = [];
         this.msgs.push({ severity: 'warn', summary: 'Datos incorrectos', detail: 'Validación fallida' });
-        console.log("smerkler");
+       
     }
 }
