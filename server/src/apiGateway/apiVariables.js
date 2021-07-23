@@ -32,7 +32,7 @@ router.get("/:user/:project", (req, res) => {
     const uri = hostURL + "/variables/" + user + "/" + project;
 
     request.get(uri, (err, resp, body) => {
-        body = JSON.parse(body);
+        //body = JSON.parse(body);
 
         if (err || resp.status == 500) {
             res.status(500).send({ ERROR: "Error searching" });
@@ -40,9 +40,9 @@ router.get("/:user/:project", (req, res) => {
             if (body.length) {
                 res.status(resp.statusCode).send(body);
             } else {
-                res.status(404).send({ message: "Variables not found for this project" });
-
-
+                res
+                    .status(404)
+                    .send({ message: "Variables not found for this project" });
             }
         }
     });

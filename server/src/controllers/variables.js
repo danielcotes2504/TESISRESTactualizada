@@ -21,13 +21,13 @@ function getVariables(req, res) {
 //Variables whith user
 function getVariablesU(req, res) {
 
-    const {user} = req.params;
+    const { user } = req.params;
 
-    const query = {'user':user};
+    const query = { 'user': user };
 
-    Variables.find( query,(err, results) => {
-        if(err){
-            res.status(500).send({ERROR:'Error searching'});
+    Variables.find(query, (err, results) => {
+        if (err) {
+            res.status(500).send({ ERROR: 'Error searching' });
         } else {
             res.status(200).send(results);
         }
@@ -37,14 +37,16 @@ function getVariablesU(req, res) {
 //Variables whit User and Project
 function getVariablesUP(req, res) {
 
-    const {user} = req.params;
-    const {project} = req.params;
+    const { user } = req.params;
+    const { project } = req.params;
 
-    const query = {'user':user,'project':project};
+    const query = { 'user': user, 'project': project };
 
-    Variables.find( query,(err, results) => {
-        if(err){
-            res.status(500).send({ERROR:'Error searching'});
+    Variables.find(query, (err, results) => {
+        if (err) {
+            res.status(500).send({ ERROR: 'Error searching' })
+            console.log("user and project error: " + err)
+
         } else {
             res.status(200).send(results);
         }
@@ -54,15 +56,16 @@ function getVariablesUP(req, res) {
 //Variables with user, project and device
 function getVariablesUPD(req, res) {
 
-    const {user} = req.params;
-    const {project} = req.params;
-    const {deviceN} = req.params;
+    const { user } = req.params;
+    const { project } = req.params;
+    const { deviceN } = req.params;
 
-    const query = {'user':user,'project':project,'deviceN':deviceN};
+    const query = { 'user': user, 'project': project, 'deviceN': deviceN };
 
-    Variables.find( query,(err, results) => {
-        if(err){
-            res.status(500).send({ERROR:'Error al buscar'});
+    Variables.find(query, (err, results) => {
+        if (err) {
+            res.status(500).send({ ERROR: 'Error al buscar' });
+            console.log("user and project and device error: " + err)
         } else {
             res.status(200).send(results);
         }
@@ -72,16 +75,16 @@ function getVariablesUPD(req, res) {
 //Variable specified
 function getVariable(req, res) {
 
-    const {user} = req.params;
-    const {project} = req.params;
-    const {deviceN} = req.params;
-    const {variableN} = req.params;
+    const { user } = req.params;
+    const { project } = req.params;
+    const { deviceN } = req.params;
+    const { variableN } = req.params;
 
-    const query = {'user':user,'project':project,'deviceN':deviceN,'variableN':variableN};
+    const query = { 'user': user, 'project': project, 'deviceN': deviceN, 'variableN': variableN };
 
-    Variables.find( query, (err, results) => {
-        if(err){
-            res.status(500).send({ERROR:'Error searching'});
+    Variables.find(query, (err, results) => {
+        if (err) {
+            res.status(500).send({ ERROR: 'Error searching' });
         } else {
             res.status(200).send(results);
         }
@@ -93,7 +96,7 @@ function postVariable(req, res) {
     const variable = new Variables();
 
     const user = req.params.user;
-    const project =req.params.project;
+    const project = req.params.project;
     const deviceN = req.params.deviceN;
     const deviceH = req.params.deviceH;
     const newVariableN = req.body.variableN;
@@ -117,20 +120,20 @@ function postVariable(req, res) {
     variable.negative = newNegative;
 
     variable.save((err, results) => {
-        if(err){
-            res.status(500).send({ERROR:'Error saving'});
+        if (err) {
+            res.status(500).send({ ERROR: 'Error saving' });
         } else {
-            res.status(200).send({message: 'Saved'});
+            res.status(200).send({ message: 'Saved' });
         }
     });
 };
 
 function putVariable(req, res) {
 
-    const {user} = req.params;
-    const {project} = req.params;
-    const {deviceN} = req.params;
-    const {variableN} = req.params;
+    const { user } = req.params;
+    const { project } = req.params;
+    const { deviceN } = req.params;
+    const { variableN } = req.params;
 
     const newVariableN = req.body.variableN;
     const newVariableT = req.body.variableT;
@@ -140,18 +143,18 @@ function putVariable(req, res) {
     const newPositive = req.body.positive;
     const newNegative = req.body.negative;
 
-    const query = {'user':user, 'project':project, 'deviceN':deviceN, 'variableN':variableN};
-    const newValues = { $set: {'variableN':newVariableN, 'variableT':newVariableT, 'variableInd':newVariableInd, 'constant':newConstant, 'operation':newOperation, 'positive':newPositive, 'negative':newNegative}};
+    const query = { 'user': user, 'project': project, 'deviceN': deviceN, 'variableN': variableN };
+    const newValues = { $set: { 'variableN': newVariableN, 'variableT': newVariableT, 'variableInd': newVariableInd, 'constant': newConstant, 'operation': newOperation, 'positive': newPositive, 'negative': newNegative } };
 
-    Variables.updateOne( query, newValues, async(err, results) => {
-        if(err){
-            res.status(500).send({ERROR:'Error updating'});
+    Variables.updateOne(query, newValues, async (err, results) => {
+        if (err) {
+            res.status(500).send({ ERROR: 'Error updating' });
         } else {
-            if(results.n > 0){
-                await Values.updateMany( query, newValues);
-                res.status(200).send({message: 'Updated'});
+            if (results.n > 0) {
+                await Values.updateMany(query, newValues);
+                res.status(200).send({ message: 'Updated' });
             } else {
-                res.status(404).send({message:'Variable not found'});
+                res.status(404).send({ message: 'Variable not found' });
             };
         };
     });
@@ -159,27 +162,61 @@ function putVariable(req, res) {
 
 function deleteVariable(req, res) {
 
-    const {user} = req.params;
-    const {project} = req.params;
-    const {deviceN} = req.params;
-    const {deviceH} = req.params;
-    const {variableN} = req.params;
-    const {variableT} = req.params;
+    const { user } = req.params;
+    const { project } = req.params;
+    const { deviceN } = req.params;
+    const { deviceH } = req.params;
+    const { variableN } = req.params;
+    const { variableT } = req.params;
+    const { variableInd } = req.params;
 
-    const query = {'user':user, 'project':project, 'deviceN':deviceN, 'deviceH':deviceH, 'variableN':variableN, 'variableT':variableT};
-
-    Variables.deleteOne( query, async(err, results) => {
-        if(err){
-            res.status(500).send({ERROR:'Error removing'});
+    const query = { 'user': user, 'project': project, 'deviceN': deviceN, 'deviceH': deviceH, 'variableN': variableN, 'variableT': variableT };
+  
+    Variables.find(query, (err, results) => {
+        if (err) {
+            res.status(500).send({ ERROR: 'Error searching' });
         } else {
-            if(results.n > 0){
-                await Values.deleteMany(query);
-                res.status(200).send({message: 'Deleted'});
-            } else {
-                res.status(404).send({message:'Variable not found'});
-            }
+           
+           
+            const {variableInd} = results[0];
+
+           if(variableInd !=="-"){
+            Variables.deleteOne(query, async (err, results) => {
+                if (err) {
+                    res.status(500).send({ ERROR: 'Error removing' });
+                } else {
+                    if (results.n > 0) {
+                        await Values.deleteMany(query);
+                        res.status(200).send({ message: 'Deleted' });
+                    } else {
+                        res.status(404).send({ message: 'Variable not found' });
+                    }
+                }
+            });
+           } else if(variableInd ==="-"){/*
+
+            const query2 = { 'user': user, 'variableInd': variableN };
+  
+
+            Variables.deleteMany(query2, async (err, results) => {
+                if (err) {
+                    res.status(500).send({ ERROR: 'Error removing' });
+                } else {
+                    if (results.n > 0) {
+                        await Values.deleteMany(query);
+                        await Values.deleteMany(query2);
+                        res.status(200).send({ message: 'Deleted' });
+                    } else {
+                        res.status(404).send({ message: 'Variable not found' });
+                    }
+                }
+            });*/
+           }
+            res.status(200).send(results);
         }
     });
+
+    
 };
 
 // variables.getVariables = getVariables;

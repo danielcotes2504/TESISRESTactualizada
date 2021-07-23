@@ -89,6 +89,7 @@ export class RestVariablesComponent implements OnInit {
         this.url = environment.restUrl + 'apiVariables/' +
             selectedVariable.user + '/' + selectedVariable.project + '/' + selectedVariable.deviceN + '/'
             + selectedVariable.deviceH + '/' + selectedVariable.variableN + '/' + selectedVariable.variableT;
+           
         this.apiService.delete(this.url).subscribe(resDeleteVariable => {
             if (resDeleteVariable.message === 'Deleted') {
                 // this.variables = this.variables.filter(p => p !== selectedVariable);
