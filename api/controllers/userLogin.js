@@ -26,8 +26,8 @@ function saveTokensInFile(texto) {
          { type: "text/plain;charset=utf-8" });
      saveAs(blob, "passwords.txt");*/
 
-    fs.writeFile('D:/mosquitto/passwords.txt', texto, function(err) {
-    //fs.writeFile('C:/Program Files (x86)/Mosquitto/passwords.txt', texto, function(err) {
+    //fs.writeFile('D:/mosquitto/passwords.txt', texto, function(err) {
+    fs.writeFile('C:/Program Files (x86)/Mosquitto/passwords.txt', texto, function(err) {
         if (err) throw err;
         console.log('Results Received');
     });
@@ -135,8 +135,8 @@ function getUsers(req, res) {
                     console.log("el etxto es " + txtfileText);
                     saveTokensInFile(txtfileText);
 
-                    exec(mosquittoCmd, { cwd: 'D:/mosquitto' }, (error, stdout, stderr) => {
-                   // exec(mosquittoCmd, { cwd: 'C:/Program Files (x86)/Mosquitto' }, (error, stdout, stderr) => {
+                    // exec(mosquittoCmd, { cwd: 'D:/mosquitto' }, (error, stdout, stderr) => {
+                    exec(mosquittoCmd, { cwd: 'C:/Program Files (x86)/Mosquitto' }, (error, stdout, stderr) => {
                         if (error) {
                             console.log(`error: ${error.message}`);
                             return;
@@ -194,15 +194,15 @@ function updateUserLogin(req, res) {
     var update = req.body;
     const json = JSON.stringify(update);
 
-   // console.log(userId);
-   // console.log("EL DATO DEL UPDATE ES " + update.password);
+    // console.log(userId);
+    // console.log("EL DATO DEL UPDATE ES " + update.password);
 
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(update.password, salt, (err, hash) => {
             //if(err) throw err;
 
             update.password = hash;
-          //  console.log("Es la nueva contra " + update.password)
+            //  console.log("Es la nueva contra " + update.password)
 
             UserLogin.findByIdAndUpdate(userId, update, (err, userUpdate) => {
                 if (err) {
