@@ -194,15 +194,15 @@ function updateUserLogin(req, res) {
     var update = req.body;
     const json = JSON.stringify(update);
 
-    console.log(userId);
-    console.log("EL DATO DEL UPDATE ES " + update.password);
+   // console.log(userId);
+   // console.log("EL DATO DEL UPDATE ES " + update.password);
 
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(update.password, salt, (err, hash) => {
             //if(err) throw err;
 
             update.password = hash;
-            console.log("Es la nueva contra " + update.password)
+          //  console.log("Es la nueva contra " + update.password)
 
             UserLogin.findByIdAndUpdate(userId, update, (err, userUpdate) => {
                 if (err) {

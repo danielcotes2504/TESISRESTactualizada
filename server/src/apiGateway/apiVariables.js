@@ -32,7 +32,7 @@ router.get("/:user/:project", (req, res) => {
   const uri = hostURL + "/variables/" + user + "/" + project;
 
   request.get(uri, (err, resp, body) => {
-    body = JSON.parse(body);
+    //body = JSON.parse(body);
 
     if (err || resp.status == 500) {
       res.status(500).send({ ERROR: "Error searching" });
