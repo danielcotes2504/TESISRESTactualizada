@@ -8,14 +8,9 @@ import { routing, appRoutingProvider } from './app.routing';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login.component';
 import { AdminComponent } from './components/admin.component';
-import { DashboardComponent } from './components/dashboard.component';
 import { ErrorComponent } from './components/error.component';
-import { LibrariesComponent } from './components/libraries.component';
-import { ChartComponent } from './components/chart.component';
 import { HomeComponent } from './components/home.component';
 import { ProfileComponent } from './components/profile.component';
-import { TutorialsComponent } from './components/tutorials.component';
-import { DevicesComponent } from './components/devices.component';
 import { RestProjectsComponent } from './components/restProjects.component';
 import { RestDevicesComponent } from './components/restDevices.component';
 import { RestDocumentsComponent } from './components/restDocuments.component';
@@ -77,28 +72,17 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 
 import { AuthGuardService } from './services/authGuard.service';
-import { ProjectComponent } from './components/project.component';
 import { UserListComponent } from './components/userList.component';
-import { SubNavbarComponent } from './components/subNavbar.component';
 import { SocketService } from './services/socket.service';
 import { UserLoginService } from './services/userLogin.service';
 import { ProjectService } from './services/project.service';
 import { DeviceService } from './services/device.service';
-import { DashboardService } from './services/dashboard.service';
-import { ChartService } from './services/chart.service';
 import { TokenService } from './services/token.service';
-import { TableComponent } from './components/table.component';
-import { TableService } from './services/table.service';
-import { BrokerComponent } from './components/broker.component';
 import { TutorialAdminComponent } from './components/tutorialAdmin.component';
-import { LibrariesAdminComponent } from './components/librariesAdmin.component';
-import { LibraryService } from './services/library.service';
 import { LoaderService } from './loader/loader.service';
 import { LoaderComponent } from './loader/loader.component';
 
-import { TutorialArduinoReciveComponent } from './components/tutorialArduinoRecive.component';
-import { TutorialJavaComponent } from './components/tutorialJava.component';
-import { TutorialArduinoSendComponent } from './components/tutorialArduinoSend.component';
+
 
 
 @NgModule({
@@ -108,27 +92,13 @@ import { TutorialArduinoSendComponent } from './components/tutorialArduinoSend.c
     ProfileComponent,
     LoginComponent,
     AdminComponent,
-    DashboardComponent,
     ErrorComponent,
-    LibrariesComponent,
-    ChartComponent,
-    TableComponent,
-    DevicesComponent,
-    TutorialsComponent,
-    NavbarComponent,
+      NavbarComponent,
     RegisterComponent,
-    ProjectComponent,
-    UserListComponent,
-    SubNavbarComponent,
-    TableComponent,
-    BrokerComponent,
-    TutorialAdminComponent,
-    LibrariesAdminComponent,
+        UserListComponent,
+     TutorialAdminComponent,
     LoaderComponent,
-    TutorialArduinoReciveComponent,
-    TutorialJavaComponent,
-    TutorialArduinoSendComponent,
-    RestProjectsComponent,
+      RestProjectsComponent,
     RestDevicesComponent,
     RestDocumentsComponent,
     RestVariablesComponent,
@@ -183,10 +153,10 @@ import { TutorialArduinoSendComponent } from './components/tutorialArduinoSend.c
     // CodeHighlighterModule
   ],
   providers: [appRoutingProvider, AuthService, ValidateService, AuthGuardService,
-    SocketService, PermissionService, UserLoginService, ProjectService, DeviceService, DashboardService, DeviceService,
-    ChartService, TokenService, TableService, LibraryService, LoaderService],
+    SocketService, PermissionService, UserLoginService, ProjectService, DeviceService,DeviceService,
+   TokenService,LoaderService],
   bootstrap: [AppComponent],
-  entryComponents: [ChartComponent],
+
 
 })
 export class AppModule { }

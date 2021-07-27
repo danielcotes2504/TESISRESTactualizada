@@ -1,23 +1,20 @@
 <p-growl [(value)]="msg"></p-growl>
 
 <!--DIALOG CREDENCIALES-->
-<p-dialog header="Tus credenciales" [(visible)]="display" [dismissableMask]="true" [responsive]="true" showEffect="fade"
-    [modal]="true" [style]="{width: '600', minWidth:'500'}">
+<p-dialog header="Tus credenciales" [(visible)]="display" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '600', minWidth:'500'}">
 
     <div id="token-section">
         <span id="credential-title-token">Token</span>
 
         <input id="disabled-input" value={{tokenString}} type="text" #token size="59" pInputText [readonly]="true" />
-        <button type="button" (click)="copyToClipboard(token)" pButton icon="pi pi-copy"
-            style="font-size: 1em"></button>
+        <button type="button" (click)="copyToClipboard(token)" pButton icon="pi pi-copy" style="font-size: 1em"></button>
 
     </div>
 
     <div id="user-section">
         <span id="credential-title-user">Usuario</span>
 
-        <input id="disabled-input" value={{userNameFromLogin}} type="text" #user size="59" pInputText
-            [readonly]="true" />
+        <input id="disabled-input" value={{userNameFromLogin}} type="text" #user size="59" pInputText [readonly]="true" />
         <button type="button" (click)="copyToClipboard(user)" pButton icon="pi pi-copy" style="font-size: 1em"></button>
 
     </div>
@@ -25,8 +22,7 @@
 </p-dialog>
 
 <!--DIALOG CERRAR SESIÓN-->
-<p-dialog header="Cerrar sesión" [(visible)]="displayLogout" [dismissableMask]="true" [responsive]="true"
-    showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
+<p-dialog header="Cerrar sesión" [(visible)]="displayLogout" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
 
     <p>¿Estás seguro que deseas cerrar sesión?</p>
 
@@ -45,48 +41,20 @@
         </div>
         <div *ngIf="authService.isAdminLoggedIn();else user_content" class="nav-options">
             <ul>
-                <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact:true}">
+                <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
                     <a [routerLink]="['admin']">Usuarios</a>
                 </li>
 
-                <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact:true}">
+                <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
                     <a [routerLink]="['admintutorial']">Tutoriales</a>
                 </li>
 
-                <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact:true}">
-                    <a [routerLink]="['adminlibraries']">Librerias</a>
-                </li>
+
 
             </ul>
         </div>
 
         <ng-template #user_content>
-            <div *ngIf="authService.isMqttProtocol();" class="nav-options">
-                <ul>
-                    <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']"
-                        [routerLinkActiveOptions]="{exact:true}">
-                        <!--<a [routerLink]="['/projects']">Proyectos</a>-->
-                        <a [routerLink]="['projects']">Proyectos</a>
-                    </li>
-
-                    <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']"
-                        [routerLinkActiveOptions]="{exact:true}">
-                        <a [routerLink]="['devices']">Dispositivos</a>
-                    </li>
-
-                    <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']"
-                        [routerLinkActiveOptions]="{exact:true}">
-                        <a [routerLink]="['libraries']">Librerias</a>
-                    </li>
-                    <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']"
-                        [routerLinkActiveOptions]="{exact:true}">
-                        <a [routerLink]="['tutorials']">Tutoriales</a>
-                    </li>
-                </ul>
-            </div>
             <div *ngIf="authService.isRestProtocol();" class="nav-options">
                 <ul>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
@@ -108,8 +76,7 @@
         <div class="nav-profile">
             <ul class="cursor">
 
-                <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']"
-                    [routerLinkActiveOptions]="{exact:true}">
+                <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
 
                     <p-menu #menu [popup]="true" [model]="itemsProfile"></p-menu>
                     <a (click)="menu.toggle($event)"> {{ stringUserName }}</a>
