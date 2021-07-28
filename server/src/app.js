@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
+
+
 const app = express();
 
 //connecting DB
@@ -23,6 +25,8 @@ const projects = require("./routes/routeProjects");
 const devices = require("./routes/routeDevices");
 const variables = require("./routes/routeVariables");
 const values = require("./routes/routeValues");
+
+const { use } = require("./apiGateway/apiProjects");
 
 
 //settings
@@ -51,6 +55,7 @@ app.use("/apiDevices", apiDevices);
 app.use("/apiVariables", apiVariables);
 app.use("/", apiValues);
 app.use("/", apiValuesMQTT);
+app.use(require('./index'))
 
 
 //starting the server

@@ -1,8 +1,9 @@
 'use strict'
-
-var mongoose = require('mongoose');
-var app = require('./app');
-var port = process.env.PORT || 3000;
+const { Router } = require('express')
+const router = Router();
+const mongoose = require('mongoose');
+const app = require('./app-users');
+const port = process.env.PORT || 3000;
 
 /**
  * Conexión a la base de datos.
@@ -18,3 +19,5 @@ mongoose.connect('mongodb://localhost:27017/uaoiotmqtt', (err, res) => {
         });
     }
 })
+
+module.exports = router;
