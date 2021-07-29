@@ -2,8 +2,8 @@
 
 var UserLogin = require('../models/userLogin');
 var bcrypt = require("bcryptjs");
-require("../request_api_methods/get.js")();
-require("../request_api_methods/post.js")();
+require("../requestMethods/get.js")();
+require("../requestMethods/post.js")();
 var fs = require('file-system');
 const { exec } = require("child_process");
 

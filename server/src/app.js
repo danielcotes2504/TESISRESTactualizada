@@ -51,7 +51,7 @@ app.use("/apiDevices", apiDevices);
 app.use("/apiVariables", apiVariables);
 app.use("/", apiValues);
 app.use("/", apiValuesMQTT);
-app.use(require('../../api/index'))
+//app.use(require('./index'))
 
 //starting the server
 app.listen(app.get("port"), () => {

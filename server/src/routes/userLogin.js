@@ -5,7 +5,7 @@ var jwt = require("jsonwebtoken");
 var Userlogin = require("../models/userLogin");
 var UserLoginController = require("../controllers/userLogin");
 const config = require('../config/database');
-require("../request_api_methods/get.js")();
+require("../requestMethods/get.js")();
 
 
 //var auth = jwt({secret: 'MY_SECRET',userProperty: 'payload'});

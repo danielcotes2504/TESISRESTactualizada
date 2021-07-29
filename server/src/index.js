@@ -2,7 +2,7 @@
 const { Router } = require('express')
 const router = Router();
 var mongoose = require('mongoose');
-var app = require('./app');
+var app = require('./app-users');
 var port = process.env.PORT || 3000;
 
 /**
@@ -20,4 +20,4 @@ mongoose.connect('mongodb://localhost:27017/uaoiotmqtt', (err, res) => {
     }
 })
 
-module.exports = router;
+//module.exports = router;
