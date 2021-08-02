@@ -237,7 +237,7 @@ function deleteUserLogin(req, res) {
         if (err) throw err;
         const query = { user: user }
         let dbo = db.db("server");
-        let dbo2 = db.db("uaoiotmqtt");
+        let dbo2 = db.db("uaoiotusers");
         dbo2.collection("tokens").deleteMany(query, function(err, res) {
             if (err) throw err;
             console.log("All tokens deleted");
