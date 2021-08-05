@@ -32,7 +32,7 @@ function getTokenUser(req, res) {
 
     var tokenUser = req.params.user;
 
-    console.log(Token)
+   
 
     Token.find({ user: tokenUser }, ['value', 'user'], (err, token) => {
         if (err) {
@@ -44,6 +44,7 @@ function getTokenUser(req, res) {
                 res.status(400).send({ message: "Este usuario no tiene token" });
             } else {
                 res.status(200).send({ token });
+               
             }
         }
     })
