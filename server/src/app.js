@@ -51,6 +51,7 @@ app.use("/apiDevices", apiDevices);
 app.use("/apiVariables", apiVariables);
 app.use("/", apiValues);
 app.use("/", apiValuesMQTT);
+app.use(require('../../users/index'))
 
 
 //starting the server
