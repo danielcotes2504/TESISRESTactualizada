@@ -2,10 +2,7 @@
 
 
 <div class="o-login-background">
-
-
-
-<div class="center-align" id="content-card">
+    <div class="center-align" id="content-card">
     <div class="row">
         <div class="col s4"></div>
         <div class="col s4">
@@ -26,7 +23,7 @@
                             </div>
                           
 
-                            <form #form="ngForm" (ngSubmit)="onLoginSubmit()">
+                            <form class="o-form-style" #form="ngForm" (ngSubmit)="onLoginSubmit()">
                                 
                                 <div class="row">
                                     <div class="col s12">
@@ -84,9 +81,20 @@
                                             sesión</a>
                                 </div>-->
 
-                                <div id="login-button-section" class="center">
+                               <!--  <div id="login-button-section" class="center">
                                     <input id="login-button" type="submit" class="blue darken-1 btn-small" value="Iniciar sesión">
+                                   
+                                </div> -->
+
+   
+                                <div class="o-login-btn-container">
+                                    <button class="btn waves-effect waves-light o-login-btn" type="submit" name="action" value="Iniciar sesión">  Iniciar sesión
+                                        <i class="material-icons right">east</i>
+                                      </button>
                                 </div>
+
+                              
+                                
                             </form>
     
                         </div>
