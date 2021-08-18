@@ -39,6 +39,8 @@ $rojo-secundario: #e83e44;
   min-width: 20em;
   align-content: center;
   margin: 0 auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
   img {
     margin: 0.5em 0em 1em 0em;
     width: 80%;
@@ -126,7 +128,7 @@ $rojo-secundario: #e83e44;
 
 .ui-inputtext.o-input-field{
   border-style: solid;
-  border-color: #a3a3a3;
+  border-color: #C1C1C1;
   width:100%;
   height:100%;
   //border: none;
@@ -144,7 +146,7 @@ $rojo-secundario: #e83e44;
 
 .o-color-icon{
   margin: 0 0.5em 0 1.5em;
-  color: #5a5a5a;
+  color: #727272;
  
 }
 
@@ -175,8 +177,10 @@ $rojo-secundario: #e83e44;
 }
 
 
-.btn.o-login-btn{
+.o-login-btn{
   background-color: #C4161C;
+  border:none;
+  height:2.5em;
   color: white;
   width:100%;
   margin:0 2.5em 0 2.5em;
@@ -186,7 +190,24 @@ $rojo-secundario: #e83e44;
   //justify-content: center;
   font-weight: 700;
   text-transform: capitalize; 
-  
   border-radius: 7px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  
 
 }
+
+.o-login-btn:hover{
+  background-color: #dd1b22;
+  box-shadow: 0 0 6px rgba(35, 173, 278, 1);
+
+}
+.o-login-btn:focus{
+  background-color: #a31419;
+  
+
+}
+
