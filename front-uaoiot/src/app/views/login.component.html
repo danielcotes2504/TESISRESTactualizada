@@ -1,34 +1,74 @@
 <p-growl [(value)]="msgs"></p-growl>
+
+
+<div class="o-login-background">
+
+
+
 <div class="center-align" id="content-card">
     <div class="row">
         <div class="col s4"></div>
         <div class="col s4">
-            <div class="card white">
+
+            <div id="logo" >
+                <img id="logo-login" src="assets/images/logoLoginUAO.png" alt="">
+                <!--<a id="title-nav"  [routerLinkActive]="['active']">UAOIOT</a>-->
+            </div>
+            
+            <div class="card white o-card-style">
+                
                 <div class="card-content">
-
-                    <div id="logo">
-                        <img id="logo-login" src="assets/images/logo_login1.png">
-                        <!--<a id="title-nav"  [routerLinkActive]="['active']">UAOIOT</a>-->
-                    </div>
-
                     <div id="data-section">
                         <div class="row">
-                            <form #form="ngForm" (ngSubmit)="onLoginSubmit()">
 
+                            <div>
+                                <h6 class="o-iniciar-sesion-class" >Iniciar sesión</h6>
+                            </div>
+                          
+
+                            <form #form="ngForm" (ngSubmit)="onLoginSubmit()">
+                                
                                 <div class="row">
                                     <div class="col s12">
-                                        <span class="ui-float-label">
-                                            <input type="text" id="float-input" placeholder="Usuario" name="userName"
+                                        
+                                        <div class="o-input-user-2-class">
+
+                                            <div class="input-icons">
+                                                <i class="material-icons o-color-icon">account_circle </i>
+                                                <input type="text" id="float-input" class=" o-input-field" placeholder="Usuario" name="userName"
                                                 pInputText [size]="40" [(ngModel)]="userName">
-                                        </span>
+                                            </div>
+                                           
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col s12">
-                                        <span class="ui-float-label">
-                                            <input type="password" class="input-field" placeholder="Contraseña"
+                                        
+                                        <div class="o-input-user-2-class">
+
+                                            <div class="input-icons">
+                                                <i class="material-icons o-color-icon">lock </i>
+                                                
+                                                <input type="password" class="o-input-field" placeholder="Contraseña"
                                                 name="userPassword" pInputText [size]="40" [(ngModel)]="userPassword">
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
+
+                            
+                            
+
+                                <div class="row">
+                                    <div class="col s12">
+                                        <span class="ui-float-label">
+                                           
+                                           
                                         </span>
                                     </div>
                                 </div>
@@ -48,6 +88,7 @@
                                     <input id="login-button" type="submit" class="blue darken-1 btn-small" value="Iniciar sesión">
                                 </div>
                             </form>
+    
                         </div>
                     </div>
                 </div>
@@ -55,4 +96,6 @@
         </div>
         <div class="col s4"></div>
     </div>
+</div>
+
 </div>
