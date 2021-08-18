@@ -34,10 +34,10 @@
 </p-dialog>
 
 
-<nav>
+<nav *ngIf="authService.loggedIn(); else isnotLogged">
     <div class="nav-elements">
         <div *ngIf="authService.loggedIn()" class="nav-logo">
-            <img src="assets/images/logo_navbar1.png" width="200px" height="47.5px">
+            <img src="assets/images/logo_navbar.png" width="172x" height="36px">
         </div>
         <div *ngIf="authService.isAdminLoggedIn();else user_content" class="nav-options">
             <ul>
@@ -79,10 +79,19 @@
                 <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
 
                     <p-menu #menu [popup]="true" [model]="itemsProfile"></p-menu>
-                    <a (click)="menu.toggle($event)"> {{ stringUserName }}</a>
+                    <div>
+                        <a (click)="menu.toggle($event)"> {{ stringUserName }}</a>
+                        <a><i class="material-icons">account_circle </i></a>
+                    </div>
+
 
             </ul>
         </div>
     </div>
 
+
 </nav>
+
+<ng-template #isnotLogged>
+
+</ng-template>

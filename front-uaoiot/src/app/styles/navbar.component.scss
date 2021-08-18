@@ -1,100 +1,100 @@
-$rojo-principal: #ec1c24;
-$rojo-secundario: #e83e44;
-
-p-menu div ul li .ui-menu .ui-menuitem {
-    margin: 0;
-    width: 100%;
-}
-
-nav {
-    background-color: $rojo-principal;
-
-    .nav-elements {
-        display: flex;
-        justify-content: space-around;
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            margin: 0.5em;
-
-            a {
-                color:white;
-                padding: 1em, 1em, 1em;
-                font-weight: bold;
-            }
+        $rojo-principal: #C4161C;
+        $rojo-secundario: #e83e44;
+        p-menu div ul li .ui-menu .ui-menuitem {
+            margin: 0;
+            width: 100%;
         }
-
-        .nav-options {
-            ul{
-                list-style-type: none;
+        
+        nav {
+            background-color: $rojo-principal;
+            padding-bottom: 10px;
+            .nav-elements {
                 display: flex;
-                flex-direction: row;
                 justify-content: space-around;
-                align-items: center;
-                height: 100%;
-                margin: 0;
-
-                li {
+                .nav-logo {
                     display: flex;
-                    margin: 0 1em 0 1em;
-                    padding: 0 0.5em 0 0.5em;
                     align-items: center;
-                    font-weight: 500; 
-                    height: 100%; 
-
+                    margin: 0.5em;
+                    a {
+                        color: white;
+                        padding: 1em, 1em, 1em;
+                        font-weight: bold;
+                    }
+                }
+                .nav-options {
+                    ul {
+                        list-style-type: none;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-around;
+                        align-items: center;
+                        height: 100%;
+                        margin: 0;
+                        li {
+                            display: flex;
+                            margin: 0 1em 0 1em;
+                            padding: 0 0.5em 0 0.5em;
+                            align-items: center;
+                            font-weight: 500;
+                            height: 100%;
+                            a {
+                                color: white;
+                                background-color: white;
+                            }
+                        }
+                    }
+                }
+                .nav-profile {
+                    display: flex;
+                    align-items: center;
+                    padding: 0 0.5em 0 0.5em;
                     a {
                         color: white;
                     }
                 }
             }
-
-        }
-
-        .nav-profile {
-            display: flex;
-            align-items: center;
-            padding: 0 0.5em 0 0.5em;
-
-            a {
-                color:white;
+            .nav-options li:hover {
+                border-bottom: 5px solid rgb(202, 13, 13);
+                margin-bottom: -5px;
+            }
+            .active {
+                border-bottom: 5px solid #3698c9;
+                margin-bottom: -5px;
+            }
+            .nav-profile:hover {
+                border-bottom: 5px solid rgb(202, 13, 13);
+                margin-bottom: -5px;
             }
         }
-    }
-
-    .nav-options li:hover {
-        border-bottom: 5px solid rgb(202, 13, 13);
-        margin-bottom: -5px;
-    }
-    .active {
-        border-bottom: 5px solid #3698c9;
-        margin-bottom: -5px;
-    }
-    
-    .nav-profile:hover {
-        border-bottom: 5px solid rgb(202, 13, 13);
-    }
-}
-
-#token-section{
-    margin-top: 1.5em;
-    margin-bottom: 1.8em;
-}
-
-#user-section{
-    margin-bottom: 2em;
-}
-
-#credential-title-token{
-    font-weight: 600;
-    margin-right: 1.8em;
-}
-
-#credential-title-user{
-    font-weight: 600;
-    margin-right: 1em;
-}
-
-.cursor{
-    cursor:pointer;
-}
+        
+        #token-section {
+            margin-top: 1.5em;
+            margin-bottom: 1.8em;
+        }
+        
+        #user-section {
+            margin-bottom: 2em;
+        }
+        
+        #credential-title-token {
+            font-weight: 600;
+            margin-right: 1.8em;
+        }
+        
+        #credential-title-user {
+            font-weight: 600;
+            margin-right: 1em;
+        }
+        
+        .cursor {
+            cursor: pointer;
+        }
+        
+        .material-icons {
+            position: relative;
+            top: 8px;
+            left: 8px;
+            font-size: 2em;
+        }
+        
+        @media screen and (min-width: 952px) {}
