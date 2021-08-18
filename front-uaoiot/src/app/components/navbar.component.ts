@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
     public userLogged: UserLogin;
     public itemsProfile: MenuItem[];
     public msg: Message[] = [];
-
+    
     constructor(
         public authService: AuthService,
         public userLoginService: UserLoginService,

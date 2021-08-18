@@ -1,16 +1,16 @@
-html, body {
+html,
+body {
     max-width: 100%;
     overflow-x: hidden;
     font-family: 'Open Sans', sans-serif;
-
 }
 
-nav-bar{
+nav-bar {
     position: fixed;
     z-index: 9;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
-#content{
-    margin-top:4.2em;
+#content {
+    margin-top: 4.2em;
 }

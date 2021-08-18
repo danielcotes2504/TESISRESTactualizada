@@ -167,8 +167,8 @@ export class AuthService {
     public loggedIn() {
         const user = this.getUserDetails();
         if (user && localStorage.getItem('id_token')) {
-            return user.exp > Date.now() / 1000;
-            return true;
+            return user.exp > Date.now() / 1000, true;
+           // return true;
         } else {
             this.getLoggedInName.next('Sign In');
             return false;
