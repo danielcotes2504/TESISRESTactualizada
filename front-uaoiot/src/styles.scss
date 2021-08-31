@@ -61,6 +61,8 @@ body .ui-panel .ui-panel-titlebar {
 body .ui-panel .ui-panel-content{
     width: 98%;
     margin-left: 5px;
+
+}
 body .ui-card.override-this {
     border-radius: 12px 12px 12px 12px;
     transition: 500ms;
@@ -72,5 +74,4 @@ body .ui-card.override-this:hover {
     -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.582);
     -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.582);
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.582);
-}
 }
