@@ -48,3 +48,16 @@ body .ui-menuitem-text {
 body .ui-breadcrumb ul li.ui-breadcrumb-chevron {
     color: #C4161C;
 }
+
+body .ui-card.override-this {
+    border-radius: 12px 12px 12px 12px;
+    transition: 500ms;
+}
+
+body .ui-card.override-this:hover {
+    transition: 500ms;
+    color: #252323;
+    -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.582);
+    -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.582);
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.582);
+}
