@@ -48,3 +48,17 @@ body .ui-menuitem-text {
 body .ui-breadcrumb ul li.ui-breadcrumb-chevron {
     color: #C4161C;
 }
+
+
+body .ui-panel .ui-panel-titlebar {
+   
+    border-radius: 10px !important; 
+    background-color: #3FA5D8!important;
+    border: 1px solid #3FA5D8!important;
+  
+}
+
+body .ui-panel .ui-panel-content{
+    width: 98%;
+    margin-left: 5px;
+}

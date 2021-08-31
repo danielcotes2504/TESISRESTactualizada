@@ -14,7 +14,7 @@
     "dependencies": {
         "body-parser": "^1.18.3",
         "connect-flash": "^0.1.1",
-        "express": "^4.16.4",
+        "express": "^4.17.1",
         "mongoose": "^5.4.9",
         "mqtt": "^4.2.8",
         "node-fetch": "^2.6.1",
