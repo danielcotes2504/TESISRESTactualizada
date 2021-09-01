@@ -1,4 +1,6 @@
+
 <app-rest-sub-navbar></app-rest-sub-navbar>
+
 <section>
     <div class="project-container">
         <p-card *ngFor="let project of  projects" [style]="{width: '20em'}" styleClass="ui-card override-this" class="rest-card">
@@ -27,6 +29,7 @@
         </p-card>
     </div>
 </section>
+
 <footer class="bottom">
     <button class="ui-button-danger" type="button" pButton [routerLink]="['/tourProjects']" label="Ir al tutorial"></button>
 </footer>

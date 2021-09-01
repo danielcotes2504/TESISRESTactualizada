@@ -12,9 +12,15 @@ body {
     margin: 0;
     padding: 0;
     max-width: 100%;
+    height: 100%;
     overflow-x: hidden;
     font-family: 'Open Sans', sans-serif;
-    background-color: #F0F0F7;
+    
+  
+   background-position: center; /* Center the image */
+   background-repeat: no-repeat; /* Do not repeat the image */
+   background-size: cover; /* Resize the background image to cover the entire container */
+   background-image: url("../src/assets/images/fondo24.png");
 }
 
 .container {
@@ -43,11 +49,18 @@ body .ui-breadcrumb ul li.ui-breadcrumb-chevron {
 
 body .ui-menuitem-text {
     color: #C4161C;
+    font-weight: 700;
+}
+body .ui-menuitem-text:hover {
+    color: #8d1317;
+    
+  
 }
 
 body .ui-breadcrumb ul li.ui-breadcrumb-chevron {
-    color: #C4161C;
+    color: #C4161C !important;
 }
+
 
 
 body .ui-panel .ui-panel-titlebar {
@@ -74,4 +87,10 @@ body .ui-card.override-this:hover {
     -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.582);
     -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.582);
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.582);
+}
+
+body .ui-card.o-device-card {
+    border-radius: 6px;
+    transition: 500ms;
+    width: 17rem;
 }

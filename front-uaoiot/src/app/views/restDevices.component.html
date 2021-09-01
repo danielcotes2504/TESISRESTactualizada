@@ -9,8 +9,16 @@
                 <div *ngFor="let device of proj">
                     <div *ngIf="device.project == project.project" pDraggable="right"
                         (onDragStart)="dragStart($event, device)" (onDragEnd)="dragEnd($event)">
-                        <p-card [style]="{width: '13em'}" styleClass="ui-card" class="rest-card"
+                        <p-card styleClass="ui-card o-device-card" class="rest-card"
                             (mouseover)="deviceClick($event, device)">
+                            <div pTooltip="{{stringVariable}}" class="card-action right-align">
+                                <h5 class="o-title-card-style">{{ device.deviceN }}</h5>
+                                <div>
+                                    <a (click)="editClick($event, device)"><i class="material-icons o-btn-edit-style">create</i></a>
+                                    <a (click)="trashClick($event, device)"><i class="material-icons o-btn-delete-style">delete</i></a>
+                                </div>
+                                
+                            </div>
                             <p-header *ngIf="device.deviceH == 'RaspberryPi'">
                                 <div class="raspberry-header"></div>
                             </p-header>
@@ -24,20 +32,18 @@
                                 <div class="linkit-header"></div>
                             </p-header>
                             <div pTooltip="{{stringVariable}}">
-                                <h5>{{ device.deviceN }}</h5>
-                                <p>{{ device.deviceH }}</p>
+
+                                <p class="o-devicetype-card-style">{{ device.deviceH }}</p>
                             </div>
-                            <div class="card-action right-align">
-                                <a (click)="editClick($event, device)"><i class="material-icons">create</i></a>
-                                <a (click)="trashClick($event, device)"><i class="material-icons">delete</i></a>
-                            </div>
+                           
                         </p-card>
                     </div>
                 </div>
             </div>
             <div class="new-device-container">
                 <!-- <img (click)="newDeviceClick(project)" src="assets/images/addRed.svg" class="add-icon"> -->
-                <i class="medium material-icons add-icon" (click)="newDeviceClick(project)">add</i>
+                
+                <i class="material-icons add-icon" (click)="newDeviceClick(project)">add_circle</i>
             </div>
         </div>
     </div>
