@@ -24,8 +24,9 @@ export class RestVariablesComponent implements OnInit {
     displayEditVariable = false;
     displayDependentOptions = false;
     variables: VariableModel[] = [];
-    independentVariables: VariableModel[] = [];
+     independentVariables: VariableModel[] = [];
     auxVariable: VariableModel = {
+        
         user: '', project: '', deviceN: '', deviceH: '', variableN: '',
         variableT: 'Independiente', variableInd: '-', constant: 0, operation: '-', positive: 1, negative: 31416
     };
@@ -41,7 +42,9 @@ export class RestVariablesComponent implements OnInit {
     project = '';
     user = '';
     url = '';
-
+    tipoVariable:boolean;
+   
+    
     constructor(private router: Router, private apiService: ApiService) {
         this.user = this.apiService.getCurrentUser();
         this.project = this.apiService.getCurrentProject();
@@ -63,10 +66,13 @@ export class RestVariablesComponent implements OnInit {
             '/' + this.project).subscribe(resVariables => {
                 this.variables = resVariables.body;
                 this.variables.forEach(element => {
+                    
                     if (element.variableT === 'Independiente') {
                         this.independentVariables.push(element);
                     }
+                    
                 });
+               
             });
 
         this.apiService.getDevices(environment.restUrl + 'apiDevices/' + this.user + '/' + this.project)

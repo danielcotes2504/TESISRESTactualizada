@@ -2,41 +2,51 @@
 <section>
     <p-messages [value]="msgsDev"></p-messages>
     <div class="variablesContainer">
-        <p-card *ngFor="let variable of variables" [style]="{width: '20em'}" styleClass="ui-card" class="rest-card">
+        <p-card *ngFor="let variable of variables" [style]="{width: '20em'}" styleClass="ui-card override-this" class="rest-card">
             <p-header class="imageContainer" (click)="previusVariablesClick($event, variable)">
-                <div class="variable-header">
-                    <h5> {{variable.variableN}} </h5>
+                <div *ngIf="variable.variableT === 'Dependiente'; then vardep else varind">
                 </div>
+                <ng-template #vardep>
+                    <div class="variable-header-d">
+                        <h5> {{variable.variableN}} </h5>
+                    </div>
+
+                </ng-template>
+                <ng-template #varind>
+                    <div class="variable-header-i">
+                        <h5> {{variable.variableN}} </h5>
+                    </div>
+
+                </ng-template>
             </p-header>
             <div class="card-action">
-                <div>
-                    <p> {{variable.variableT}} </p>
-                </div>
+                <div *ngIf="variable.variableT=== 'Dependiente'; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>{{variable.variableT}} de {{variable.variableInd}}</ng-template>
+                <ng-template #elseBlock>{{variable.variableT}}</ng-template>
                 <div class="right-align">
                     <a (click)="editClick($event, variable)"><i class="material-icons">create</i></a>
                     <a (click)="trashClick($event, variable)"><i class="material-icons">delete</i></a>
                 </div>
             </div>
         </p-card>
-        <p-card [style]="{width: '20em'}" styleClass="ui-card" class="rest-card">
+        <p-card [style]="{width: '20em'}" styleClass="ui-card override-this" class="rest-card">
             <p-header (click)="newVariableClick()">
                 <div class="new-card-header">
+                    <a><i class="material-icons add">add_circle </i></a>
                     <h5>Añadir variable</h5>
                 </div>
             </p-header>
             <div class="card-action">
-                <p>Has click aquí para añadir una nueva variable a tu projecto. </p>
+
             </div>
         </p-card>
     </div>
 </section>
 <footer class="bottom">
-    <button class="ui-button-danger" type="button" pButton [routerLink]="['/tourVariables']"
-        label="Ir al tutorial"></button>
+    <button class="ui-button-danger" type="button" pButton [routerLink]="['/tourVariables']" label="Ir al tutorial"></button>
 </footer>
 
-<p-dialog header="Añadir variable" [(visible)]="displayNewVariable" [modal]="true" [responsive]="true"
-    [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
+<p-dialog header="Añadir variable" [(visible)]="displayNewVariable" [modal]="true" [responsive]="true" [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
     <div class="dialogContent">
         <p-messages [value]="msgs"></p-messages>
         <div class="container">
@@ -54,14 +64,12 @@
         <div *ngIf="displayDependentOptions == true" class="dependentOptions">
             <div class="subContainer">
                 <label>Seleccione la variable independiente</label>
-                <p-dropdown #selVar [style]="{width: '100%'}" [scrollHeight]="5" [options]="independentVariables"
-                    optionLabel="variableN" (onClick)="handleVar($event, selVar.selectedOption.value.variableN)">
+                <p-dropdown #selVar [style]="{width: '100%'}" [scrollHeight]="5" [options]="independentVariables" optionLabel="variableN" (onClick)="handleVar($event, selVar.selectedOption.value.variableN)">
                 </p-dropdown>
             </div>
             <div class="subContainer">
                 <label>Seleccione la operación que desea realizar</label>
-                <p-selectButton #selOpr [options]="comparatives"
-                    (onOptionClick)="handleOperation($event, selOpr.value)">
+                <p-selectButton #selOpr [options]="comparatives" (onOptionClick)="handleOperation($event, selOpr.value)">
                 </p-selectButton>
             </div>
             <div class="subContainer">
@@ -71,13 +79,11 @@
             </div>
             <div class="subContainer">
                 <label>Seleccione el valor que desea fijar en caso de validar la condición anterior.</label>
-                <p-spinner #selPositive size="45" [placeholder]="'Se mantiene el valor enviado'"
-                    (onChange)="handlePositive($event, selPositive.value)"></p-spinner>
+                <p-spinner #selPositive size="45" [placeholder]="'Se mantiene el valor enviado'" (onChange)="handlePositive($event, selPositive.value)"></p-spinner>
             </div>
             <div class="subContainer">
                 <label>Seleccione el valor que desea fijar en caso de NO validar la condición anterior.</label>
-                <p-spinner [placeholder]="'Se mantiene el valor enviado'" #selNegative size="45"
-                    (onChange)="handleNegative($event, selNegative.value)">
+                <p-spinner [placeholder]="'Se mantiene el valor enviado'" #selNegative size="45" (onChange)="handleNegative($event, selNegative.value)">
                 </p-spinner>
             </div>
         </div>
@@ -89,20 +95,17 @@
         </div>
         <div class="subContainer">
             <label>Seleccione el dispositivo al cual desea vincular la variable</label>
-            <p-dropdown #selDev [style]="{width: '100%'}" [scrollHeight]="5" [options]="devices" optionLabel="deviceN"
-                (onChange)="handleDev($event, selDev.selectedOption.value.deviceN, selDev.selectedOption.value.deviceH)">
+            <p-dropdown #selDev [style]="{width: '100%'}" [scrollHeight]="5" [options]="devices" optionLabel="deviceN" (onChange)="handleDev($event, selDev.selectedOption.value.deviceN, selDev.selectedOption.value.deviceH)">
             </p-dropdown>
         </div>
     </div>
     <p-footer>
-        <button class="ui-button" type="button" pButton (click)="addVariableClick(newVariableName.value)"
-            label="Añadir"></button>
+        <button class="ui-button" type="button" pButton (click)="addVariableClick(newVariableName.value)" label="Añadir"></button>
         <button class="ui-button" type="button" pButton (click)="clear()" label="Cancelar"></button>
     </p-footer>
 </p-dialog>
 
-<p-dialog header="Editar variable" [(visible)]="displayEditVariable" [modal]="true" [responsive]="true"
-    [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
+<p-dialog header="Editar variable" [(visible)]="displayEditVariable" [modal]="true" [responsive]="true" [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
     <p-messages [value]="msgs"></p-messages>
     <div class="dialogEditContent">
         <span class="ui-float-label">
@@ -111,8 +114,7 @@
         </span>
     </div>
     <p-footer>
-        <button class="ui-button" type="button" pButton (click)="updateVariableClick($event, updateVariableName.value)"
-            label="Aceptar"></button>
+        <button class="ui-button" type="button" pButton (click)="updateVariableClick($event, updateVariableName.value)" label="Aceptar"></button>
         <button class="ui-button" type="button" pButton (click)="clear()" label="Cancelar"></button>
     </p-footer>
 </p-dialog>
