@@ -94,3 +94,37 @@ body .ui-card.o-device-card {
     transition: 500ms;
     width: 17rem;
 }
+
+
+body .ui-dialog .ui-dialog-titlebar{
+    border-radius: 12px 12px 0 0 !important;
+    background-color: rgb(255, 255, 255) !important;
+
+    .ui-dialog-title{
+        font-weight: 700;
+        color: #727272;
+    }
+    
+}
+
+body .ui-dialog .ui-dialog-footer{
+    border-radius: 0 0 12px 12px  !important;
+
+    button{
+        border-radius: 8px;
+        background-color: #C4161C;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+    }
+    button:hover{
+       
+        background-color: #9e1317;
+
+    }
+}
+
+body .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-slider {
+    background-color: #C4161C!important;
+}
+
+
