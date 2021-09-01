@@ -46,9 +46,14 @@
                 .nav-profile {
                     display: flex;
                     align-items: center;
-                    padding: 0 0.5em 0 0.5em;
+                    padding: 0.5em 0.5em 0 0.5em;
                     a {
                         color: white;
+                        text-transform: capitalize;
+                    }
+
+                    .o-user-popup-style{
+                       // padding-top:0.5em;
                     }
                 }
             }

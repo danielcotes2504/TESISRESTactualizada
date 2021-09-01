@@ -40,6 +40,7 @@
             <img src="assets/images/logo_navbar.png" width="172x" height="36px">
         </div>
         <div *ngIf="authService.isAdminLoggedIn();else user_content" class="nav-options">
+            
             <ul>
                 <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
                     <a [routerLink]="['admin']">Usuarios</a>
@@ -79,9 +80,9 @@
                 <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
 
                     <p-menu #menu [popup]="true" [model]="itemsProfile"></p-menu>
-                    <div>
-                        <a (click)="menu.toggle($event)"> {{ stringUserName }}</a>
-                        <a><i class="material-icons">account_circle </i></a>
+                    <div class="o-user-popup-style">
+                        <a (click)="menu.toggle($event)"> {{ stringUserName }} <i class="material-icons">account_circle </i></a>
+                      
                     </div>
 
 
