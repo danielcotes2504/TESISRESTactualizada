@@ -12,7 +12,10 @@
                         <p-card styleClass="ui-card o-device-card" class="rest-card"
                             (mouseover)="deviceClick($event, device)">
                             <div pTooltip="{{stringVariable}}" class="card-action right-align">
-                                <h5 class="o-title-card-style">{{ device.deviceN }}</h5>
+                                <div class="o-subtitle-card">
+                                    <h5 class="o-title-card-style">{{ device.deviceN }}</h5>
+                                </div>
+                                
                                 <div>
                                     <a (click)="editClick($event, device)"><i class="material-icons o-btn-edit-style">create</i></a>
                                     <a (click)="trashClick($event, device)"><i class="material-icons o-btn-delete-style">delete</i></a>

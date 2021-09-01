@@ -36,6 +36,7 @@ section {
 .container{
     margin: 0;
     width: 100%;
+    height:100%;
     display: flex;
     justify-content: flex-start;
    
@@ -49,6 +50,7 @@ section {
         -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
         box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
         width: 20em;
+        height:100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -64,14 +66,17 @@ section {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 0;
+            margin-top: 0; 
+            word-break: break-word;
+            text-align: center;
 
           
             flex-direction: column;
             
-            height: 3em;
+            height: 4em;
             border-radius: 12px 12px 0px 0px;
             background-image: linear-gradient(to bottom, #349CCF, #99CAE2);
+            padding: 0.5em;
             h3 {
                 color: white;
                 margin: 0.5em 0.5em;
@@ -83,8 +88,9 @@ section {
             display: flex;
             flex-direction: row;
             width: 100%;
+            height:100%;
             justify-content: space-around;
-           
+          
             flex-wrap: wrap;
 
             .rest-card {
@@ -112,17 +118,28 @@ section {
                     border-radius: 100px;
                     padding: 0 1em 0 1em;
                 }
-                h5{
-                    margin: 0;
-                    font-weight: 700;
-                    color: #666565;
-                    font-size: 1.2em;
+
+                .o-subtitle-card{
+                    width: 70%;
+                    word-wrap: break-word;
+                    text-align: left;
+
+                    h5{
+                        margin: 0;
+                        font-weight: 700;
+                        color: #666565;
+                        font-size: 1.2em;
+                        margin-bottom: 0.5em;
+                        
+                    }
                 }
+                
                 p {
                     margin: 0;
                 }
                 .o-devicetype-card-style{
-                    margin-bottom: 1.5em;
+                    margin-bottom: 0.2em;
+                    
                 }
                
                 .card-action{
