@@ -48,7 +48,7 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
                     scrollTo: false,
                     showCancelLink: true,
                     title: 'Crear proyecto',
-                    text: ['Al hacer clic en esta tarjeta podrás añadir un nuevo proyecto a tu usuario.'],
+                    text: ['Al hacer click en esta tarjeta podrás añadir un nuevo proyecto'],
                 }
             },
             {
@@ -72,7 +72,7 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
                     scrollTo: false,
                     showCancelLink: true,
                     title: 'Proyecto creado',
-                    text: ['Las tarjetas rojas indican los proyectos que tienes asociado a tu usuario.'],
+                    text: ['Las tarjetas azules indican tus proyectos actuales.'],
                 }
             },
             {
@@ -96,8 +96,8 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
                     scrollTo: false,
                     showCancelLink: true,
                     title: 'Entrar al proyecto',
-                    text: ['Aquí encontrarás el nombre de tu proyecto, en el cual puedes hacer clic para ingresar y conocer ' +
-                        'las variables que tiene asociado tu proyecto.'],
+                    text: ['Aquí encontrarás el nombre de tu proyecto, donde puedes hacer click para ingresar y conocer ' +
+                        'las variables que tienes asociadas a tu proyecto.'],
                 }
             },
             {
@@ -112,7 +112,7 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Entendido',
                             type: 'next'
                         }
                     ],

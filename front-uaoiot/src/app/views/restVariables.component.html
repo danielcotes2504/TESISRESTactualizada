@@ -43,7 +43,11 @@
     </div>
 </section>
 <footer class="bottom">
-    <button class="ui-button-danger" type="button" pButton [routerLink]="['/tourVariables']" label="Ir al tutorial"></button>
+    <div class="slide-tutorial-button">
+        <button class="tutorial-button" type="button" pButton [routerLink]="['/tourVariables']" label="?"></button>
+        <p class="anchor-tutorial">Tutorial de variables</p>
+    </div>
+
 </footer>
 
 <p-dialog header="Añadir variable" [(visible)]="displayNewVariable" [modal]="true" [responsive]="true" [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">

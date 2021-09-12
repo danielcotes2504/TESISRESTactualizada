@@ -141,6 +141,9 @@ export class RestVariablesComponent implements OnInit {
         this.url = environment.restUrl + 'apiVariables/' + this.newVariable.user + '/' + this.newVariable.project +
             '/' + this.newVariable.deviceN + '/' + this.newVariable.deviceH;
         if (this.newVariable.variableN !== '') {
+            console.log(this.newVariable.variableN.length);
+            if(this.newVariable.variableN.length<=30){
+            
             this.clear();
             this.apiService.addVariable(this.newVariable, this.url).subscribe(resAddVariable => {
                 if (resAddVariable.message === 'Saved') {
@@ -149,6 +152,11 @@ export class RestVariablesComponent implements OnInit {
                     this.getData();
                 }
             });
+        }
+        else{
+            this.showLongName();
+        }
+        
         } else {
             this.show();
         }
@@ -202,6 +210,13 @@ export class RestVariablesComponent implements OnInit {
         this.msgs.push({
             severity: 'error',
             summary: 'No se ingresó nombre'
+        });
+    }
+
+    showLongName() {
+        this.msgs.push({
+            severity: 'error',
+            summary: 'El nombre es demasiado largo'
         });
     }
 
