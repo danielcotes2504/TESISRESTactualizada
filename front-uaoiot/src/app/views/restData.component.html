@@ -1,21 +1,27 @@
 <app-rest-sub-navbar></app-rest-sub-navbar>
 <section>
-    <div *ngIf="isVariableIndependent()">
-        <p-panel header="URL para enviar y recibir los datos" [toggleable]="true" [transitionOptions]="'500ms'"
-            collapsed="true" [style]="{width: '50em'}">
-            <div>
-                Formato de trama: <code>{{'{'}}"value": valor {{'}'}}</code>
-            </div>
-            <div>
-                URL: {{postURL}}
-            </div>
-        </p-panel>
-    </div>
-    <p-messages [value]="msgs"></p-messages>
+
+
     <div *ngIf="values.length >= 2" class="chart-container">
         <app-rest-chart></app-rest-chart>
-        <app-rest-table></app-rest-table>
+        <div class="panel-ui" *ngIf="isVariableIndependent()">
+
+            <p-panel class="panel-div" header="URL para enviar y recibir los datos" [toggleable]="true" [transitionOptions]="'500ms'" collapsed="true" [style]="{width: '50em'}">
+                <div>
+                    Formato de trama: <code>{{'{'}}"value": valor {{'}'}}</code>
+                </div>
+                <div>
+                    URL: {{postURL}}
+                </div>
+            </p-panel>
+
+            <p-messages [value]="msgs"></p-messages>
+            <app-rest-table></app-rest-table>
+
+        </div>
+
     </div>
+
 </section>
 <footer class="bottom">
     <button class="ui-button-danger" type="button" pButton [routerLink]="['/tourData']" label="Ir al tutorial"></button>
