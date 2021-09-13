@@ -31,7 +31,7 @@ section {
             justify-content: flex-end;
             height: 8em;
             border-radius: 12px 12px 0px 0px;
-            background-image: linear-gradient(to bottom, #349CCF, #99CAE2);
+            background-image: linear-gradient(to bottom, #349CCF, #7bb4d1);
             h5 {
                 color: white;
                 margin: 0.3em 0.5em;
@@ -128,3 +128,29 @@ section {
     color: #C4C4C4;
     font-size: 3em;
 }
+
+
+/*******************Sección del botón de tutorial******/
+
+.tutorial-button {
+    border: 0px;
+    background-color: #C4161C;
+    border-radius: 5rem;
+    font-size: 1.0em;
+    font-weight: 400;
+    cursor: pointer;
+    margin-top: 0rem;
+    transition: 100ms;
+    box-shadow: -3px 3px 4px rgba(0, 0, 0, 0.20);
+    position: fixed;
+    bottom: 2rem;
+}
+
+.ui-button:enabled:hover {
+    background-color: #ac1e22;
+    color: #ffffff;
+    border-color: #ac1e22;
+}
+
+
+/*********************************************/

@@ -25,7 +25,7 @@ section {
             justify-content: flex-end;
             height: 8em;
             border-radius: 12px 12px 0px 0px;
-            background-image: linear-gradient(to bottom, #349CCF, #99CAE2);
+            background-image: linear-gradient(to bottom, #349CCF, #7bb4d1);
             h5 {
                 color: white;
                 margin: 0.3em 0.5em;
@@ -93,6 +93,9 @@ section {
     font-size: 3em;
 }
 
+
+/*******************Sección del botón de tutorial******/
+
 .tutorial-button {
     border: 0px;
     background-color: #C4161C;
@@ -140,3 +143,6 @@ section {
     bottom: 2%;
     align-items: center;
 }
+
+
+/*********************************************/
