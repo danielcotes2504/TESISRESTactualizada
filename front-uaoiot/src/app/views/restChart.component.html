@@ -1,31 +1,25 @@
 <div class="container">
-    <p-chart type={{selectedChartType}} [data]="chart" [options]="options" [width]="'45em'" [height]="'20em'"
-        [responsive]="true"></p-chart>
+    <p-chart class="chart-rest" type={{selectedChartType}} [data]="chart" [options]="options" [responsive]="true"></p-chart>
     <p-button icon="pi pi-ellipsis-h" styleClass="ui-button-secondary" (onClick)="displaySettings = true"></p-button>
 </div>
 
 
-<p-dialog header="Ajustar gráfica" [(visible)]="displaySettings" [modal]="true" [responsive]="true"
-    [style]="{width: '25em'}" [minY]="70" [baseZIndex]="10000" [closeOnEscape]="true">
+<p-dialog header="Ajustar gráfica" [(visible)]="displaySettings" [modal]="true" [responsive]="true" [style]="{width: '25em'}" [minY]="70" [baseZIndex]="10000" [closeOnEscape]="true">
     <div class="dialog-content">
         <div class="text-dropdown">
             <label id="subTitle">Seleccione la escala de tiempo</label>
-            <p-dropdown #newTimeScale [style]="{width: '100%'}" [scrollHeight]="3" [options]="timeOptions"
-                optionLabel="timeScaleName" (onClick)="setTimeScale(newTimeScale.selectedOption.value.timeUnit)">
+            <p-dropdown #newTimeScale [style]="{width: '100%'}" [scrollHeight]="3" [options]="timeOptions" optionLabel="timeScaleName" (onClick)="setTimeScale(newTimeScale.selectedOption.value.timeUnit)">
             </p-dropdown>
         </div>
         <div class="text-dropdown">
             <label id="subTitle">Seleccione el tipo de gráfico</label>
-            <p-dropdown #newChartType [style]="{width: '100%'}" [scrollHeight]="3" [options]="chartTypes"
-                optionLabel="typeName" (onClick)="setChartType(newChartType.selectedOption.value.type)">
+            <p-dropdown #newChartType [style]="{width: '100%'}" [scrollHeight]="3" [options]="chartTypes" optionLabel="typeName" (onClick)="setChartType(newChartType.selectedOption.value.type)">
             </p-dropdown>
         </div>
     </div>
     <p-footer>
-        <button class="ui-button-danger" type="button" pButton label="Agregar"
-            (click)="confirmSettings($event)"></button>
-        <button class="ui-button-danger" type="button" pButton (click)="displaySettings = false"
-            label="Cancelar"></button>
+        <button class="ui-button-danger" type="button" pButton label="Agregar" (click)="confirmSettings($event)"></button>
+        <button class="ui-button-danger" type="button" pButton (click)="displaySettings = false" label="Cancelar"></button>
     </p-footer>
 </p-dialog>
 
