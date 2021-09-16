@@ -45,8 +45,9 @@
                 }
                 .nav-profile {
                     display: flex;
-                    align-items: center;
-                    padding: 0.5em 0.5em 0 0.5em;
+                   // align-items: center;
+                   // flex-direction: column;
+                   padding: 0.5em 0.5em 0 0.5em;
                     a {
                         color: white;
                         text-transform: capitalize;
@@ -54,6 +55,8 @@
 
                     .o-user-popup-style{
                        // padding-top:0.5em;
+                     
+                      
                     }
                 }
             }
