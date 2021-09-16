@@ -70,3 +70,57 @@
         margin-right: 0;
     }
 }
+
+
+/*******************Sección del botón de tutorial******/
+
+.tutorial-button {
+    border: 0px;
+    background-color: #C4161C;
+    border-radius: 5rem;
+    font-size: 1.2em;
+    font-weight: 400;
+    cursor: pointer;
+    margin-top: 0rem;
+    transition: 100ms;
+    box-shadow: -3px 3px 4px rgba(0, 0, 0, 0.20);
+}
+
+.anchor-tutorial {
+    width: 0%;
+    margin-top: 1rem;
+    text-overflow: clip;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: 500ms;
+    margin-top: 1rem;
+    margin-left: -0.6rem;
+    padding: 0.2rem 0rem 0.2rem 0rem;
+    border-radius: 0;
+    background-color: #FFFFFF;
+    font-weight: 600;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.20);
+}
+
+.tutorial-button:hover+.anchor-tutorial {
+    transition: 500ms;
+    padding: 0.2rem 0.4rem 0.2rem 0.8rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    width: 100%;
+}
+
+.ui-button:enabled:hover {
+    background-color: #ac1e22;
+    color: #ffffff;
+    border-color: #ac1e22;
+}
+
+.slide-tutorial-button {
+    position: fixed;
+    display: flex;
+    bottom: 2%;
+    align-items: center;
+}
+
+
+/*********************************************/
