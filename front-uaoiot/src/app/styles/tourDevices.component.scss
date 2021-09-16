@@ -124,55 +124,99 @@ section {
 .container{
     margin: 0;
     width: 100%;
+    height:100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+   
     flex-wrap: wrap;
 
     .project-container{
         background-color: #ffffff;
-        color: #666666;
+        color: #ffffff;
         -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
         -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
         box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
-        width: 45%;
+        min-width: 20em;
+        height:100%;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-between;
+        
+        
         flex-wrap: wrap;
         margin: 0.5em;
+        border-radius: 12px;
 
         .container-title{
             width: 100%;
             //background-color: coral;
             display: flex;
             justify-content: center;
+            align-items: center;
+            margin-top: 0; 
+            word-break: break-word;
+            text-align: center;
+            flex-direction: column;
+            height: 4em;
+            border-radius: 12px 12px 0px 0px;
+            background-image: linear-gradient(to bottom, #349CCF, #99CAE2);
+            padding: 0.5em;
+            h3 {
+                color: white;
+                margin: 0.5em 0.5em;
+                font-size: 1.4em;
+            }
         }
-
         .devices-cards{
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             width: 100%;
-            justify-content: space-around;
+            height:100%;
+            justify-content: center;
+            align-items: center;
+          
             flex-wrap: wrap;
 
             .rest-card {
-                margin: 0.5em;
+                margin: 0.1em;
 
                 .arduino-header {
-                    height: 1em;
+                    height: 0.15em;
                     background-color: lightgray;
+                    border-radius: 6px;
                 }
                 .linkit-header {
-                    height: 1em;
+                    height: 0.15em;
                     background-color: lightgreen;
+                    border-radius: 6px;
                 }
                 .node-header {
-                    height: 1em;
+                    height: 0.15em;
                     background-color: lightcoral;
+                    border-radius: 6px;
                 }
                 .raspberry-header {
-                    height: 1em;
+                    height: 0.15em;
                     background-color: lightblue;
+                    border-radius: 100px;
+                    padding: 0 1em 0 1em;
+                }
+                .o-subtitle-card{
+                    width: 100%;
+                    word-wrap: break-word;
+                    text-align: left;
+                    display: flex;
+                    justify-content: space-between;
+                   
+
+                    h5{
+                        margin: 0;
+                        font-weight: 700;
+                        color: #666565;
+                        font-size: 1.2em;
+                        margin-bottom: 0.5em;
+                        
+                    }
                 }
                 h3{
                     margin: 0;
@@ -181,10 +225,17 @@ section {
                 p {
                     margin: 0;
                 }
+                .o-devicetype-card-style{
+                    margin-bottom: 0.2em;
+                    
+                }
+               
                 .card-action{
                     margin: 0;
+                    margin-bottom:1em;
                     display: flex;
-                    justify-content: flex-end;
+                    justify-content: space-between;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
                 }
             }
         }
@@ -192,24 +243,32 @@ section {
         .new-device-container{
             width: 100%;
             //height: 5em;
+            height: 4em;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
+            align-items: center;
             padding: 0.5em;
 
             .add-icon {
+               border-radius:50em;
                 margin: 0;
                 padding: 0;
+                font-size:3em;
+                color: #54AAD5;
+                
             }
+            .add-icon:hover {
+    
+                -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+                -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+                box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+                color: #4589ac;
+            } 
         }
     }
 }
 
-.add-icon:hover {
-    color: #666666;
-    -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
-    -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
-} 
+
 
 .bottom {
     width: 100%;
@@ -222,4 +281,20 @@ section {
     color: #607d8b;
     cursor: pointer;
     background-color: white;
+}
+
+.project-container:hover{
+    color: #666666;
+    -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+   
+}
+
+.o-btn-edit-style:hover{
+    color: rgb(76, 83, 99);
+}
+
+.o-btn-delete-style:hover{
+    color: #C4161C;
 }
