@@ -22,21 +22,18 @@
         <p-messages [value]="msgs"></p-messages>
 
 
-    </div>
-    <div class="chart-container" *ngIf="values.length >= 2">
-        <div class="rest-chart">
-            <app-rest-chart></app-rest-chart>
+        <div class="chart-container" *ngIf="values.length >= 2">
+            <div class="rest-chart">
+                <app-rest-chart></app-rest-chart>
+            </div>
+            <div class="rest-table">
+                <app-rest-table></app-rest-table>
+            </div>
+
+
         </div>
-        <div class="rest-table">
-            <app-rest-table></app-rest-table>
-        </div>
-
-
-
-
 
     </div>
-
 </section>
 <footer class="bottom">
     <div class="slide-tutorial-button">
