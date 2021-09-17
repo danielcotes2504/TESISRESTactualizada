@@ -1,3 +1,9 @@
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .chart-container {
     margin-top: 1rem;
     display: flex;
@@ -9,12 +15,12 @@
 .panel-ui {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 
 .panel-div {
-    width: 43rem;
+    width: 45rem;
 }
 
 .bottom {
@@ -57,6 +63,11 @@
     .panel-div {
         width: 25rem;
     }
+    .panel-ui {
+        align-items: center;
+        justify-content: center;
+        margin-left: 0;
+    }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -68,6 +79,11 @@
     .rest-chart {
         margin-left: 0;
         margin-right: 0;
+    }
+    .panel-ui {
+        align-items: center;
+        justify-content: center;
+        margin-left: 0;
     }
 }
 
