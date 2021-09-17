@@ -1,28 +1,46 @@
 <app-rest-sub-navbar></app-rest-sub-navbar>
 <section>
 
+    <div class="panel-ui" *ngIf="isVariableIndependent()">
 
-    <div *ngIf="values.length >= 2" class="chart-container">
-        <app-rest-chart></app-rest-chart>
-        <div class="panel-ui" *ngIf="isVariableIndependent()">
+        <p-panel class="panel-div" header="URL y tópico para enviar datos por REST o MQTT " [toggleable]="true" [transitionOptions]="'500ms'" collapsed="true">
+            <div class="info">
+                <p><b>Formato del dato</b></p>
+                <p> <code>{{'{'}}"value": valor {{'}'}}</code></p>
+                <hr>
+                <p><b>REST</b></p>
+                <p> POST URL: {{postURL}}</p>
+                <hr>
+                <p><b>MQTT</b></p>
+                <p>Tópico: {{currentVariable.user}}/{{currentVariable.project}}/{{currentVariable.deviceN}}/{{currentVariable.variableN}}</p>
 
-            <p-panel class="panel-div" header="URL para enviar y recibir los datos" [toggleable]="true" [transitionOptions]="'500ms'" collapsed="true" [style]="{width: '50em'}">
-                <div>
-                    Formato de trama: <code>{{'{'}}"value": valor {{'}'}}</code>
-                </div>
-                <div>
-                    URL: {{postURL}}
-                </div>
-            </p-panel>
+                <p>Usuario: {{currentVariable.user}}</p>
+                <p>Contraseña: Token de usuario</p>
+            </div>
+        </p-panel>
 
-            <p-messages [value]="msgs"></p-messages>
-            <app-rest-table></app-rest-table>
+        <p-messages [value]="msgs"></p-messages>
 
+
+    </div>
+    <div class="chart-container" *ngIf="values.length >= 2">
+        <div class="rest-chart">
+            <app-rest-chart></app-rest-chart>
         </div>
+        <div class="rest-table">
+            <app-rest-table></app-rest-table>
+        </div>
+
+
+
+
 
     </div>
 
 </section>
 <footer class="bottom">
-    <button class="ui-button-danger" type="button" pButton [routerLink]="['/tourData']" label="Ir al tutorial"></button>
+    <div class="slide-tutorial-button">
+        <button class="tutorial-button" type="button" pButton [routerLink]="['/tourData']" label="?"></button>
+        <p class="anchor-tutorial">Tutorial de datos</p>
+    </div>
 </footer>
