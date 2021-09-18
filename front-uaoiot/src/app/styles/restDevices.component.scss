@@ -2,93 +2,83 @@ section {
     width: 90%;
     margin: 0 auto;
     padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.dialog-content{
+.dialog-content {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
     height: 20em;
     padding: 1em;
-
-    .text-input{
+    .text-input {
         width: 100%;
         margin: 1em;
-
         #float-input {
             width: 100%;
             height: 3em;
         }
     }
-
-    .text-dropdown{
+    .text-dropdown {
         margin: 1em;
         width: 100%;
     }
 }
 
-#subTitle{
+#subTitle {
     padding-bottom: 0.5em;
 }
 
-.o-proyectos-title-page{
+.o-proyectos-title-page {
     display: flex;
     justify-content: flex-start;
     width: 100%;
-    
     align-items: center;
     padding: 1em;
     //margin-left: 8.5%;
     height: 2.5em;
     margin-top: 2em;
     margin-bottom: 0.5em;
-   // padding: 0 1em 0 1em;
-   .o-title-style-page{
-       font-size:1.8em;
-       font-weight: 700;
-       color: #545353;
-   }
-    
+    // padding: 0 1em 0 1em;
+    .o-title-style-page {
+        font-size: 1.8em;
+        font-weight: 700;
+        color: #545353;
+    }
 }
 
-
-
-.container{
+.container {
     margin: 0;
     width: 100%;
-    height:100%;
+    height: 100%;
     display: flex;
     justify-content: flex-start;
-   
     flex-wrap: wrap;
-
-  
-
-    .project-container{
+    .project-container {
         background-color: #ffffff;
         color: #ffffff;
         -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
         -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
         box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
         min-width: 20em;
-        height:100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        
-        
         flex-wrap: wrap;
         margin: 0.5em;
         border-radius: 12px;
-
-        .container-title{
+        .container-title {
             width: 100%;
             //background-color: coral;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 0; 
+            margin-top: 0;
             word-break: break-word;
             text-align: center;
             flex-direction: column;
@@ -102,20 +92,15 @@ section {
                 font-size: 1.4em;
             }
         }
-
-        .devices-cards{
+        .devices-cards {
             display: flex;
             flex-direction: row;
             width: 100%;
-            height:100%;
+            height: 100%;
             justify-content: space-around;
-          
             flex-wrap: wrap;
-
             .rest-card {
                 margin: 0.1em;
-               
-
                 .arduino-header {
                     height: 0.15em;
                     background-color: lightgray;
@@ -137,45 +122,34 @@ section {
                     border-radius: 100px;
                     padding: 0 1em 0 1em;
                 }
-
-                .o-subtitle-card{
+                .o-subtitle-card {
                     width: 70%;
                     word-wrap: break-word;
                     text-align: left;
-
-                    h5{
+                    h5 {
                         margin: 0;
                         font-weight: 700;
                         color: #666565;
                         font-size: 1.2em;
                         margin-bottom: 0.5em;
-                        
                     }
                 }
-                
                 p {
                     margin: 0;
                 }
-                .o-devicetype-card-style{
+                .o-devicetype-card-style {
                     margin-bottom: 0.2em;
-                    
                 }
-               
-                .card-action{
+                .card-action {
                     margin: 0;
-                    margin-bottom:1em;
+                    margin-bottom: 1em;
                     display: flex;
                     justify-content: space-between;
                     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
                 }
             }
-
-           
         }
-
-        
-
-        .new-device-container{
+        .new-device-container {
             width: 100%;
             //height: 5em;
             height: 4em;
@@ -183,27 +157,22 @@ section {
             justify-content: center;
             align-items: center;
             padding: 0.5em;
-
             .add-icon {
-               border-radius:50em;
+                border-radius: 50em;
                 margin: 0;
                 padding: 0;
-                font-size:3em;
+                font-size: 3em;
                 color: #54AAD5;
-                
             }
             .add-icon:hover {
-    
                 -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
                 -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
                 box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
                 color: #4589ac;
-            } 
+            }
         }
     }
 }
-
-
 
 .bottom {
     width: 100%;
@@ -212,27 +181,83 @@ section {
     justify-content: flex-start;
 }
 
-.material-icons{
+.material-icons {
     color: #607d8b;
     cursor: pointer;
     background-color: white;
 }
 
-
-.project-container:hover{
+.project-container:hover {
     color: #666666;
     -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
     -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
-   
 }
 
-.o-btn-edit-style:hover{
+.o-btn-edit-style:hover {
     color: rgb(76, 83, 99);
 }
 
-.o-btn-delete-style:hover{
+.o-btn-delete-style:hover {
     color: #C4161C;
 }
 
 
+/*******************Sección del botón de tutorial******/
+
+.tutorial-button {
+    border: 0px;
+    background-color: #C4161C;
+    border-radius: 5rem;
+    font-size: 1.2em;
+    font-weight: 400;
+    cursor: pointer;
+    margin-top: 0rem;
+    transition: 100ms;
+    box-shadow: -3px 3px 4px rgba(0, 0, 0, 0.20);
+}
+
+.anchor-tutorial {
+    width: 0%;
+    margin-top: 1rem;
+    text-overflow: clip;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: 500ms;
+    margin-top: 1rem;
+    margin-left: -0.6rem;
+    padding: 0.2rem 0rem 0.2rem 0rem;
+    border-radius: 0;
+    background-color: #FFFFFF;
+    font-weight: 600;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.20);
+}
+
+.tutorial-button:hover+.anchor-tutorial {
+    transition: 500ms;
+    padding: 0.2rem 0.4rem 0.2rem 0.8rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    width: 100%;
+}
+
+.ui-button:enabled:hover {
+    background-color: #ac1e22;
+    color: #ffffff;
+    border-color: #ac1e22;
+}
+
+.slide-tutorial-button {
+    position: fixed;
+    display: flex;
+    bottom: 2%;
+    align-items: center;
+}
+
+
+/*********************************************/
+
+@media only screen and (max-width: 600px) {
+    .container {
+        justify-content: center;
+    }
+}

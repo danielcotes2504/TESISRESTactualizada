@@ -1,49 +1,50 @@
 // Color logo #F5382E #3698C9
 body,
 html {
-  height: 100%;
+    height: 100%;
 }
-.o-projects-background2{
-  //  width: 100vw;
-    //height: 100%;
-   //width: 100rem;
-  // height: 100rem;
-   
-   // background-image: url("../../assets/images/fondo24.png");
-  // background-position: center; /* Center the image */
-   // background-repeat: no-repeat; /* Do not repeat the image */
-  //  background-size: cover; /* Resize the background image to cover the entire container */
-  }
 
+.o-projects-background2 {
+    //  width: 100vw;
+    //height: 100%;
+    //width: 100rem;
+    // height: 100rem;
+    // background-image: url("../../assets/images/fondo24.png");
+    // background-position: center; /* Center the image */
+    // background-repeat: no-repeat; /* Do not repeat the image */
+    //  background-size: cover; /* Resize the background image to cover the entire container */
+}
 
 section {
     width: 90%;
     margin: 0 auto;
     padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #content[_ngcontent-c0] {
     margin-top: 0 !important;
 }
 
-.o-proyectos-title-page{
+.o-proyectos-title-page {
     display: flex;
     justify-content: flex-start;
     width: 100%;
-    
     align-items: center;
     padding: 1em;
     //margin-left: 8.5%;
     height: 2.5em;
     //margin-top: 2em;
     margin-bottom: 0.5em;
-   // padding: 0 1em 0 1em;
-   .o-title-style-page{
-       font-size:1.8em;
-       font-weight: 700;
-       color: #545353;
-   }
-    
+    // padding: 0 1em 0 1em;
+    .o-title-style-page {
+        font-size: 1.8em;
+        font-weight: 700;
+        color: #545353;
+    }
 }
 
 .project-container {
@@ -133,10 +134,9 @@ section {
     font-size: 3em;
 }
 
-.o-modal-create-project{
+.o-modal-create-project {
     border-radius: 12px;
 }
-
 
 
 /*******************Sección del botón de tutorial******/
