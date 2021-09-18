@@ -2,10 +2,6 @@ section {
     width: 90%;
     margin: 0 auto;
     padding: 2em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .o-proyectos-title-page {
@@ -250,3 +246,21 @@ section {
 
 
 /*********************************************/
+
+@media only screen and (max-width: 1300px) {
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
