@@ -1,48 +1,49 @@
 <p-growl [(value)]="msg"></p-growl>
 <h5 class="o-title-style-page" id="title">Administrar usuarios</h5>
+<div class="table">
+    <p-table [columns]="cols" [value]="users" selectionMode="single" [(selection)]="selectedUser">
 
-<p-table [columns]="cols" [value]="users" selectionMode="single" [(selection)]="selectedUser">
+        <ng-template pTemplate="header" let-columns class="header-col">
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+                <th style="width:8em; text-align:center;">Acciones</th>
+            </tr>
+        </ng-template>
 
-    <ng-template pTemplate="header" let-columns class="header-col">
-        <tr>
-            <th *ngFor="let col of columns">
-                {{col.header}}
-            </th>
-            <th style="width:8em; text-align:center;">Acciones</th>
-        </tr>
-    </ng-template>
+        <ng-template pTemplate="body" let-user let-columns="columns">
+            <tr>
 
-    <ng-template pTemplate="body" let-user let-columns="columns">
-        <tr>
+                <td *ngFor="let col of columns; let i = index">
+                    {{user[col.field]}}
+                </td>
 
-            <td *ngFor="let col of columns; let i = index">
-                {{user[col.field]}}
-            </td>
+                <td>
+                    <a id="table-button-edit" class="btn-floating blue darken-1" pTooltip="Editar" tooltipPosition="bottom" (click)="showDialogEditUser(user)">
+                        <i class="material-icons">edit</i></a>
 
-            <td>
-                <a id="table-button-edit" class="btn-floating blue darken-1" pTooltip="Editar" tooltipPosition="bottom" (click)="showDialogEditUser(user)">
-                    <i class="material-icons">edit</i></a>
+                    <a id="table-button-delete" class="btn-floating blue darken-1" pTooltip="Eliminar" tooltipPosition="bottom" (click)="showDialogDeleteUser(user)">
+                        <i class="material-icons">delete</i></a>
 
-                <a id="table-button-delete" class="btn-floating blue darken-1" pTooltip="Eliminar" tooltipPosition="bottom" (click)="showDialogDeleteUser(user)">
-                    <i class="material-icons">delete</i></a>
+                </td>
+            </tr>
+        </ng-template>
 
-            </td>
-        </tr>
-    </ng-template>
+        <ng-template pTemplate="summary" let-rowData>
+            <div style="text-align:left;">
+                <div class="listen button-section" class="left-align">
 
-    <ng-template pTemplate="summary" let-rowData>
-        <div style="text-align:left;">
-            <div class="listen button-section" class="left-align">
-
-                <a id="table-button" class="btn-floating blue darken-1" pTooltip="Agregar" tooltipPosition="bottom" (click)="showDialogAddUser()">
-                    <i class="material-icons">add</i></a>
+                    <a id="table-button" class="btn-floating blue darken-1" pTooltip="Agregar" tooltipPosition="bottom" (click)="showDialogAddUser()">
+                        <i class="material-icons">add</i></a>
 
 
+                </div>
+                <!--<button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Agregar"></button>-->
             </div>
-            <!--<button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Agregar"></button>-->
-        </div>
-    </ng-template>
-</p-table>
+        </ng-template>
+    </p-table>
+</div>
 
 <!--ADD DIALOG-->
 <p-dialog header="Crear usuario" [(visible)]="displayAdd" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '40em', minWidth:'20em'}" [resizable]="true" styleClass="o-admin-modal-create">
