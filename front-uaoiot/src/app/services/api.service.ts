@@ -70,11 +70,11 @@ export class ApiService {
     constructor(private http: HttpClient) { }
 
     setNavigationType(value: string) {
-        localStorage.set('navigation', value);
+        sessionStorage.set('navigation', value);
     }
 
     getNavigationType(): string {
-        return localStorage.getItem('navigation');
+        return sessionStorage.getItem('navigation');
     }
 
     setCurrentUser(value: string) {
@@ -83,7 +83,7 @@ export class ApiService {
 
     getCurrentUser(): string {
         /*  return sessionStorage.get('user'); */
-        return JSON.parse(localStorage.getItem('user')).user;
+        return JSON.parse(sessionStorage.getItem('user')).user;
     }
 
     setCurrentProject(value: string) {

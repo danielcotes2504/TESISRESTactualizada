@@ -8,7 +8,10 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { tokenNotExpired } from 'angular2-jwt';
-
+//Al cerrar la ventana se eliminará cualquier dato del usuario logueado
+/*window.addEventListener('unload', (event) => {
+    window.sessionStorage.clear();
+  });*/
 
 @Injectable()
 
@@ -74,19 +77,19 @@ export class AuthService {
      * @param user  Usuario ingresado.
      */
     public storeUserData(token, user) {
-        localStorage.setItem('id_token', token);
-        localStorage.setItem('user', JSON.stringify(user));
+        sessionStorage.setItem('id_token', token);
+        sessionStorage.setItem('user', JSON.stringify(user));
         this.authToken = token;
         this.user = user;
     }
 
     public storeSelectedProtocol(protocol) {
-        localStorage.setItem('protocol', protocol);
+        sessionStorage.setItem('protocol', protocol);
     }
 
 
     public loadToken() {
-        const token = localStorage.getItem('id_token');
+        const token = sessionStorage.getItem('id_token');
         this.authToken = token;
     }
 
@@ -95,7 +98,7 @@ export class AuthService {
      */
     public getToken() {
         if (!this.token) {
-            this.token = localStorage.getItem('id_token');
+            this.token = sessionStorage.getItem('id_token');
         }
 
         return this.token;
@@ -107,7 +110,7 @@ export class AuthService {
 
     public getName() {
         if (!this.name) {
-            this.name = JSON.parse(localStorage.getItem('user')).name;
+            this.name = JSON.parse(sessionStorage.getItem('user')).name;
         }
         return this.token;
     }
@@ -142,7 +145,7 @@ export class AuthService {
      * Verificar si el protocolo es REST
      */
     public isRestProtocol() {
-        const protocol = localStorage.getItem('protocol');
+        const protocol = sessionStorage.getItem('protocol');
         if (protocol === 'REST') {
             return true;
         } else {
@@ -153,7 +156,7 @@ export class AuthService {
      * Verificar si el protocolo es MQTT
      */
     public isMqttProtocol() {
-        const protocol = localStorage.getItem('protocol');
+        const protocol = sessionStorage.getItem('protocol');
         if (protocol === 'MQTT') {
             return true;
         } else {
@@ -166,13 +169,15 @@ export class AuthService {
      */
     public loggedIn() {
         const user = this.getUserDetails();
-        if (user && localStorage.getItem('id_token')) {
+        if (user && sessionStorage.getItem('id_token')) {
             return user.exp > Date.now() / 1000, true;
            // return true;
         } else {
             this.getLoggedInName.next('Sign In');
             return false;
         }
+      
+        
     }
 
     /**
@@ -183,7 +188,9 @@ export class AuthService {
         this.authToken = null;
         this.user = null;
         this.token = null;
-        localStorage.clear();
+        sessionStorage.clear();
         this.router.navigate(['']);
     }
+
+    
 }
