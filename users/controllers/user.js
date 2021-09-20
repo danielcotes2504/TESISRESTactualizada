@@ -81,6 +81,12 @@ function postUser(req, res) {
             console.log("HASH256 USER: " + hash256);
 
             token.value = hash;
+            console.log(`El valor original del token es ${token.value}`);
+            for (let i = 0; i < token.value.length; i++) {
+                token.value = token.value.replace('/', '');
+            }
+
+            console.log(`El valor del token sin el slash es ${token.value}`);
             token.user = user.login;
 
             user.password = hash256;

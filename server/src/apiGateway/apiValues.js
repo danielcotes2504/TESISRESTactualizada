@@ -88,6 +88,7 @@ router.get(
 );
 
 router.post("/:user/:project/:deviceN/:variableN/:token", (req, res) => {
+    console.log("mensaje de uso post")
     const { user } = req.params;
     const { project } = req.params;
     const { deviceN } = req.params;
