@@ -1,193 +1,203 @@
-// Color logo #F5382E #3698C9
-body,
-html {
-  height: 100%;
-}
-.o-projects-background2{
-  //  width: 100vw;
-    //height: 100%;
-   //width: 100rem;
-  // height: 100rem;
-   
-   // background-image: url("../../assets/images/fondo24.png");
-  // background-position: center; /* Center the image */
-   // background-repeat: no-repeat; /* Do not repeat the image */
-  //  background-size: cover; /* Resize the background image to cover the entire container */
-  }
-
-
-section {
-    width: 90%;
-    margin: 0 auto;
-    padding: 2em;
-}
-
-#content[_ngcontent-c0] {
-    margin-top: 0 !important;
-}
-
-.o-proyectos-title-page{
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
+    // Color logo #F5382E #3698C9
+    body,
+    html {
+        height: 100%;
+    }
+    /*  .o-projects-background2 {
+        //  width: 100vw;
+        //height: 100%;
+        //width: 100rem;
+        // height: 100rem;
+        // background-image: url("../../assets/images/fondo24.png");
+        // background-position: center; /* Center the image 
+        // background-repeat: no-repeat; /* Do not repeat the image 
+        //  background-size: cover; /* Resize the background image to cover the entire container 
+    }
+    */
     
-    align-items: center;
-    padding: 1em;
-    //margin-left: 8.5%;
-    height: 2.5em;
-    //margin-top: 2em;
-    margin-bottom: 0.5em;
-   // padding: 0 1em 0 1em;
-   .o-title-style-page{
-       font-size:1.8em;
-       font-weight: 700;
-       color: #545353;
-   }
+    section {
+        width: 90%;
+        margin: 0 auto;
+        padding: 2em;
+    }
     
-}
-
-.project-container {
-    border-radius: 12px 12px 12px 12px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 1em 0 1em 0;
-    flex-wrap: wrap;
-    .rest-card {
-        margin: 1em;
-        cursor: pointer;
-        .card-header {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            width: 100%;
-            word-wrap: break-word;
-            text-align: left;
-            height: 8em;
-            border-radius: 12px 12px 0px 0px;
-            background-image: linear-gradient(to bottom, #349CCF, #7bb4d1);
-            h5 {
-                color: white;
-                margin: 0.3em 0.5em;
-            }
+    #content[_ngcontent-c0] {
+        margin-top: 0 !important;
+    }
+    
+    .o-proyectos-title-page {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        align-items: center;
+        padding: 1em;
+        //margin-left: 8.5%;
+        height: 2.5em;
+        //margin-top: 2em;
+        margin-bottom: 0.5em;
+        // padding: 0 1em 0 1em;
+        .o-title-style-page {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #545353;
         }
-        .new-card-header {
+    }
+    
+    .project-container {
+        border-radius: 12px 12px 12px 12px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 1em 0 1em 0;
+        flex-wrap: wrap;
+        .rest-card {
+            margin: 1em;
+            cursor: pointer;
+            .card-header {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                width: 100%;
+                word-wrap: break-word;
+                text-align: left;
+                height: 8em;
+                border-radius: 12px 12px 0px 0px;
+                background-image: linear-gradient(to bottom, #349CCF, #7bb4d1);
+                h5 {
+                    color: white;
+                    margin: 0.3em 0.5em;
+                }
+            }
+            .new-card-header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 8em;
+                padding-top: 3em;
+                h5 {
+                    color: #C4C4C4;
+                    text-align: center;
+                    margin: 0.3em 0.5em;
+                }
+            }
+            .card-action {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                height: 2em;
+            }
+            transition: 1000ms;
+        }
+    }
+    
+    .dialog-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        height: 6em;
+        align-items: center;
+        .ui-float-label {
+            width: 90%;
+        }
+        .text-input {
+            height: 3em;
+        }
+    }
+    
+    .card:hover {
+        color: #666666;
+        -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+        -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+        padding: 0.5em 0.5em 0.5em 0.5em;
+    }
+    
+    .bottom {
+        position: absolute;
+        bottom: 2em;
+        left: 2em;
+    }
+    
+    .material-icons {
+        color: #607d8b;
+        cursor: pointer;
+        background-color: white;
+    }
+    
+    .add {
+        color: #C4C4C4;
+        font-size: 3em;
+    }
+    
+    .o-modal-create-project {
+        border-radius: 12px;
+    }
+    /*******************Sección del botón de tutorial******/
+    
+    .tutorial-button {
+        border: 0px;
+        background-color: #C4161C;
+        border-radius: 5rem;
+        font-size: 1.2em;
+        font-weight: 400;
+        cursor: pointer;
+        margin-top: 0rem;
+        transition: 100ms;
+        box-shadow: -3px 3px 4px rgba(0, 0, 0, 0.20);
+    }
+    
+    .anchor-tutorial {
+        width: 0%;
+        margin-top: 1rem;
+        text-overflow: clip;
+        white-space: nowrap;
+        overflow: hidden;
+        transition: 500ms;
+        margin-top: 1rem;
+        margin-left: -0.6rem;
+        padding: 0.2rem 0rem 0.2rem 0rem;
+        border-radius: 0;
+        background-color: #FFFFFF;
+        font-weight: 600;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.20);
+    }
+    
+    .tutorial-button:hover+.anchor-tutorial {
+        transition: 500ms;
+        padding: 0.2rem 0.4rem 0.2rem 0.8rem;
+        border-radius: 0 0.5rem 0.5rem 0;
+        width: 100%;
+    }
+    
+    .ui-button:enabled:hover {
+        background-color: #ac1e22;
+        color: #ffffff;
+        border-color: #ac1e22;
+    }
+    
+    .slide-tutorial-button {
+        position: fixed;
+        display: flex;
+        bottom: 2%;
+        align-items: center;
+    }
+    /*********************************************/
+    
+    @media only screen and (max-width: 600px) {
+        section {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 8em;
-            padding-top: 3em;
-            h5 {
-                color: #C4C4C4;
-                text-align: center;
-                margin: 0.3em 0.5em;
+        }
+
+        .o-proyectos-title-page {
+
+            // padding: 0 1em 0 1em;
+            .o-title-style-page {
+                font-size: 1.2em;
+        
             }
         }
-        .card-action {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            height: 2em;
-        }
-        transition: 1000ms;
     }
-}
-
-.dialog-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    height: 6em;
-    align-items: center;
-    .ui-float-label {
-        width: 90%;
-    }
-    .text-input {
-        height: 3em;
-    }
-}
-
-.card:hover {
-    color: #666666;
-    -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
-    -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
-    padding: 0.5em 0.5em 0.5em 0.5em;
-}
-
-.bottom {
-    position: absolute;
-    bottom: 2em;
-    left: 2em;
-}
-
-.material-icons {
-    color: #607d8b;
-    cursor: pointer;
-    background-color: white;
-}
-
-.add {
-    color: #C4C4C4;
-    font-size: 3em;
-}
-
-.o-modal-create-project{
-    border-radius: 12px;
-}
-
-
-
-/*******************Sección del botón de tutorial******/
-
-.tutorial-button {
-    border: 0px;
-    background-color: #C4161C;
-    border-radius: 5rem;
-    font-size: 1.2em;
-    font-weight: 400;
-    cursor: pointer;
-    margin-top: 0rem;
-    transition: 100ms;
-    box-shadow: -3px 3px 4px rgba(0, 0, 0, 0.20);
-}
-
-.anchor-tutorial {
-    width: 0%;
-    margin-top: 1rem;
-    text-overflow: clip;
-    white-space: nowrap;
-    overflow: hidden;
-    transition: 500ms;
-    margin-top: 1rem;
-    margin-left: -0.6rem;
-    padding: 0.2rem 0rem 0.2rem 0rem;
-    border-radius: 0;
-    background-color: #FFFFFF;
-    font-weight: 600;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.20);
-}
-
-.tutorial-button:hover+.anchor-tutorial {
-    transition: 500ms;
-    padding: 0.2rem 0.4rem 0.2rem 0.8rem;
-    border-radius: 0 0.5rem 0.5rem 0;
-    width: 100%;
-}
-
-.ui-button:enabled:hover {
-    background-color: #ac1e22;
-    color: #ffffff;
-    border-color: #ac1e22;
-}
-
-.slide-tutorial-button {
-    position: fixed;
-    display: flex;
-    bottom: 2%;
-    align-items: center;
-}
-
-
-/*********************************************/

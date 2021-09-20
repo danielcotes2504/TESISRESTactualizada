@@ -1,9 +1,19 @@
 <section>
+    <div class="o-proyectos-title-page">
+        <h5 class="o-title-style-page">Variables</h5>
+    </div>
+
+
     <div class="data-container">
-        <div class="rest-chart">
-            <canvas id="tourData"></canvas>
-            <p-button icon="pi pi-ellipsis-h" styleClass="ui-button-secondary"></p-button>
+
+        <div class="o-chart-container">
+            <div class="rest-chart">
+                <canvas id="tourData" class="o-canvas-style"></canvas>
+                <p-button icon="pi pi-ellipsis-h" styleClass="ui-button-secondary"></p-button>
+            </div>
+
         </div>
+        
         <div class="rest-table">
 
             <p-table [value]="values" [paginator]="true" [rows]="8" [alwaysShowPaginator]="false">

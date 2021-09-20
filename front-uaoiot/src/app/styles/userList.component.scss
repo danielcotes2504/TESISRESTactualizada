@@ -24,36 +24,47 @@
     line-height: 20px;
 }
 
-#title{
+#title {
     margin: 2em 0 1em 0;
 }
 
-#table-button-edit{
+#table-button-edit {
     margin-left: 0.5em;
 }
 
-#table-button-delete{
+#table-button-delete {
     margin-left: 1em;
 }
 
-.name-section, .username-section {
+.name-section,
+.username-section {
     margin-top: 1em;
     margin-bottom: 1em;
 }
 
-#password-section{
+#password-section {
     margin-bottom: 1em;
 }
 
-
-
-.o-admin-modal-create{
+.o-admin-modal-create {
     min-width: 10em;
-    minWidth:'20em';
+    minWidth: '20em';
 }
 
-.o-title-style-page{
-    font-size:1.6em;
+.o-title-style-page {
+    font-size: 1.6em;
     font-weight: 700;
     color: #545353;
+}
+
+th,
+td {
+    word-break: break-all;
+}
+
+@media only screen and (max-width: 400px) {
+    .table {
+        min-width: 21rem;
+        margin-left: -3rem;
+    }
 }

@@ -6,6 +6,10 @@ interface TableModel {
     index: number;
     value: number;
     date: any;
+
+  
+   
+   
 }
 
 @Component({
@@ -20,6 +24,7 @@ export class RestTableComponent implements OnInit {
     currentVariable: VariableModel;
     url: string;
     index: number[] = [];
+    date: any[] =[];
     interval: any;
 
     constructor(private apiService: ApiService) {
@@ -28,7 +33,8 @@ export class RestTableComponent implements OnInit {
 
     ngOnInit() {
         this.getData();
-        this.interval = setInterval(() => {
+       
+                this.interval = setInterval(() => {
             this.getData();
         }, 60000);
     }
@@ -40,10 +46,21 @@ export class RestTableComponent implements OnInit {
 
         this.apiService.getValues(this.url).subscribe(resValues => {
             this.values = resValues.body;
-            for (let i = 0; i < this.values.length; i++) {
+          for (let i = 0; i < this.values.length; i++) {
                 this.index[i] = i + 1;
+                const date=this.values[i].date;
+                const fecha = new Date(date).toLocaleDateString('es-CO');
+                const hora = new Date(date).toLocaleTimeString('en-US');
+                           this.date[i]= fecha + " "+ hora;
+               
+                
             }
+
+          
+
         });
     }
+
+    
 }
 

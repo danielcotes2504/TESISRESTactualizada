@@ -1,6 +1,9 @@
 section {
     padding: 2em;
+    
 }
+
+
 
 .data-container {
     display: flex;
@@ -9,9 +12,28 @@ section {
     align-items: center;
     flex-wrap: wrap;
 }
+.o-chart-container{
+
+   width: 45rem;
+    padding: 0 1rem 0 1rem;
+    align-items: top;
+}
+.rest-table {
+    max-width: 40rem;
+    margin-right: 1rem;
+}
+
+.o-canvas-style{
+    width: 90%!important;
+   height:90%!important;
+}
 
 .rest-chart {
-    max-width: 45rem;
+    display: flex;
+  
+}
+
+.rest-chart {
     padding: 1rem;
     display: flex;
     flex-direction: row;
@@ -26,26 +48,12 @@ section {
     display: flex;
     justify-content: flex-start;
 }
-
-.rest-table {
-    max-width: 45rem;
-    margin-right: 1rem;
-}
-
-.canvas-data {
-    width: 40em;
-    height: 20em;
-}
-
+/*
 @media only screen and (max-width: 600px) {
     .rest-chart {
-        max-width: 23rem;
+        max-width: 10rem;
     }
-    #tourData {
-        width: 20em;
-        height: 10em;
-    }
-}
+}*/
 
 
 /*******************Sección del botón de tutorial******/
@@ -69,6 +77,38 @@ section {
     color: #ffffff;
     border-color: #ac1e22;
 }
+
+.o-proyectos-title-page {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: center;
+    padding: 1em 1em 1em 5.8%;
+    //margin-left: 8.5%;
+    height: 2.5em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    // padding: 0 1em 0 1em;
+    .o-title-style-page {
+        font-size: 1.8em;
+        font-weight: 700;
+        color: #545353;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .o-proyectos-title-page {
+
+        // padding: 0 1em 0 1em;
+        .o-title-style-page {
+            font-size: 1.2em;
+    
+        }
+    }
+    
+  }
+
 
 
 /*********************************************/

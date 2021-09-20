@@ -23,7 +23,7 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
             scrollTo: false,
             showCancelLink: true
         };
-        this.shepherdService.disableScroll = true;
+        this.shepherdService.disableScroll = false;
         this.shepherdService.modal = false;
         this.shepherdService.confirmCancel = false;
         this.shepherdService.addSteps([

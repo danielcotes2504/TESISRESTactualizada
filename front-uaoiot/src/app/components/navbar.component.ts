@@ -93,17 +93,17 @@ export class NavbarComponent implements OnInit {
      */
     getUserName() {
         this.stringUserName = '';
-        if (localStorage.getItem('user') == null) {
+        if (sessionStorage.getItem('user') == null) {
             this.stringUserName = 'perfil';
         } else {
-            const userProfile = JSON.parse(localStorage.getItem('user'));
+            const userProfile = JSON.parse(sessionStorage.getItem('user'));
             this.userNameFromLogin = userProfile.user;
             this.stringUserName = userProfile.name;
         }
     }
 
     setNameNavbar() {
-        const userProfile = JSON.parse(localStorage.getItem('user'));
+        const userProfile = JSON.parse(sessionStorage.getItem('user'));
         this.userNameFromLogin = userProfile.user;
         this.stringUserName = userProfile.name;
     }

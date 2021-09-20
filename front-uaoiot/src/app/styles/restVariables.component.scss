@@ -4,26 +4,23 @@ section {
     padding: 2em;
 }
 
-.o-proyectos-title-page{
+.o-proyectos-title-page {
     display: flex;
     justify-content: flex-start;
     width: 100%;
-    
     align-items: center;
     padding: 1em;
     //margin-left: 8.5%;
     height: 2.5em;
-   // margin-top: 2em;
+    // margin-top: 2em;
     margin-bottom: 0.5em;
-   // padding: 0 1em 0 1em;
-   .o-title-style-page{
-       font-size:1.8em;
-       font-weight: 700;
-       color: #545353;
-   }
-    
+    // padding: 0 1em 0 1em;
+    .o-title-style-page {
+        font-size: 1.8em;
+        font-weight: 700;
+        color: #545353;
+    }
 }
-
 
 .variablesContainer {
     border-radius: 12px 12px 12px 12px;
@@ -249,3 +246,21 @@ section {
 
 
 /*********************************************/
+
+@media only screen and (max-width: 600px) {
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .o-proyectos-title-page {
+
+        // padding: 0 1em 0 1em;
+        .o-title-style-page {
+            font-size: 1.2em;
+    
+        }
+    }
+}

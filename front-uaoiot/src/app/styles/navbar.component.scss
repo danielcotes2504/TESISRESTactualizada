@@ -11,6 +11,7 @@
             .nav-elements {
                 display: flex;
                 justify-content: space-around;
+                flex-wrap: wrap;
                 .nav-logo {
                     display: flex;
                     align-items: center;
@@ -45,18 +46,15 @@
                 }
                 .nav-profile {
                     display: flex;
-                   // align-items: center;
-                   // flex-direction: column;
-                   padding: 0.5em 0.5em 0 0.5em;
+                    // align-items: center;
+                    // flex-direction: column;
+                    padding: 0.5em 0.5em 0 0.5em;
                     a {
                         color: white;
                         text-transform: capitalize;
                     }
-
-                    .o-user-popup-style{
-                       // padding-top:0.5em;
-                     
-                      
+                    .o-user-popup-style {
+                        // padding-top:0.5em;
                     }
                 }
             }
@@ -105,12 +103,14 @@
             font-size: 2em;
         }
         
-        @media screen and (min-width: 952px) {
-
-
-            
+        @media screen and (max-width: 600px) {
+            .nav-elements {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            ul {
+                flex-direction: column;
+            }
         }
-
-
-
-

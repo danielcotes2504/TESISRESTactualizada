@@ -3,27 +3,24 @@
         <h5 class="o-title-style-page">Dispositivos</h5>
     </div>
     <div class="container">
-        <div *ngFor="let project of projects" pDroppable="right" (onDrop)="dropDevice($event, project)"
-            class="project-container">
+        <div *ngFor="let project of projects" pDroppable="right" (onDrop)="dropDevice($event, project)" class="project-container">
             <div class="container-title">
                 <h3>{{ project.project }} </h3>
             </div>
             <div *ngFor="let proj of devices" class="devices-cards">
                 <div *ngFor="let device of proj">
-                    <div *ngIf="device.project == project.project" pDraggable="right"
-                        (onDragStart)="dragStart($event, device)" (onDragEnd)="dragEnd($event)">
-                        <p-card styleClass="ui-card o-device-card" class="rest-card"
-                            (mouseover)="deviceClick($event, device)">
+                    <div *ngIf="device.project == project.project" pDraggable="right" (onDragStart)="dragStart($event, device)" (onDragEnd)="dragEnd($event)">
+                        <p-card styleClass="ui-card o-device-card" class="rest-card" (mouseover)="deviceClick($event, device)">
                             <div pTooltip="{{stringVariable}}" class="card-action right-align">
                                 <div class="o-subtitle-card">
                                     <h5 class="o-title-card-style">{{ device.deviceN }}</h5>
                                 </div>
-                                
+
                                 <div>
                                     <a (click)="editClick($event, device)"><i class="material-icons o-btn-edit-style">create</i></a>
                                     <a (click)="trashClick($event, device)"><i class="material-icons o-btn-delete-style">delete</i></a>
                                 </div>
-                                
+
                             </div>
                             <p-header *ngIf="device.deviceH == 'RaspberryPi'">
                                 <div class="raspberry-header"></div>
@@ -41,26 +38,28 @@
 
                                 <p class="o-devicetype-card-style">{{ device.deviceH }}</p>
                             </div>
-                           
+
                         </p-card>
                     </div>
                 </div>
             </div>
             <div class="new-device-container">
                 <!-- <img (click)="newDeviceClick(project)" src="assets/images/addRed.svg" class="add-icon"> -->
-                
+
                 <i class="material-icons add-icon" (click)="newDeviceClick(project)">add_circle</i>
             </div>
         </div>
     </div>
 </section>
 <footer class="bottom">
-    <button class="ui-button-danger" type="button" pButton [routerLink]="['/tourDevices']"
-        routerLinkActive="router-link-active" label="Ir al tutorial"></button>
+
+    <div class="slide-tutorial-button">
+        <button class="tutorial-button" type="button" pButton [routerLink]="['/tourDevices']" routerLinkActive="router-link-active" label="?"></button>
+        <p class="anchor-tutorial">Tutorial de dispositivos</p>
+    </div>
 </footer>
 
-<p-dialog header="Editar dispositivo" [(visible)]="displayEdit" [modal]="true" [responsive]="true"
-    [style]="{width: '25em'}" [minY]="70" [baseZIndex]="10000" [closeOnEscape]="true">
+<p-dialog header="Editar dispositivo" [(visible)]="displayEdit" [modal]="true" [responsive]="true" [style]="{width: '25em'}" [minY]="70" [baseZIndex]="10000" [closeOnEscape]="true">
     <div class="dialog-content">
         <p-messages [value]="msgs"></p-messages>
         <div class="text-input">
@@ -71,19 +70,16 @@
         </div>
         <div class="text-dropdown">
             <label id="subTitle">Seleccione el tipo de dispositivo</label>
-            <p-dropdown #editDeviceHardware [style]="{width: '100%'}" [scrollHeight]="5" [options]="devicesHardware"
-                optionLabel="hardware"></p-dropdown>
+            <p-dropdown #editDeviceHardware [style]="{width: '100%'}" [scrollHeight]="5" [options]="devicesHardware" optionLabel="hardware"></p-dropdown>
         </div>
     </div>
     <p-footer>
-        <button class="ui-button-danger" type="button" pButton label="Aceptar"
-            (click)="updateDeviceClick(editDeviceName.value, editDeviceHardware.selectedOption.label)"></button>
+        <button class="ui-button-danger" type="button" pButton label="Aceptar" (click)="updateDeviceClick(editDeviceName.value, editDeviceHardware.selectedOption.label)"></button>
         <button class="ui-button-danger" type="button" pButton (click)="clear();" label="Cancelar"></button>
     </p-footer>
 </p-dialog>
 
-<p-dialog header="Añadir dispositivo" [(visible)]="displayNew" [modal]="true" [responsive]="true"
-    [style]="{width: '25em'}" [minY]="70" [baseZIndex]="10000" [closeOnEscape]="true">
+<p-dialog header="Añadir dispositivo" [(visible)]="displayNew" [modal]="true" [responsive]="true" [style]="{width: '25em'}" [minY]="70" [baseZIndex]="10000" [closeOnEscape]="true">
     <p-messages [value]="msgs"></p-messages>
     <div class="dialog-content">
         <div class="text-input">
@@ -94,13 +90,11 @@
         </div>
         <div class="text-dropdown">
             <label id="subTitle">Seleccione el tipo de dispositivo</label>
-            <p-dropdown #newDeviceHardware [style]="{width: '100%'}" [scrollHeight]="5" [options]="devicesHardware"
-                optionLabel="hardware"></p-dropdown>
+            <p-dropdown #newDeviceHardware [style]="{width: '100%'}" [scrollHeight]="5" [options]="devicesHardware" optionLabel="hardware"></p-dropdown>
         </div>
     </div>
     <p-footer>
-        <button class="ui-button-danger" type="button" pButton label="Agregar"
-            (click)="addDeviceClick(newDeviceName.value, newDeviceHardware.selectedOption.label)"></button>
+        <button class="ui-button-danger" type="button" pButton label="Agregar" (click)="addDeviceClick(newDeviceName.value, newDeviceHardware.selectedOption.label)"></button>
         <button class="ui-button-danger" type="button" pButton (click)="clear()" label="Cancelar"></button>
     </p-footer>
 </p-dialog>
