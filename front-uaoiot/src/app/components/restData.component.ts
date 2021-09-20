@@ -34,7 +34,8 @@ export class RestDataComponent implements OnInit {
     ngOnInit() {
         this.currentVariable = this.apiService.getCurrentVariable();
         this.getData();
-       this.getMqttData();
+       
+        this.getMqttData();
         this.postURL = environment.restUrl + this.currentVariable.user + '/'
             + this.currentVariable.project + '/' + this.currentVariable.deviceN + '/' + this.currentVariable.variableN
             + '/' + 'token_de_usuario';
