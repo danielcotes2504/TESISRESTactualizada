@@ -44,11 +44,12 @@ router.get("/apiValuesMQTT/:user/:project/:deviceN/:variableN", (req, res) => {
 
         console.log(state)
 
-        client.on('connect', function() {
-            if (state[`${user}_topic`] === topico) {
-                console.log("El tópico ya ha sido creado");
-                return;
-            } else {
+        if (state[`${user}_topic`] === topico) {
+            console.log("El tópico ya ha sido creado");
+            return;
+        } else {
+
+            client.on('connect', function() {
                 client.subscribe(topico, function(err) {
                     console.log(`suscrito a ${topico}`)
                     state[`${user}_topic`] = topico;
@@ -56,8 +57,9 @@ router.get("/apiValuesMQTT/:user/:project/:deviceN/:variableN", (req, res) => {
                         console.log("error en la subscripcion")
                     }
                 })
-            }
-        })
+
+            })
+        }
 
 
         client.on('message', function(topic, message) {
