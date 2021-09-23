@@ -5,6 +5,7 @@ const express = require("express");
 const router = express.Router();
 require("./requestMethods/get.js")();
 require("./requestMethods/post.js")();
+let state = {};
 
 /* GET TOKEN */
 const getToken = async(string) => {
@@ -24,6 +25,8 @@ const postMqttData = async(string, body) => {
 }
 
 router.get("/apiValuesMQTT/:user/:project/:deviceN/:variableN", (req, res) => {
+
+
     //console.log(req.params);
     const { user } = req.params;
     const { project } = req.params;
@@ -39,25 +42,41 @@ router.get("/apiValuesMQTT/:user/:project/:deviceN/:variableN", (req, res) => {
         const options = { username: user, password: value }
         let client = mqtt.connect('mqtt://localhost', options);
 
+        console.log(state)
 
         client.on('connect', function() {
-            client.subscribe(topico, function(err) {
-                console.log(`suscrito a ${topico}`)
-                if (err) {
-                    console.log("error en la subscripcion")
-                }
-            })
-
+            if (state[`${user}_topic`] === topico) {
+                console.log("El tópico ya ha sido creado");
+                return;
+            } else {
+                client.subscribe(topico, function(err) {
+                    console.log(`suscrito a ${topico}`)
+                    state[`${user}_topic`] = topico;
+                    if (err) {
+                        console.log("error en la subscripcion")
+                    }
+                })
+            }
         })
+
 
         client.on('message', function(topic, message) {
             // message is Buffer
             json1 = JSON.parse(message.toString()); //de esta manera se convierte el mensaje recibido en un json
             console.log(json1);
-            postMqttData(`${user}/${project}/${deviceN}/${variableN}/${value}`, json1)
+            if (json1.token === value) {
+                json2 = { 'value': json1.value }
+                postMqttData(`${user}/${project}/${deviceN}/${variableN}/${value}`, json1)
+            } else {
+                console.log("Se está enviando a otro usuario el dato")
+            }
+
 
 
         })
+
+
+
     });
     res.send({ "value": "success" })
 

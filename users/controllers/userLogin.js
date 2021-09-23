@@ -27,7 +27,7 @@ function saveTokensInFile(texto) {
      saveAs(blob, "passwords.txt");*/
 
     fs.writeFile('D:/mosquitto/passwords.txt', texto, function(err) {
-   // fs.writeFile('C:/Program Files (x86)/Mosquitto/passwords.txt', texto, function(err) {
+        // fs.writeFile('C:/Program Files (x86)/Mosquitto/passwords.txt', texto, function(err) {
         if (err) throw err;
         console.log('Results Received');
     });
@@ -135,8 +135,8 @@ function getUsers(req, res) {
                     console.log("el etxto es " + txtfileText);
                     saveTokensInFile(txtfileText);
 
-                     exec(mosquittoCmd, { cwd: 'D:/mosquitto' }, (error, stdout, stderr) => {
-                   // exec(mosquittoCmd, { cwd: 'C:/Program Files (x86)/Mosquitto' }, (error, stdout, stderr) => {
+                    exec(mosquittoCmd, { cwd: 'D:/mosquitto' }, (error, stdout, stderr) => {
+                        // exec(mosquittoCmd, { cwd: 'C:/Program Files (x86)/Mosquitto' }, (error, stdout, stderr) => {
                         if (error) {
                             console.log(`error: ${error.message}`);
                             return;
@@ -228,7 +228,7 @@ function deleteUserLogin(req, res) {
         } else if (!user) {
             res.status(404).send({ message: "No existen usuarios" });
         } else if (!err) {
-            console.log("Se realizó el Delete vironcha")
+
 
             res.status(200).send({ message: "Usuario eliminado" });
         }
