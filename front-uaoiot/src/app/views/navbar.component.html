@@ -1,7 +1,7 @@
 <p-growl [(value)]="msg"></p-growl>
 
 <!--DIALOG CREDENCIALES-->
-<p-dialog header="Tus credenciales" [(visible)]="display" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '600', minWidth:'500'}">
+<p-dialog *ngIf="!authService.isAdminLoggedIn()" header="Tus credenciales" [(visible)]="display" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '600', minWidth:'500'}">
 
     <div id="token-section">
         <span id="credential-title-token">Token</span>
@@ -37,7 +37,9 @@
 <nav *ngIf="authService.loggedIn(); else isnotLogged">
     <div class="nav-elements">
         <div *ngIf="authService.loggedIn()" class="nav-logo">
-            <img src="assets/images/logo_navbar.png" width="172x" height="36px">
+            <a [routerLink]="['restProjects']">
+                <img src="assets/images/logo_navbar.png" width="172x" height="36px">
+            </a>
         </div>
         <div *ngIf="authService.isAdminLoggedIn();else user_content" class="nav-options">
 

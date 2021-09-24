@@ -2,7 +2,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login.component';
 import { AdminComponent } from './components/admin.component';
-import { ProfileComponent } from './components/profile.component';
+
 
 
 
@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'login', component: LoginComponent },
     { path: 'restDevices', component: RestDevicesComponent, canActivate: [AuthGuardService] },
-    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
+    
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService] },
     { path: 'restDocuments', component: RestDocumentsComponent, canActivate: [AuthGuardService] },
       { path: 'restProjects', component: RestProjectsComponent, canActivate: [AuthGuardService] },

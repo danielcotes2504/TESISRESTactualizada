@@ -38,10 +38,16 @@ export class NavbarComponent implements OnInit {
         this.authService.getLoggedInName.subscribe(name => this.stringUserName = name);
         this.authService.getLoggedInUser.subscribe(user => this.userNameFromLogin = user);
         this.getUserName();
-
-        this.itemsProfile = [
-            { label: 'Credenciales', command: (onclick) => { this.showCredentials(); } },
-            { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
+        if(!this.authService.isAdminLoggedIn()) {
+            this.itemsProfile = [
+                { label: 'Credenciales', command: (onclick) => { this.showCredentials(); } },
+                { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
+        }
+        else{
+            this.itemsProfile = [
+                        { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
+        }
+       
 
     }
 

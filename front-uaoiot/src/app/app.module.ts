@@ -8,7 +8,7 @@ import { routing, appRoutingProvider } from './app.routing';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login.component';
 import { AdminComponent } from './components/admin.component';
-import { ProfileComponent } from './components/profile.component';
+
 import { RestProjectsComponent } from './components/restProjects.component';
 import { RestDevicesComponent } from './components/restDevices.component';
 import { RestDocumentsComponent } from './components/restDocuments.component';
@@ -86,7 +86,6 @@ import { LoaderComponent } from './loader/loader.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
     LoginComponent,
     AdminComponent,
       NavbarComponent,
