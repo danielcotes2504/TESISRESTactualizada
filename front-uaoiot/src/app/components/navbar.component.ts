@@ -38,20 +38,11 @@ export class NavbarComponent implements OnInit {
 
         this.authService.getLoggedInName.subscribe(name => this.stringUserName = name);
         this.authService.getLoggedInUser.subscribe(user => this.userNameFromLogin = user);
+        console.log(this.authService.getLoggedInUser.subscribe(user => this.userNameFromLogin = user))
         this.getUserName();
+        this.getProfileSettings();
       
         
-        const adminLogged= sessionStorage.getItem('admin');
-        console.log("ADMIN LOGGED "+ adminLogged)
-        if(adminLogged=='true') {
-            this.itemsProfile = [
-                        { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
-        }
-        else{
-            this.itemsProfile = [
-                { label: 'Credenciales', command: (onclick) => { this.showCredentials(); } },
-                { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
-        }
        
        
 
@@ -111,7 +102,26 @@ export class NavbarComponent implements OnInit {
             const userProfile = JSON.parse(sessionStorage.getItem('user'));
             this.userNameFromLogin = userProfile.user;
             this.stringUserName = userProfile.name;
+
+            
         }
+    }
+
+    getProfileSettings() {
+        const userProfile = JSON.parse(sessionStorage.getItem('user'));
+        this.userNameFromLogin = userProfile.user;
+        this.stringUserName = userProfile.name;
+
+    //console.log(this.userNameFromLogin);
+    if(this.userNameFromLogin==='admin') {
+        this.itemsProfile = [
+                    { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
+    }
+    else{
+        this.itemsProfile = [
+            { label: 'Credenciales', command: (onclick) => { this.showCredentials(); } },
+            { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
+    }
     }
 
     setNameNavbar() {

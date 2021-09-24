@@ -1,7 +1,7 @@
 <p-growl [(value)]="msg"></p-growl>
 
 <!--DIALOG CREDENCIALES-->
-<p-dialog *ngIf="!authService.isAdminLoggedIn()" header="Tus credenciales" [(visible)]="display" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '600', minWidth:'500'}">
+<p-dialog header="Tus credenciales" [(visible)]="display" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '600', minWidth:'500'}">
 
     <div id="token-section">
         <span id="credential-title-token">Token</span>
