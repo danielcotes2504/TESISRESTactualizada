@@ -28,6 +28,7 @@ export class RestChartComponent implements OnInit {
     url: string;
     dataY: number[] = [];
     dataX: Date[] = [];
+    fecha: Date[]=[];
     data: any;
     options: any;
     interval: any;
@@ -35,7 +36,7 @@ export class RestChartComponent implements OnInit {
     chartTypes: ChartTypes[] = [];
     timeOptions: TimeScale[] = [];
     selectedChartType = 'line';
-    selectedTimeScale = 'second';
+    selectedTimeScale = 'minute';
 
     constructor(private apiService: ApiService) {
         this.currentVariable = this.apiService.getCurrentVariable();
@@ -43,7 +44,7 @@ export class RestChartComponent implements OnInit {
         this.chartTypes = [{ type: 'line', typeName: 'Líneas' }, { type: 'bar', typeName: 'Barras' },
         { type: 'bubble', typeName: 'Burbújas' }];
 
-        this.timeOptions = [{ timeUnit: 'second', timeScaleName: 'Segundos' }, { timeUnit: 'minute', timeScaleName: 'Minutos' },
+        this.timeOptions = [{ timeUnit: 'minute', timeScaleName: 'Minutos' },
         { timeUnit: 'hour', timeScaleName: 'Horas' }, { timeUnit: 'day', timeScaleName: 'Días' }];
 
         this.interval = setInterval(() => {
@@ -62,7 +63,7 @@ export class RestChartComponent implements OnInit {
 
         if (this.apiService.getCurrentChartType() === null || this.apiService.getCurrentTimeScale === null) {
             this.selectedChartType = 'line';
-            this.selectedTimeScale = 'second';
+            this.selectedTimeScale = 'minute';
         } else {
             this.selectedChartType = this.apiService.getCurrentChartType();
             this.selectedTimeScale = this.apiService.getCurrentTimeScale();
@@ -71,11 +72,12 @@ export class RestChartComponent implements OnInit {
         this.apiService.getValues(this.url).subscribe(resValues => {
             this.values = resValues.body;
             for (let i = 0; i < this.values.length; i++) {
-                this.dataX[i] = this.values[i].date;
+                this.dataX[i] = this.values[i].date
+               this.fecha[i]= new Date(this.dataX[i]);
                 this.dataY[i] = this.values[i].value;
             }
             this.chart = {
-                labels: this.dataX,
+                labels: this.fecha,
                 datasets: [
                     {
                         data: this.dataY,
