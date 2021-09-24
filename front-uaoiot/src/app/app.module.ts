@@ -8,8 +8,6 @@ import { routing, appRoutingProvider } from './app.routing';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login.component';
 import { AdminComponent } from './components/admin.component';
-import { ErrorComponent } from './components/error.component';
-import { HomeComponent } from './components/home.component';
 import { ProfileComponent } from './components/profile.component';
 import { RestProjectsComponent } from './components/restProjects.component';
 import { RestDevicesComponent } from './components/restDevices.component';
@@ -88,11 +86,9 @@ import { LoaderComponent } from './loader/loader.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     ProfileComponent,
     LoginComponent,
     AdminComponent,
-    ErrorComponent,
       NavbarComponent,
     RegisterComponent,
         UserListComponent,
