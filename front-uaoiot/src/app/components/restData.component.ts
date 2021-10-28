@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment';
     templateUrl: '../views/restData.component.html',
     styleUrls: ['../styles/restData.component.scss']
 })
+
 export class RestDataComponent implements OnInit {
     url: string;
     Mqtt_url: string;
