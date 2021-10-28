@@ -108,12 +108,12 @@ export class NavbarComponent implements OnInit {
     }
 
     getProfileSettings() {
-        const userProfile = JSON.parse(sessionStorage.getItem('user'));
+      /*  const userProfile = JSON.parse(sessionStorage.getItem('user'));
         this.userNameFromLogin = userProfile.user;
-        this.stringUserName = userProfile.name;
+        this.stringUserName = userProfile.name;*/
 
     //console.log(this.userNameFromLogin);
-    if(this.userNameFromLogin==='admin') {
+   /* if(this.userNameFromLogin==='admin') {
         this.itemsProfile = [
                     { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
     }
@@ -121,7 +121,10 @@ export class NavbarComponent implements OnInit {
         this.itemsProfile = [
             { label: 'Credenciales', command: (onclick) => { this.showCredentials(); } },
             { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
-    }
+    }*/
+    this.itemsProfile = [
+        { label: 'Credenciales', command: (onclick) => { this.showCredentials(); } },
+        { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
     }
 
     setNameNavbar() {
