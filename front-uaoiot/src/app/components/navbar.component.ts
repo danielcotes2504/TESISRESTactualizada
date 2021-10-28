@@ -7,6 +7,7 @@ import { UserLogin } from '../models/userLogin';
 import { MenuItem } from 'primeng/api';
 import { TokenService } from '../services/token.service';
 import { Message } from 'primeng/components/common/api';
+import { windowWhen } from 'rxjs-compat/operator/windowWhen';
 
 @Component({
     selector: 'app-nav-bar',
@@ -37,11 +38,13 @@ export class NavbarComponent implements OnInit {
 
         this.authService.getLoggedInName.subscribe(name => this.stringUserName = name);
         this.authService.getLoggedInUser.subscribe(user => this.userNameFromLogin = user);
+        console.log(this.authService.getLoggedInUser.subscribe(user => this.userNameFromLogin = user))
         this.getUserName();
-
-        this.itemsProfile = [
-            { label: 'Credenciales', command: (onclick) => { this.showCredentials(); } },
-            { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
+        this.getProfileSettings();
+      
+        
+       
+       
 
     }
 
@@ -99,7 +102,29 @@ export class NavbarComponent implements OnInit {
             const userProfile = JSON.parse(sessionStorage.getItem('user'));
             this.userNameFromLogin = userProfile.user;
             this.stringUserName = userProfile.name;
+
+            
         }
+    }
+
+    getProfileSettings() {
+      /*  const userProfile = JSON.parse(sessionStorage.getItem('user'));
+        this.userNameFromLogin = userProfile.user;
+        this.stringUserName = userProfile.name;*/
+
+    //console.log(this.userNameFromLogin);
+   /* if(this.userNameFromLogin==='admin') {
+        this.itemsProfile = [
+                    { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
+    }
+    else{
+        this.itemsProfile = [
+            { label: 'Credenciales', command: (onclick) => { this.showCredentials(); } },
+            { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
+    }*/
+    this.itemsProfile = [
+        { label: 'Credenciales', command: (onclick) => { this.showCredentials(); } },
+        { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
     }
 
     setNameNavbar() {
@@ -115,6 +140,7 @@ export class NavbarComponent implements OnInit {
         this.displayLogout = false;
         this.authService.logout();
         this.router.navigate(['']);
+       
         return false;
     }
 }

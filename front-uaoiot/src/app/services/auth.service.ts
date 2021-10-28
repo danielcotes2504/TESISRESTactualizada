@@ -135,9 +135,12 @@ export class AuthService {
         const user = this.getUserDetails();
         if (this.loggedIn()) {
             if (user.data.user === 'admin') {
+          
                 return true;
+                
             }
         } else {
+          
             return false;
         }
     }
@@ -170,7 +173,9 @@ export class AuthService {
     public loggedIn() {
         const user = this.getUserDetails();
         if (user && sessionStorage.getItem('id_token')) {
+            
             return user.exp > Date.now() / 1000, true;
+            
            // return true;
         } else {
             this.getLoggedInName.next('Sign In');

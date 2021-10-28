@@ -37,7 +37,9 @@
 <nav *ngIf="authService.loggedIn(); else isnotLogged">
     <div class="nav-elements">
         <div *ngIf="authService.loggedIn()" class="nav-logo">
-            <img src="assets/images/logo_navbar.png" width="172x" height="36px">
+            <a [routerLink]="['restProjects']">
+                <img src="assets/images/logo_navbar.png" width="172x" height="36px">
+            </a>
         </div>
         <div *ngIf="authService.isAdminLoggedIn();else user_content" class="nav-options">
 
