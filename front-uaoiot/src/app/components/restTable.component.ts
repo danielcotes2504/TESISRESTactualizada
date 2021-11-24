@@ -25,6 +25,7 @@ export class RestTableComponent implements OnInit {
     url: string;
     index: number[] = [];
     date: any[] =[];
+    dataVal :any=[];
     interval: any;
 
     constructor(private apiService: ApiService) {
@@ -36,7 +37,7 @@ export class RestTableComponent implements OnInit {
        
                 this.interval = setInterval(() => {
             this.getData();
-        }, 60000);
+        }, 15000);
     }
 
     getData() {
@@ -46,16 +47,22 @@ export class RestTableComponent implements OnInit {
 
         this.apiService.getValues(this.url).subscribe(resValues => {
             this.values = resValues.body;
-          for (let i = 0; i < this.values.length; i++) {
+          for (let i = 0; i < this.values.length; i++)  {
                 this.index[i] = i + 1;
                 const date=this.values[i].date;
                 const fecha = new Date(date).toLocaleDateString('es-CO');
                 const hora = new Date(date).toLocaleTimeString('en-US');
                            this.date[i]= fecha + " "+ hora;
+                           //this.date.reverse();
+                       
+                           this.dataVal[i]=this.values[i].value;
+                           
+                          
                
                 
             }
-
+            this.dataVal.reverse();
+            this.date.reverse();
           
 
         });

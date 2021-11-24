@@ -2,16 +2,18 @@
     <p-table [value]="values" [paginator]="true" [rows]="8" [alwaysShowPaginator]="false">
         <ng-template pTemplate="header">
             <tr>
-                <th>Index</th>
-                <th>Registro</th>
+                <th>No. Dato</th>
+                <th>Dato</th>
                 <th>Fecha</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-datos>
             <tr>
-                <td>{{ values.lastIndexOf(datos) + 1 }} </td>
-                <td>{{ datos.value }}</td>
-                <td>{{ date[values.lastIndexOf(datos)]}}</td>
+                <td>{{ values.lastIndexOf(datos) +1 }} </td>
+               <!--<td>{{ datos.value }}</td> --> 
+              <!--<td>{{ date[values.lastIndexOf(datos)]}}</td>-->  
+              <td>{{dataVal[values.lastIndexOf(datos)]}}</td>
+              <td>{{ date[values.lastIndexOf(datos)]}}</td>
             </tr>
         </ng-template>>
     </p-table>

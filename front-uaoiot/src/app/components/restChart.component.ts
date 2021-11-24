@@ -49,7 +49,7 @@ export class RestChartComponent implements OnInit {
 
         this.interval = setInterval(() => {
             this.getData();
-        }, 60000);
+        }, 15000);
     }
 
     ngOnInit() {
