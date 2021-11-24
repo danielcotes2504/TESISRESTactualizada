@@ -29,7 +29,7 @@ export class RestDataComponent implements OnInit {
         this.interval = setInterval(() => {
             this.getData();
            
-        }, 60000);
+        }, 15000);
     }
 
     ngOnInit() {
