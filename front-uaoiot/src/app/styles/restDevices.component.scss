@@ -4,7 +4,7 @@ section {
     padding: 2em;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 
@@ -64,13 +64,13 @@ section {
         -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
         -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
         box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
-        min-width: 20em;
+        width: 20em;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         flex-wrap: wrap;
-        margin: 0.5em;
+        margin: 1em;
         border-radius: 12px;
         .container-title {
             width: 100%;
@@ -99,6 +99,7 @@ section {
             height: 100%;
             justify-content: space-around;
             flex-wrap: wrap;
+            padding: 0 1.5em 0 1.5em;
             .rest-card {
                 margin: 0.1em;
                 .arduino-header {
