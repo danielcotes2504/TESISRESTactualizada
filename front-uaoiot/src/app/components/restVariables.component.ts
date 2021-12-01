@@ -28,6 +28,7 @@ export class RestVariablesComponent implements OnInit {
      independentVariables: VariableModel[] = [];
     auxVariable: VariableModel = {
         
+        
         user: '', project: '', deviceN: '', deviceH: '', variableN: '',
         variableT: 'Independiente', variableInd: '-', constant: 0, operation: '-', positive: 1, negative: 31416
     };
@@ -45,7 +46,7 @@ export class RestVariablesComponent implements OnInit {
     url = '';
     tipoVariable:boolean;
     varPass: VariableModel;
-   
+    public textLabel:string='Tutorial';
     
     constructor(private router: Router, private apiService: ApiService) {
         this.user = this.apiService.getCurrentUser();
@@ -242,6 +243,12 @@ export class RestVariablesComponent implements OnInit {
     changeMode() {
         this.apiService.setNavigationType('takeTour');
         this.router.navigate(['/tourVariables']);
+    }
+    textOnHover(){
+        this.textLabel = "Tutorial de variables"
+    }
+    textOnLeave(){
+        this.textLabel = "Tutorial"
     }
 
 }

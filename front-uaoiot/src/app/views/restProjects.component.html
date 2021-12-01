@@ -68,8 +68,7 @@
 </p-dialog>
 <footer class="bottom">
     <div class="slide-tutorial-button">
-        <button class="tutorial-button" type="button" pButton [routerLink]="['/tourProjects']" label="?"></button>
-        <p class="anchor-tutorial">Tutorial de proyectos</p>
+        <button (mouseover)="textOnHover()" (mouseout)="textOnLeave()" class="tutorial-button" type="button" pButton [routerLink]="['/tourProjects']" label={{textLabel}}></button>
     </div>
 </footer>
 <!--Confirmar borrar-->

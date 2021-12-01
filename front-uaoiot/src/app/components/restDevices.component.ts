@@ -31,7 +31,9 @@ export class RestDevicesComponent implements OnInit {
     msgs: Message[] = [];
     variables: VariableModel[] = [];
     stringVariable = '';
-
+    dvPass: DeviceModel;
+    public displayDeleteDevice = false;
+    public textLabel:string='Tutorial';
     constructor(private router: Router, private apiService: ApiService) {
         this.user = this.apiService.getCurrentUser();
         this.devicesHardware = [{ hardware: 'RaspberryPi' }, { hardware: 'ArduinoYun' },
@@ -74,10 +76,16 @@ export class RestDevicesComponent implements OnInit {
             }
         });
     }
-
-    trashClick(event, device: DeviceModel) {
-        this.url = environment.restUrl + 'apiDevices/' + device.user + '/' + device.project + '/'
-            + device.deviceN + '/' + device.deviceH;
+    openDeleteDialog(event,selectedDevice: DeviceModel) {
+        this.displayDeleteDevice=true;
+        this.dvPass = selectedDevice
+        console.log(this.dvPass);
+     
+        }
+    trashClick() {
+        this.displayDeleteDevice=false;
+        this.url = environment.restUrl + 'apiDevices/' + this.dvPass.user + '/' + this.dvPass.project + '/'
+            + this.dvPass.deviceN + '/' + this.dvPass.deviceH;
         this.apiService.delete(this.url).subscribe(resDeleteDevice => {
             if (resDeleteDevice.message === 'Deleted') {
                 this.getData();
@@ -160,5 +168,12 @@ export class RestDevicesComponent implements OnInit {
         this.displayEdit = false;
         this.displayNew = false;
         this.msgs = [];
+    }
+
+    textOnHover(){
+        this.textLabel = "Tutorial de dispositivos"
+    }
+    textOnLeave(){
+        this.textLabel = "Tutorial"
     }
 }
