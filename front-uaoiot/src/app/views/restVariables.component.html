@@ -6,7 +6,7 @@
 
     <p-messages [value]="msgsDev"></p-messages>
     <div class="variablesContainer">
-        <p-card *ngFor="let variable of variables" [style]="{width: '20em'}" styleClass="ui-card override-this" class="rest-card">
+        <p-card *ngFor="let variable of variables"  [style]="{width: '20em'}" styleClass="ui-card override-this" class="rest-card">
             <p-header class="imageContainer" (click)="previusVariablesClick($event, variable)">
                 <div *ngIf="variable.variableT === 'Dependiente'; then vardep else varind">
                 </div>
@@ -24,12 +24,16 @@
                 </ng-template>
             </p-header>
             <div class="card-action">
-                <div *ngIf="variable.variableT=== 'Dependiente'; then thenBlock else elseBlock"></div>
-                <ng-template #thenBlock>{{variable.variableT}} de {{variable.variableInd}}</ng-template>
+                <div class="variable-info">
+                <div  *ngIf="variable.variableT=== 'Dependiente'; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock >
+                    {{variable.variableT}} de {{variable.variableInd}}
+                </ng-template>
                 <ng-template #elseBlock>{{variable.variableT}}</ng-template>
+            </div>
                 <div class="right-align">
                     <a (click)="editClick($event, variable)"><i class="material-icons">create</i></a>
-                    <a (click)="trashClick($event, variable)"><i class="material-icons">delete</i></a>
+                    <a  (click)="openDeleteDialog($event,variable)"><i class="material-icons">delete</i></a>
                 </div>
             </div>
         </p-card>
@@ -125,4 +129,16 @@
         <button class="ui-button" type="button" pButton (click)="updateVariableClick($event, updateVariableName.value)" label="Aceptar"></button>
         <button class="ui-button" type="button" pButton (click)="clear()" label="Cancelar"></button>
     </p-footer>
+</p-dialog>
+
+<!--Confirmar borrar-->
+<p-dialog  header="Borrar variable" [(visible)]="displayDeleteVariable" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
+
+    <p>¿Estás seguro que deseas borrar la variable?</p>
+
+    <p-footer>
+        <a class="btn-flat blue-text" (click)="trashClick()">Si</a>
+        <a class="btn-flat blue-text" (click)="displayDeleteVariable=false">No</a>
+    </p-footer>
+
 </p-dialog>

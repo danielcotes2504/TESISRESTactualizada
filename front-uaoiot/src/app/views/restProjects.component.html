@@ -19,7 +19,7 @@
             <div class="card-action right-align">
                 <a (click)="editClick($event, project)"><i class="material-icons">create</i>
                 </a>
-                <a (click)="trashClick($event, project)"><i class="material-icons">delete</i>
+                <a (click)="openDeleteDialog($event,project)"><i class="material-icons">delete</i>
                 </a>
             </div>
         </p-card>
@@ -72,3 +72,14 @@
         <p class="anchor-tutorial">Tutorial de proyectos</p>
     </div>
 </footer>
+<!--Confirmar borrar-->
+<p-dialog  header="Borrar proyecto" [(visible)]="displayDeleteProject" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
+
+    <p>¿Estás seguro que deseas borrar el proyecto?</p>
+
+    <p-footer>
+        <a class="btn-flat blue-text" (click)="trashClick()">Si</a>
+        <a class="btn-flat blue-text" (click)="displayDeleteProject=false">No</a>
+    </p-footer>
+
+</p-dialog>

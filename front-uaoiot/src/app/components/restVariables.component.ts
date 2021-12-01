@@ -15,8 +15,9 @@ import { environment } from '../../environments/environment';
 export class RestVariablesComponent implements OnInit {
 
     msgsDev: Message[] = [];
+    i: number;
     msgs: Message[];
-
+    public displayDeleteVariable = false;
     val: number;
     comparatives: SelectItem[] = [];
     state = 'Independiente';
@@ -43,6 +44,7 @@ export class RestVariablesComponent implements OnInit {
     user = '';
     url = '';
     tipoVariable:boolean;
+    varPass: VariableModel;
    
     
     constructor(private router: Router, private apiService: ApiService) {
@@ -91,10 +93,19 @@ export class RestVariablesComponent implements OnInit {
         this.router.navigate(['/restData']);
     }
 
-    trashClick(event, selectedVariable: VariableModel) {
+    openDeleteDialog(event,selectedVariable: VariableModel) {
+    this.displayDeleteVariable=true;
+    this.varPass = selectedVariable;
+    console.log(this.varPass)
+ 
+    }
+    trashClick() {
+   
+
+        this.displayDeleteVariable = false;
         this.url = environment.restUrl + 'apiVariables/' +
-            selectedVariable.user + '/' + selectedVariable.project + '/' + selectedVariable.deviceN + '/'
-            + selectedVariable.deviceH + '/' + selectedVariable.variableN + '/' + selectedVariable.variableT;
+            this.varPass.user + '/' + this.varPass.project + '/' + this.varPass.deviceN + '/'
+            + this.varPass.deviceH + '/' + this.varPass.variableN + '/' + this.varPass.variableT;
            
         this.apiService.delete(this.url).subscribe(resDeleteVariable => {
             if (resDeleteVariable.message === 'Deleted') {
@@ -201,9 +212,10 @@ export class RestVariablesComponent implements OnInit {
     showDev() {
         this.msgsDev.push({
             severity: 'info',
-            summary: 'No existen dispositivos para este proyecto',
-            detail: 'Debes crear primero un dispositivo para poder crear una variable'
+            summary: 'Para crear la variable es necesario un dispositivo:', 
+            detail:'Dirigite a la pestaña de dispositivos para crear uno.'
         });
+        
     }
 
     show() {

@@ -21,6 +21,8 @@ export class RestProjectsComponent implements OnInit {
     url: string;
     msgs: Message[] = [];
     navigationType = '';
+    pjPass: ProjectModel;
+    public displayDeleteProject = false;
 
     @Output() changeModeEvent = new EventEmitter<string>();
 
@@ -44,8 +46,15 @@ export class RestProjectsComponent implements OnInit {
         this.router.navigate(['/restVariables']);
     }
 
-    trashClick(event, project: ProjectModel) {
-        this.url = environment.restUrl + 'apiProjects/' + project.user + '/' + project.project;
+    openDeleteDialog(event,selectedProject: ProjectModel) {
+        this.displayDeleteProject=true;
+        this.pjPass = selectedProject
+        console.log(this.pjPass);
+     
+        }
+    trashClick() {
+        this.displayDeleteProject=false;
+        this.url = environment.restUrl + 'apiProjects/' + this.pjPass.user + '/' + this.pjPass.project;
         this.apiService.delete(this.url).subscribe(resDeleteProject => {
             if (resDeleteProject.message === 'Deleted') {
                 this.getData();

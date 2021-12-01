@@ -23,6 +23,7 @@ export class RestDataComponent implements OnInit {
     interval: any;
     currentVariable: VariableModel;
     postURL: string;
+    public msg: Message[] = [];
   
 
     constructor(private apiService: ApiService, private router: Router) {
@@ -41,6 +42,26 @@ export class RestDataComponent implements OnInit {
             + '/' + 'token_de_usuario';
 
        
+    }
+
+
+     /**
+    * Método para mostrar los mensajes de alerta.
+    * @param severity  Severidad del mensaje (success, info, warn, error).
+    * @param title Título del mensaje.
+    * @param message Contenido del mensaje.
+    */
+      showToast(severity, title, message) {
+        this.msg = [];
+        this.msg.push({ severity: severity, summary: title, detail: message });
+    }
+
+   
+       copyToClipboard(inputElement:String) {
+         inputElement = "malambito"
+        document.execCommand('copy');
+        
+        this.showToast('info', 'Credenciales', 'Texto copiado en el portapapeles.');
     }
 
     show() {

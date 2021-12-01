@@ -74,6 +74,10 @@ section {
             justify-content: space-between;
             align-items: center;
             height: 2em;
+            
+          
+  
+           
         }
     }
 }
@@ -160,11 +164,13 @@ section {
 .dialogEditContent {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     height: 6em;
     align-items: center;
+    .ui-float-label {
+        width: 90%;
+    }
     .textEditInput {
-        width: 27em;
         height: 3em;
     }
 }
@@ -263,4 +269,11 @@ section {
     
         }
     }
+}
+
+.variable-info{
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
