@@ -9,22 +9,27 @@ import { Router } from '@angular/router';
 })
 export class TourProjectsComponent implements OnInit, AfterViewInit {
 
+
     @Output() changeModeEvent = new EventEmitter<string>();
 
     constructor(private shepherdService: ShepherdService,
         private router: Router) { }
 
+
+ 
+
     ngOnInit() {
+       
     }
 
     ngAfterViewInit() {
         this.shepherdService.defaultStepOptions = {
             classes: 'custom-class-name-1 custom-class-name-2',
             scrollTo: false,
-            showCancelLink: true
+            showCancelLink: false
         };
         this.shepherdService.disableScroll = false;
-        this.shepherdService.modal = false;
+        this.shepherdService.modal = true;
         this.shepherdService.confirmCancel = false;
         this.shepherdService.addSteps([
             {
@@ -32,21 +37,17 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
                 options: {
                     attachTo: '.new-card bottom',
                     buttons: [
-                        {
-                            classes: 'custom-class-name-1 custom-class-name-2',
-                            text: 'Atrás',
-                            type: 'back'
-                        },
+                       
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Crear proyecto',
                     text: ['Al hacer click en esta tarjeta podrás añadir un nuevo proyecto'],
                 }
@@ -63,14 +64,14 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'custom-class-name-1 custom-class-name-2',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Proyecto creado',
                     text: ['Las tarjetas azules indican tus proyectos actuales.'],
                 }
@@ -87,14 +88,14 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Entrar al proyecto',
                     text: ['Aquí encontrarás el nombre de tu proyecto, donde puedes hacer click para ingresar y conocer ' +
                         'las variables que tienes asociadas a tu proyecto.'],
@@ -113,13 +114,20 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
                         {
                             classes: 'shepherd-button-primary',
                             text: 'Entendido',
-                            type: 'next'
+                            action: ()=>{
+                                this.shepherdService.complete()
+                                this.router.navigateByUrl('/restProjects')
+                            
+                            }
+                            
+                            
+                            
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Opciones del proyecto',
                     text: ['En esta sección podrás cambiar el nombre de tu proyecto o eliminarlo definitivamente.'],
                 }
@@ -130,5 +138,16 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
         } else {
             this.shepherdService.cancel();
         }
+        
+
+        
+       
+
+        
     }
+  
+    
+    
 }
+
+

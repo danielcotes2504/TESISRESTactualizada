@@ -23,6 +23,8 @@ export class RestProjectsComponent implements OnInit {
     navigationType = '';
     pjPass: ProjectModel;
     public displayDeleteProject = false;
+    public textLabel:string='Tutorial';
+    
 
     @Output() changeModeEvent = new EventEmitter<string>();
 
@@ -120,5 +122,12 @@ export class RestProjectsComponent implements OnInit {
         this.displayEditProject = false;
         this.displayNewProject = false;
         this.msgs = [];
+    }
+
+    textOnHover(){
+        this.textLabel = "Tutorial de proyectos"
+    }
+    textOnLeave(){
+        this.textLabel = "Tutorial"
     }
 }

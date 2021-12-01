@@ -82,31 +82,27 @@ export class TourDataComponent implements OnInit, AfterViewInit {
         this.shepherdService.defaultStepOptions = {
             classes: 'custom-class-name-1 custom-class-name-2',
             scrollTo: false,
-            showCancelLink: true
+            showCancelLink: false
         };
         this.shepherdService.disableScroll = false;
-        this.shepherdService.modal = false;
+        this.shepherdService.modal = true;
         this.shepherdService.confirmCancel = false;
         this.shepherdService.addSteps([
             {
                 id: 'data-0',
                 options: {
                     buttons: [
+                      
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Atrás',
-                            type: 'back'
-                        },
-                        {
-                            classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Datos',
                     text: ['Si la variable que has creado es independiente, debes enviar por lo menos dos datos ' +
                         'para que puedas visualizar sus valores, ya que la variable se graficará. Si creaste una variable dependiente, ' +
@@ -125,14 +121,14 @@ export class TourDataComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Gráfica',
                     text: ['En esta sección podrás visualizar los datos que has enviado a la variable seleccionada. ' +
                         'El eje x corresponde a la fecha en la cual enviaste tus datos a UAOIoT, ' +
@@ -152,14 +148,14 @@ export class TourDataComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Ajustes',
                     text: ['Al hacer clic en este botón podrás cambiar la configuración de visualización' +
                         ' de las gráficas (Escala temporal y tipo de gráfica)'],
@@ -177,14 +173,17 @@ export class TourDataComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
-                            type: 'next'
+                            text: 'Entendido',
+                            action: ()=>{
+                                this.shepherdService.complete()
+                                this.router.navigateByUrl('/restData')
+                            }
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Tabla',
                     text: ['En esta sección podrás visualizar los datos que has enviado a la variable seleccionada con mayor detalle. ' +
                         'Además de los datos presentes en la gráfica, ' +

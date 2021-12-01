@@ -24,7 +24,7 @@ export class RestDataComponent implements OnInit {
     currentVariable: VariableModel;
     postURL: string;
     public msg: Message[] = [];
-  
+    public textLabel:string='Tutorial';
 
     constructor(private apiService: ApiService, private router: Router) {
         this.interval = setInterval(() => {
@@ -106,6 +106,13 @@ export class RestDataComponent implements OnInit {
         } else {
             return false;
         }
+    }
+    
+    textOnHover(){
+        this.textLabel = "Tutorial de datos"
+    }
+    textOnLeave(){
+        this.textLabel = "Tutorial"
     }
 
 }

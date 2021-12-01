@@ -21,33 +21,29 @@ export class TourVariablesComponent implements OnInit, AfterViewInit {
         this.shepherdService.defaultStepOptions = {
             classes: 'custom-class-name-1 custom-class-name-2',
             scrollTo: false,
-            showCancelLink: true
+            showCancelLink: false
         };
         this.shepherdService.disableScroll = true;
-        this.shepherdService.modal = false;
+        this.shepherdService.modal = true;
         this.shepherdService.confirmCancel = false;
         this.shepherdService.addSteps([
             {
                 id: 'variables-0',
                 options: {
                     buttons: [
+                   
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Atrás',
-                            type: 'back'
-                        },
-                        {
-                            classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Variables',
-                    text: ['En UAOIoT REST existen dos tipos de variables: Las variables dependientes e independientes. ' +
+                    text: ['En UAOIoT existen dos tipos de variables: Las variables dependientes e independientes. ' +
                         'Para que puedas crear una variable dependiente debe existir ' +
                         'previamente una variable independiente para que la puedas vincular.'],
                 }
@@ -64,14 +60,14 @@ export class TourVariablesComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Añadir variable',
                     text: ['Al hacer clic en esta tarjeta podrás añadir una nuevo variable a tu proyecto. ' +
                         'Debes tener en cuenta que para crear una nueva variable debes crear primero un dispositivo'],
@@ -89,14 +85,14 @@ export class TourVariablesComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Variable creada',
                     text: ['Las tarjetas rojas indican las variables que tienes asociado a tu proyecto.'],
                 }
@@ -113,14 +109,14 @@ export class TourVariablesComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Entrar a la variable',
                     text: ['Aquí encontrarás el nombre de tu variable, en el cual puedes hacer clic para ingresar y conocer ' +
                         'los datos que han sido enviados a esta variable.'],
@@ -138,14 +134,17 @@ export class TourVariablesComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
-                            type: 'next'
+                            text: 'Siguiente',
+                            action: ()=>{
+                                this.shepherdService.complete()
+                                this.router.navigateByUrl('/restVariables')
+                            }
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Opciones de la variable',
                     text: ['En esta sección podrás cambiar el nombre de la variable o eliminarla definitivamente.'],
                 }

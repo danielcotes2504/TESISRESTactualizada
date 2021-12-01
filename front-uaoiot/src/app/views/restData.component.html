@@ -44,7 +44,7 @@
 </section>
 <footer class="bottom">
     <div class="slide-tutorial-button">
-        <button class="tutorial-button" type="button" pButton [routerLink]="['/tourData']" label="?"></button>
-        <p class="anchor-tutorial">Tutorial de datos</p>
+        <button (mouseover)="textOnHover()" (mouseout)="textOnLeave()" class="tutorial-button" type="button" pButton [routerLink]="['/tourData']" label={{textLabel}}></button>
+      
     </div>
 </footer>

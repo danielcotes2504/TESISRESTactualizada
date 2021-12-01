@@ -19,10 +19,10 @@ export class TourDevicesComponent implements OnInit, AfterViewInit {
         this.shepherdService.defaultStepOptions = {
             classes: 'custom-class-name-1 custom-class-name-2',
             scrollTo: false,
-            showCancelLink: true
+            showCancelLink: false
         };
         this.shepherdService.disableScroll = true;
-        this.shepherdService.modal = false;
+        this.shepherdService.modal = true;
         this.shepherdService.confirmCancel = false;
         this.shepherdService.addSteps([
             {
@@ -30,21 +30,17 @@ export class TourDevicesComponent implements OnInit, AfterViewInit {
                 options: {
                     attachTo: '.project-1 bottom',
                     buttons: [
+                       
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Atrás',
-                            type: 'back'
-                        },
-                        {
-                            classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Proyectos',
                     text: ['Estas tarjetas hacen referencia a los proyectos' +
                         ' que ya han sido creados previamente en la sección proyectos.'],
@@ -62,14 +58,14 @@ export class TourDevicesComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Nombre del proyecto',
                     text: ['En la parte superior aparecerá el nombre que le diste a tu proyecto.'],
                 }
@@ -86,14 +82,14 @@ export class TourDevicesComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Dispositivos',
                     text: ['Las tarjetas en el interior indican los dispositivos ' +
                         'que están asociados a este proyecto. En las cuales se les indica el nombre y el ' +
@@ -112,14 +108,14 @@ export class TourDevicesComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Opciones del dispositivo',
                     text: ['Al igual que los proyectos, también puedes editar y borrar tus dispositivos. ' +
                         'Debes tener en cuenta que si eliminas un dispositivo, las variables en su interior también se eliminarán.'],
@@ -137,14 +133,14 @@ export class TourDevicesComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Nuevo dispositivo',
                     text: ['En la parte inferior puedes añadir un dispositivo más a tu proyecto.'],
                 }
@@ -161,14 +157,17 @@ export class TourDevicesComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
-                            type: 'next'
+                            text: 'Entendido',
+                            action: ()=>{
+                                this.shepherdService.complete()
+                                this.router.navigateByUrl('/restDevices')
+                            }
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
                     highlightClass: 'highlight',
                     scrollTo: false,
-                    showCancelLink: true,
+                    showCancelLink: false,
                     title: 'Mover dispositivos',
                     text: ['Si tienes más de un proyecto creado, puedes arrastrar dispositivos entre proyectos.'],
                 }

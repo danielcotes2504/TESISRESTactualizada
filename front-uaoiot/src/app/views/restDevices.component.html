@@ -18,7 +18,7 @@
 
                                 <div>
                                     <a (click)="editClick($event, device)"><i class="material-icons o-btn-edit-style">create</i></a>
-                                    <a (click)="trashClick($event, device)"><i class="material-icons o-btn-delete-style">delete</i></a>
+                                    <a (click)="openDeleteDialog($event,device)"><i class="material-icons o-btn-delete-style">delete</i></a>
                                 </div>
 
                             </div>
@@ -54,8 +54,8 @@
 <footer class="bottom">
 
     <div class="slide-tutorial-button">
-        <button class="tutorial-button" type="button" pButton [routerLink]="['/tourDevices']" routerLinkActive="router-link-active" label="?"></button>
-        <p class="anchor-tutorial">Tutorial de dispositivos</p>
+        <button (mouseover)="textOnHover()" (mouseout)="textOnLeave()" class="tutorial-button" type="button" pButton [routerLink]="['/tourDevices']" routerLinkActive="router-link-active" label={{textLabel}}></button>
+       
     </div>
 </footer>
 
@@ -97,4 +97,15 @@
         <button class="ui-button-danger" type="button" pButton label="Agregar" (click)="addDeviceClick(newDeviceName.value, newDeviceHardware.selectedOption.label)"></button>
         <button class="ui-button-danger" type="button" pButton (click)="clear()" label="Cancelar"></button>
     </p-footer>
+</p-dialog>
+<!--Confirmar borrar-->
+<p-dialog  header="Borrar dispositivo" [(visible)]="displayDeleteDevice" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
+
+    <p>¿Estás seguro que deseas borrar el dispositivo?</p>
+
+    <p-footer>
+        <a class="btn-flat blue-text" (click)="trashClick()">Si</a>
+        <a class="btn-flat blue-text" (click)="displayDeleteDevice=false">No</a>
+    </p-footer>
+
 </p-dialog>
