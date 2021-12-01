@@ -3,7 +3,7 @@
     <div class="panel-ui">
         <div class="panel-ui-content" *ngIf="isVariableIndependent()">
 
-            <p-panel class="panel-div" header="URL y tópico para enviar datos por REST o MQTT " [toggleable]="true" [transitionOptions]="'500ms'" collapsed="true">
+            <p-panel class="panel-div" header="URL y tópico para enviar datos por REST o MQTT " [toggleable]="true" [transitionOptions]="'500ms'" toggler="header" collapsed="true">
                 <div class="info">
                     <p><b>REST</b></p>
                     <p> POST:{{postURL}}</p>
