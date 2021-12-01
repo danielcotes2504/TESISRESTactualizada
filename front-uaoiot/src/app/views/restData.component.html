@@ -3,21 +3,26 @@
     <div class="panel-ui">
         <div class="panel-ui-content" *ngIf="isVariableIndependent()">
 
-            <p-panel class="panel-div" header="URL y tópico para enviar datos por REST o MQTT " [toggleable]="true" [transitionOptions]="'500ms'" toggler="header" collapsed="true">
-                <div class="info">
-                    <p><b>REST</b></p>
-                    <p> POST:{{postURL}}</p>
-                    <p> Body: <code>{{'{'}}"value": valor{{'}'}}</code></p>
+            <div class="panel-info-content">
+                <p-panel class="panel-div" header="URL y tópico para enviar datos por REST o MQTT " [toggleable]="true" [transitionOptions]="'500ms'" toggler="header" collapsed="true">
+                    <div class="info">
+                        <p><b>REST</b></p>
+                        <p> POST:{{postURL}}</p>
+                        <p> Body: <code>{{'{'}}"value": valor{{'}'}}</code></p>
+    
+                        <hr>
+                        <p><b>MQTT</b></p>
+                        <p>Tópico: {{currentVariable.user}}/{{currentVariable.project}}/{{currentVariable.deviceN}}/{{currentVariable.variableN}}</p>
+                        <p> Body: <code>{{'{'}}"token": "Token_de_usuario", "value": valor{{'}'}}</code></p>
+    
+                        <p>Usuario: {{currentVariable.user}}</p>
+                        <p>Contraseña: Token de usuario</p>
+                    </div>
+                </p-panel>
 
-                    <hr>
-                    <p><b>MQTT</b></p>
-                    <p>Tópico: {{currentVariable.user}}/{{currentVariable.project}}/{{currentVariable.deviceN}}/{{currentVariable.variableN}}</p>
-                    <p> Body: <code>{{'{'}}"token": "Token_de_usuario", "value": valor{{'}'}}</code></p>
+            </div>
 
-                    <p>Usuario: {{currentVariable.user}}</p>
-                    <p>Contraseña: Token de usuario</p>
-                </div>
-            </p-panel>
+           
 
         </div>
         <p-messages [value]="msgs"></p-messages>

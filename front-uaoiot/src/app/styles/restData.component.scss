@@ -3,6 +3,12 @@ section {
     justify-content: center;
     align-items: center;
 }
+.panel-ui-content{
+
+   width: 100%;
+   //width: 46.7%;
+}
+
 
 .chart-container {
     margin-top: 1rem;
@@ -21,7 +27,8 @@ section {
 
 .panel-div {
   //  max-width: 100%;
-    width: 46%;
+   // width: 50%;
+
 }
 
 .bottom {
