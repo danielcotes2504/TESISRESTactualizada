@@ -9,12 +9,17 @@ import { Router } from '@angular/router';
 })
 export class TourProjectsComponent implements OnInit, AfterViewInit {
 
+
     @Output() changeModeEvent = new EventEmitter<string>();
 
     constructor(private shepherdService: ShepherdService,
         private router: Router) { }
 
+
+ 
+
     ngOnInit() {
+       
     }
 
     ngAfterViewInit() {
@@ -24,7 +29,7 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
             showCancelLink: true
         };
         this.shepherdService.disableScroll = false;
-        this.shepherdService.modal = false;
+        this.shepherdService.modal = true;
         this.shepherdService.confirmCancel = false;
         this.shepherdService.addSteps([
             {
@@ -39,7 +44,7 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
@@ -63,7 +68,7 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'custom-class-name-1 custom-class-name-2',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
@@ -87,7 +92,7 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
                         },
                         {
                             classes: 'shepherd-button-primary',
-                            text: 'Adelante',
+                            text: 'Siguiente',
                             type: 'next'
                         }
                     ],
@@ -113,7 +118,14 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
                         {
                             classes: 'shepherd-button-primary',
                             text: 'Entendido',
-                            type: 'next'
+                            action: ()=>{
+                                this.shepherdService.complete()
+                                this.router.navigateByUrl('/restProjects')
+                            
+                            }
+                            
+                            
+                            
                         }
                     ],
                     classes: 'custom-class-name-1 custom-class-name-2',
@@ -130,5 +142,19 @@ export class TourProjectsComponent implements OnInit, AfterViewInit {
         } else {
             this.shepherdService.cancel();
         }
+        if(!this.shepherdService.isActive){
+            console.log(this.shepherdService.isActive)
+            this.router.navigateByUrl('/restProjects')
+        }
+
+        
+       
+
+        
     }
+  
+    
+    
 }
+
+
