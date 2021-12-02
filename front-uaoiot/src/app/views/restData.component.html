@@ -11,8 +11,16 @@
                         <hr>
                         <h5  class='title-h5'><b>REST</b></h5>
                         <h6>Información para realizar un POST</h6>
-                        <p><b>URL: </b> {{postURL}}</p>
+                      
+                        <div class=info-icon>
+                            <p><b>URL: </b> {{postURL}}</p>
+                            <a (click)="copyMessage(postURL)"> <i class="material-icons copy-icon">content_copy </i></a>
+                        </div>
+                       <div class=info-icon>
                         <p> <b>Body:</b> <code>{{'{'}}"value": [valor numérico]{{'}'}}</code></p>
+                        <a (click)="copyMessage(postBody)"> <i class="material-icons copy-icon">content_copy </i></a>
+                       </div>
+                    
     
                         <hr>
                         <h5  class='title-h5'><b>MQTT</b></h5>
@@ -21,9 +29,17 @@
                         <p><b>Contraseña:</b> [Token de usuario]</p>
                         <br/>
                         <h6>Información para públicar a un tópico</h6>
-                        <p><b>Tópico: </b>{{currentVariable.user}}/{{currentVariable.project}}/{{currentVariable.deviceN}}/{{currentVariable.variableN}}</p>
-                        <p><b>Body:</b>  <code>{{'{'}}"token": "[Token de usuario]", "value": [valor numérico]{{'}'}}</code>
-                        </p>
+                        <div class="info-icon">
+                            <p><b>Tópico: </b>{{topic}}</p>
+                            <a (click)="copyMessage(topic)"> <i class="material-icons copy-icon">content_copy </i></a>
+                        </div>
+                        <div class="info-icon">
+                            <p><b>Body:</b>  <code>{{'{'}}"token": "[Token de usuario]", "value": [valor numérico]{{'}'}}</code>
+                           
+                            </p>
+                            <a (click)="copyMessage(publishBody)"> <i class="material-icons copy-icon">content_copy </i></a>
+                        </div>
+                       
     
                         
                     </div>

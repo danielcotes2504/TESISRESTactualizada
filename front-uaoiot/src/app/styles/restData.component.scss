@@ -6,6 +6,24 @@ section {
 .panel-ui-content{
 
    width: 100%;
+  .info-icon{
+      display: flex;
+      flex-direction: row;
+      
+      p{
+          padding-right: 1rem;
+         margin-bottom: 1.2rem;
+      }
+      .copy-icon{
+          font-size: 1.2rem;
+          color:#9e9e9e;
+          cursor: pointer;
+      }
+
+      .copy-icon:hover{
+          color:#363636;
+      }
+  }
    //width: 46.7%;
 }
 

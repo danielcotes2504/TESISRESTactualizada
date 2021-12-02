@@ -23,6 +23,9 @@ export class RestDataComponent implements OnInit {
     interval: any;
     currentVariable: VariableModel;
     postURL: string;
+    postBody: string = '{'+'"value": [valor numérico] }'
+    publishBody: string = '{'+ '"token": [Token de usuario],'+'"value": [valor numérico] }'
+    topic: string;
     public msg: Message[] = [];
     public textLabel:string='Tutorial';
 
@@ -40,6 +43,7 @@ export class RestDataComponent implements OnInit {
         this.postURL = environment.restUrl + this.currentVariable.user + '/'
             + this.currentVariable.project + '/' + this.currentVariable.deviceN + '/' + this.currentVariable.variableN
             + '/' + '[Token de usuario]';
+        this.topic = this.currentVariable.user + '/'+ this.currentVariable.project + '/' + this.currentVariable.deviceN + '/' + this.currentVariable.variableN;
 
        
     }
@@ -57,11 +61,20 @@ export class RestDataComponent implements OnInit {
     }
 
    
-       copyToClipboard(inputElement:String) {
-         inputElement = "malambito"
-        
-        this.showToast('info', 'URL', 'Texto copiado en el portapapeles.');
-    }
+    copyMessage(val: string){
+        const selBox = document.createElement('textarea');
+        selBox.style.position = 'fixed';
+        selBox.style.left = '0';
+        selBox.style.top = '0';
+        selBox.style.opacity = '0';
+        selBox.value = val;
+        document.body.appendChild(selBox);
+        selBox.focus();
+        selBox.select();
+        document.execCommand('copy');
+        document.body.removeChild(selBox);
+        this.showToast('info', 'Información', 'Texto copiado en el portapapeles.');
+      }
 
     show() {
         this.msgs.push({
