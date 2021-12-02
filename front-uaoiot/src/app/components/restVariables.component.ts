@@ -47,6 +47,7 @@ export class RestVariablesComponent implements OnInit {
     tipoVariable:boolean;
     varPass: VariableModel;
     public textLabel:string='Tutorial';
+    selectedValue: string;
     
     constructor(private router: Router, private apiService: ApiService) {
         this.user = this.apiService.getCurrentUser();
@@ -174,9 +175,9 @@ export class RestVariablesComponent implements OnInit {
         }
     }
 
-    handleChange(e) {
-        const isChecked = e.checked;
-        if (isChecked === true) {
+    handleChange() {
+        
+        if (this.selectedValue === 'Dependiente') {
             this.auxVariable.variableT = 'Dependiente';
             this.displayDependentOptions = true;
         } else {

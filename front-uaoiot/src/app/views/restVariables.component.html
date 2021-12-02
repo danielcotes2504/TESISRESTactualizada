@@ -63,15 +63,19 @@
         <p-messages [value]="msgs"></p-messages>
         <div class="container">
             <label class="title">Seleccione el tipo de variable</label>
+            
+           
             <div class="labels">
                 <ul>
+                    <p-radioButton class="radio-label" name="groupname" value="Independiente"  (click)="handleChange()" [(ngModel)]="selectedValue"></p-radioButton>
                     <li class="label1">Independiente</li>
+                    <p-radioButton class="radio-label" name="groupname" value="Dependiente" (click)="handleChange()" [(ngModel)]="selectedValue"></p-radioButton>
                     <li class="label2">Dependiente</li>
                 </ul>
             </div>
-            <div class="switch">
+          <!--<div class="switch">
                 <p-inputSwitch (onChange)="handleChange($event)"> </p-inputSwitch>
-            </div>
+            </div> -->  
         </div>
         <div *ngIf="displayDependentOptions == true" class="dependentOptions">
             <div class="subContainer">
