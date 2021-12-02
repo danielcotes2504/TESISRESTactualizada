@@ -245,6 +245,18 @@ section {
     border-color: #ac1e22;
 }
 
+.ui-button-cancelar{
+    background-color: white!important;
+    color: #ac1e22;
+    border-color:  #ac1e22;
+}
+
+.ui-button-cancelar:hover {
+    background-color: #eeeeee!important;
+    color: #91181c!important;
+    border-color:  #91181c;
+}
+
 .slide-tutorial-button {
     position: fixed;
     display: flex;

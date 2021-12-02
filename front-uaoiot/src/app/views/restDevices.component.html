@@ -80,8 +80,8 @@
         </div>
     </div>
     <p-footer>
-        <button class="ui-button-danger" type="button" pButton label="Aceptar" (click)="updateDeviceClick(editDeviceName.value, editDeviceHardware.selectedOption.label)"></button>
-        <button class="ui-button-danger" type="button" pButton (click)="clear();" label="Cancelar"></button>
+        <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear();" label="Cancelar"></button>
+        <button class="ui-button" type="button" pButton label="Aceptar" (click)="updateDeviceClick(editDeviceName.value, editDeviceHardware.selectedOption.label)"></button>
     </p-footer>
 </p-dialog>
 
@@ -100,8 +100,8 @@
         </div>
     </div>
     <p-footer>
-        <button class="ui-button-danger" type="button" pButton label="Agregar" (click)="addDeviceClick(newDeviceName.value, newDeviceHardware.selectedOption.label)"></button>
-        <button class="ui-button-danger" type="button" pButton (click)="clear()" label="Cancelar"></button>
+        <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear()" label="Cancelar"></button>
+        <button class="ui-button" type="button" pButton label="Agregar" (click)="addDeviceClick(newDeviceName.value, newDeviceHardware.selectedOption.label)"></button>
     </p-footer>
 </p-dialog>
 <!--Confirmar borrar-->

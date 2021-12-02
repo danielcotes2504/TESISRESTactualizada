@@ -124,6 +124,7 @@ export class RestDevicesComponent implements OnInit {
     }
 
     editClick(event, device: DeviceModel) {
+        this.dvPass= device;
         this.displayEdit = true;
         this.editedDevice = device;
         this.url = environment.restUrl + 'apiDevices/' + device.user + '/' + device.project + '/'

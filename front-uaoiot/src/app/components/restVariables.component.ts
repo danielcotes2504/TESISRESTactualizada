@@ -117,6 +117,7 @@ export class RestVariablesComponent implements OnInit {
     }
 
     editClick(event, selectedVariable: VariableModel) {
+        this.varPass= selectedVariable;
         this.displayEditVariable = true;
         this.updatedVariable = selectedVariable;
         this.url = environment.restUrl + 'apiVariables/' + selectedVariable.user + '/' + selectedVariable.project +

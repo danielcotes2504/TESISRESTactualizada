@@ -113,8 +113,9 @@
         </div>
     </div>
     <p-footer>
+        <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear()" label="Cancelar"></button>
         <button class="ui-button" type="button" pButton (click)="addVariableClick(newVariableName.value)" label="Añadir"></button>
-        <button class="ui-button" type="button" pButton (click)="clear()" label="Cancelar"></button>
+       
     </p-footer>
 </p-dialog>
 
@@ -122,13 +123,14 @@
     <p-messages [value]="msgs"></p-messages>
     <div class="dialogEditContent">
         <span class="ui-float-label">
-            <input #updateVariableName class="textEditInput" id="float-input" type="text" size="30" pInputText>
+            <input #updateVariableName class="textEditInput" id="float-input" type="text" size="30"  pInputText>
             <label for="float-input">Nombre de la variable</label>
         </span>
     </div>
     <p-footer>
+        <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear()" label="Cancelar"></button>
         <button class="ui-button" type="button" pButton (click)="updateVariableClick($event, updateVariableName.value)" label="Aceptar"></button>
-        <button class="ui-button" type="button" pButton (click)="clear()" label="Cancelar"></button>
+        
     </p-footer>
 </p-dialog>
 

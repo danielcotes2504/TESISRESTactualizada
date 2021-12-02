@@ -239,6 +239,18 @@ section {
    padding-right:0.2rem;
 }
 
+.ui-button-cancelar{
+    background-color: white!important;
+    color: #ac1e22;
+    border-color:  #ac1e22;
+}
+
+.ui-button-cancelar:hover {
+    background-color: #eeeeee!important;
+    color: #91181c!important;
+    border-color:  #91181c;
+}
+
 .ui-button:enabled:hover {
     background-color: #ac1e22;
     color: #ffffff;
