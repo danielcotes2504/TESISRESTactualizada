@@ -32,8 +32,9 @@
                 <ng-template #elseBlock>{{variable.variableT}}</ng-template>
             </div>
                 <div class="right-align">
-                    <a (click)="editClick($event, variable)"><i class="material-icons">create</i></a>
-                    <a  (click)="openDeleteDialog($event,variable)"><i class="material-icons">delete</i></a>
+                    <a (click)="editClick($event, variable)"><i class="material-icons  o-btn-edit-style">create</i></a>
+                    <a  (click)="openDeleteDialog($event,variable)"><i class="material-icons o-btn-delete-style">delete</i></a>
+                    
                 </div>
             </div>
         </p-card>
@@ -116,8 +117,9 @@
         </div>
     </div>
     <p-footer>
+        <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear()" label="Cancelar"></button>
         <button class="ui-button" type="button" pButton (click)="addVariableClick(newVariableName.value)" label="Añadir"></button>
-        <button class="ui-button" type="button" pButton (click)="clear()" label="Cancelar"></button>
+       
     </p-footer>
 </p-dialog>
 
@@ -125,13 +127,14 @@
     <p-messages [value]="msgs"></p-messages>
     <div class="dialogEditContent">
         <span class="ui-float-label">
-            <input #updateVariableName class="textEditInput" id="float-input" type="text" size="30" pInputText>
+            <input #updateVariableName class="textEditInput" id="float-input" type="text" size="30"  pInputText>
             <label for="float-input">Nombre de la variable</label>
         </span>
     </div>
     <p-footer>
+        <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear()" label="Cancelar"></button>
         <button class="ui-button" type="button" pButton (click)="updateVariableClick($event, updateVariableName.value)" label="Aceptar"></button>
-        <button class="ui-button" type="button" pButton (click)="clear()" label="Cancelar"></button>
+        
     </p-footer>
 </p-dialog>
 

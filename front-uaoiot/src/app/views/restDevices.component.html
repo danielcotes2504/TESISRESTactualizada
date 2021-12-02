@@ -2,6 +2,12 @@
     <div class="o-proyectos-title-page">
         <h5 class="o-title-style-page">Dispositivos</h5>
     </div>
+    
+    <div class="p-message-class">
+        <p-messages  [value]="msgs"></p-messages>
+    </div>
+  
+
     <div class="container">
         <div *ngFor="let project of projects" pDroppable="right" (onDrop)="dropDevice($event, project)" class="project-container">
             <div class="container-title">
@@ -74,8 +80,8 @@
         </div>
     </div>
     <p-footer>
-        <button class="ui-button-danger" type="button" pButton label="Aceptar" (click)="updateDeviceClick(editDeviceName.value, editDeviceHardware.selectedOption.label)"></button>
-        <button class="ui-button-danger" type="button" pButton (click)="clear();" label="Cancelar"></button>
+        <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear();" label="Cancelar"></button>
+        <button class="ui-button" type="button" pButton label="Aceptar" (click)="updateDeviceClick(editDeviceName.value, editDeviceHardware.selectedOption.label)"></button>
     </p-footer>
 </p-dialog>
 
@@ -94,8 +100,8 @@
         </div>
     </div>
     <p-footer>
-        <button class="ui-button-danger" type="button" pButton label="Agregar" (click)="addDeviceClick(newDeviceName.value, newDeviceHardware.selectedOption.label)"></button>
-        <button class="ui-button-danger" type="button" pButton (click)="clear()" label="Cancelar"></button>
+        <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear()" label="Cancelar"></button>
+        <button class="ui-button" type="button" pButton label="Agregar" (click)="addDeviceClick(newDeviceName.value, newDeviceHardware.selectedOption.label)"></button>
     </p-footer>
 </p-dialog>
 <!--Confirmar borrar-->

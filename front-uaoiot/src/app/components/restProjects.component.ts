@@ -65,9 +65,12 @@ export class RestProjectsComponent implements OnInit {
     }
 
     editClick(event, project: ProjectModel) {
+        this.pjPass = project;
         this.displayEditProject = true;
         this.url = environment.restUrl + 'apiProjects/' + project.user + '/' + project.project;
+
         this.updatedProject = project;
+        console.log(project.project);
     }
 
     updateProjectClick(event, newDeviceName: string) {

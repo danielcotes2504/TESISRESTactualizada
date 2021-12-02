@@ -33,6 +33,11 @@ section {
     padding-bottom: 0.5em;
 }
 
+.p-message-class{
+    width: 100%
+    }
+    
+
 .o-proyectos-title-page {
     display: flex;
     justify-content: flex-start;
@@ -232,6 +237,18 @@ section {
     transition: 500ms;
    padding-left:0.2rem;
    padding-right:0.2rem;
+}
+
+.ui-button-cancelar{
+    background-color: white!important;
+    color: #ac1e22;
+    border-color:  #ac1e22;
+}
+
+.ui-button-cancelar:hover {
+    background-color: #eeeeee!important;
+    color: #91181c!important;
+    border-color:  #91181c;
 }
 
 .ui-button:enabled:hover {

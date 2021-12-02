@@ -1,4 +1,7 @@
 section {
+    width: 90%;
+    margin: 0 auto;
+    padding: 2em 0 0 2em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,6 +32,10 @@ section {
   }
    //width: 46.7%;
 }
+.p-message-class{
+    width: 100%
+    }
+    
 
 h6{
     color:#919191;
@@ -43,14 +50,17 @@ h6{
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
+   // align-items:space-between;
     flex-wrap: wrap;
 }
 
 .panel-ui {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
+    width: 100%;
+    
 }
 
 .panel-div {
@@ -65,6 +75,8 @@ h6{
     display: flex;
     justify-content: flex-start;
 }
+
+
 
 .rest-table {
     width: 40rem;
@@ -109,9 +121,13 @@ h6{
 
     .panel-ui-content{
 
-        width: 65%;
+        width: 85%;
         //width: 46.7%;
      }
+
+     .p-message-class{
+        width: 85%
+        }
 }
 
 @media only screen and (max-width: 1300px) {
@@ -130,6 +146,20 @@ h6{
         margin-left: 0;
     }
 
+    
+}
+@media only screen and (min-width: 1900px) {
+ 
+    .panel-ui-content{
+
+        width:80%;
+      //  margin: 0 4em 0 4em;
+        //width: 46.7%;
+     }
+
+     .p-message-class{
+        width: 80%
+        }
     
 }
 
@@ -179,5 +209,11 @@ h6{
     align-items: flex-end;
 }
 
-
+.ui-messages{
+    padding: 1em 2em 1em 2em !important;
+}
 /*********************************************/
+
+body .pi{
+   // padding-top: 1em!important;
+}

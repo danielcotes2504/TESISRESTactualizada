@@ -118,6 +118,7 @@ export class RestVariablesComponent implements OnInit {
     }
 
     editClick(event, selectedVariable: VariableModel) {
+        this.varPass= selectedVariable;
         this.displayEditVariable = true;
         this.updatedVariable = selectedVariable;
         this.url = environment.restUrl + 'apiVariables/' + selectedVariable.user + '/' + selectedVariable.project +
@@ -213,7 +214,7 @@ export class RestVariablesComponent implements OnInit {
 
     showDev() {
         this.msgsDev.push({
-            severity: 'info',
+            severity: 'warn',
             summary: 'Para crear la variable es necesario un dispositivo:', 
             detail:'Dirigite a la pestaña de dispositivos para crear uno.'
         });

@@ -17,9 +17,9 @@
                 </div>
             </p-header>
             <div class="card-action right-align">
-                <a (click)="editClick($event, project)"><i class="material-icons">create</i>
+                <a (click)="editClick($event, project)"><i class="material-icons o-btn-edit-style">create</i>
                 </a>
-                <a (click)="openDeleteDialog($event,project)"><i class="material-icons">delete</i>
+                <a (click)="openDeleteDialog($event,project)"><i class="material-icons o-btn-delete-style">delete</i>
                 </a>
             </div>
         </p-card>
@@ -48,8 +48,9 @@
         </span>
     </div>
     <p-footer>
-        <button class="ui-button" type="button" pButton (click)="addProjectClick($event, projectName.value)" label="Crear"></button>
-        <button class="ui-button" type="button" pButton (click)="clear()" label="Cancelar"></button>
+        <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear()" label="Cancelar"></button>
+        <button class="ui-button " type="button" pButton (click)="addProjectClick($event, projectName.value)" label="Crear"></button>
+       
     </p-footer>
 </p-dialog>
 
@@ -57,13 +58,14 @@
     <p-messages [value]="msgs"></p-messages>
     <div class="dialog-content">
         <span class="ui-float-label">
-            <input #newProjectName class="text-input" id="float-input" type="text" size="30" pInputText>
+            <input #newProjectName class="text-input" id="float-input" type="text" size="30"  pInputText>
             <label for="float-input">Nombre del proyecto</label>
         </span>
     </div>
     <p-footer>
+        <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear()" label="Cancelar"></button>
         <button class="ui-button" type="button" pButton (click)="updateProjectClick($event, newProjectName.value)" label="Aceptar"></button>
-        <button class="ui-button" type="button" pButton (click)="clear()" label="Cancelar"></button>
+        
     </p-footer>
 </p-dialog>
 <footer class="bottom">

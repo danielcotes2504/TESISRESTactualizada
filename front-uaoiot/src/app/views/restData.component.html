@@ -52,7 +52,11 @@
            
 
         </div>
-        <p-messages [value]="msgs"></p-messages>
+
+        <div class="p-message-class">
+            <p-messages class="" [value]="msgs"></p-messages>
+        </div>
+      
 
         <div class="chart-container" *ngIf="values.length >= 2">
             <div class="rest-chart">
