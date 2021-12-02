@@ -9,19 +9,22 @@ section {
   .info-icon{
       display: flex;
       flex-direction: row;
+      align-items: center;
       
       p{
           padding-right: 1rem;
-         margin-bottom: 1.2rem;
+        margin-bottom: 0.8rem;
       }
       .copy-icon{
           font-size: 1.2rem;
           color:#9e9e9e;
           cursor: pointer;
+          transition:100ms;
       }
 
       .copy-icon:hover{
           color:#363636;
+          transition: 100ms;
       }
   }
    //width: 46.7%;

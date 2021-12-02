@@ -5,18 +5,20 @@
 
     <div id="token-section">
         <span id="credential-title-token">Token</span>
-
+        <div class=info-icon>
         <input id="disabled-input" value={{tokenString}} type="text" #token size="59" pInputText [readonly]="true" />
-        <button type="button" (click)="copyToClipboard(token)" pButton icon="pi pi-copy" style="font-size: 1em"></button>
+        <a (click)="copyToClipboard(token)"> <i class="material-icons copy-icon">content_copy </i></a>
+        </div>
+    
 
     </div>
 
     <div id="user-section">
         <span id="credential-title-user">Usuario</span>
-
+        <div class=info-icon>
         <input id="disabled-input" value={{userNameFromLogin}} type="text" #user size="59" pInputText [readonly]="true" />
-        <button type="button" (click)="copyToClipboard(user)" pButton icon="pi pi-copy" style="font-size: 1em"></button>
-
+        <a (click)="copyToClipboard(user)"> <i class="material-icons copy-icon">content_copy </i></a>
+        </div>
     </div>
 
 </p-dialog>
