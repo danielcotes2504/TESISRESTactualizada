@@ -81,7 +81,7 @@
     </div>
     <p-footer>
         <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear();" label="Cancelar"></button>
-        <button class="ui-button" type="button" pButton label="Aceptar" (click)="updateDeviceClick(editDeviceName.value, editDeviceHardware.selectedOption.label)"></button>
+        <button class="ui-button" type="button" pButton label="Editar" (click)="updateDeviceClick(editDeviceName.value, editDeviceHardware.selectedOption.label)"></button>
     </p-footer>
 </p-dialog>
 
@@ -101,17 +101,18 @@
     </div>
     <p-footer>
         <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear()" label="Cancelar"></button>
-        <button class="ui-button" type="button" pButton label="Agregar" (click)="addDeviceClick(newDeviceName.value, newDeviceHardware.selectedOption.label)"></button>
+        <button class="ui-button" type="button" pButton label="Añadir" (click)="addDeviceClick(newDeviceName.value, newDeviceHardware.selectedOption.label)"></button>
     </p-footer>
 </p-dialog>
 <!--Confirmar borrar-->
-<p-dialog  header="Borrar dispositivo" [(visible)]="displayDeleteDevice" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
+<p-dialog  header="Eliminar dispositivo" [(visible)]="displayDeleteDevice" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
 
-    <p>¿Estás seguro que deseas borrar el dispositivo?</p>
+    <p>¿Estás seguro que deseas eliminar el dispositivo?</p>
 
     <p-footer>
-        <a class="btn-flat blue-text" (click)="trashClick()">Si</a>
-        <a class="btn-flat blue-text" (click)="displayDeleteDevice=false">No</a>
+        <button class="ui-button ui-button-cancelar" type="button" pButton (click)="displayDeleteDevice=false" label="Cancelar"></button>
+        <button class="ui-button" type="button" pButton (click)="trashClick()" label="Eliminar"></button>
+    
     </p-footer>
 
 </p-dialog>

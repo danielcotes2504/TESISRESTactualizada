@@ -64,7 +64,7 @@
     </div>
     <p-footer>
         <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear()" label="Cancelar"></button>
-        <button class="ui-button" type="button" pButton (click)="updateProjectClick($event, newProjectName.value)" label="Aceptar"></button>
+        <button class="ui-button" type="button" pButton (click)="updateProjectClick($event, newProjectName.value)" label="Editar"></button>
         
     </p-footer>
 </p-dialog>
@@ -74,13 +74,15 @@
     </div>
 </footer>
 <!--Confirmar borrar-->
-<p-dialog  header="Borrar proyecto" [(visible)]="displayDeleteProject" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
+<p-dialog  header="Eliminar proyecto" [(visible)]="displayDeleteProject" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
 
-    <p>¿Estás seguro que deseas borrar el proyecto?</p>
+    <p>¿Estás seguro que deseas eliminar el proyecto?</p>
 
     <p-footer>
-        <a class="btn-flat blue-text" (click)="trashClick()">Si</a>
-        <a class="btn-flat blue-text" (click)="displayDeleteProject=false">No</a>
+           
+        <button class="ui-button ui-button-cancelar" type="button" pButton (click)="displayDeleteProject=false" label="Cancelar"></button>
+        <button class="ui-button" type="button" pButton (click)="trashClick()"label="Eliminar"></button>
+                  
     </p-footer>
 
 </p-dialog>

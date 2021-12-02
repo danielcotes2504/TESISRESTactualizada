@@ -124,6 +124,23 @@
                 transition: 100ms;
             }
         }
+
+        .ui-button-cancelar{
+            background-color: white!important;
+            color: #ac1e22;
+            border-color:  #ac1e22;
+        }
+    
+        .ui-button-cancelar:hover {
+            background-color: #eeeeee!important;
+            color: #91181c!important;
+            border-color:  #91181c;
+        }
+        .ui-button:enabled:hover {
+            background-color: #ac1e22;
+            color: #ffffff;
+            border-color: #ac1e22;
+        }
         @media screen and (max-width: 600px) {
             .nav-elements {
                 display: flex;

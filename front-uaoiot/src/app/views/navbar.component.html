@@ -29,8 +29,11 @@
     <p>¿Estás seguro que deseas cerrar sesión?</p>
 
     <p-footer>
-        <a class="btn-flat blue-text" (click)="logout()">Si</a>
-        <a class="btn-flat blue-text" (click)="displayLogout=false">No</a>
+       
+           
+            <button class="ui-button ui-button-cancelar" type="button" pButton  (click)="displayLogout=false" label="Cancelar"></button>
+            <button class="ui-button" type="button" pButton (click)="logout()" label="Aceptar"></button>
+    
     </p-footer>
 
 </p-dialog>

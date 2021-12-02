@@ -133,19 +133,19 @@
     </div>
     <p-footer>
         <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear()" label="Cancelar"></button>
-        <button class="ui-button" type="button" pButton (click)="updateVariableClick($event, updateVariableName.value)" label="Aceptar"></button>
+        <button class="ui-button" type="button" pButton (click)="updateVariableClick($event, updateVariableName.value)" label="Editar"></button>
         
     </p-footer>
 </p-dialog>
 
 <!--Confirmar borrar-->
-<p-dialog  header="Borrar variable" [(visible)]="displayDeleteVariable" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
+<p-dialog  header="Eliminar variable" [(visible)]="displayDeleteVariable" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
 
-    <p>¿Estás seguro que deseas borrar la variable?</p>
+    <p>¿Estás seguro que deseas eliminar la variable?</p>
 
     <p-footer>
-        <a class="btn-flat blue-text" (click)="trashClick()">Si</a>
-        <a class="btn-flat blue-text" (click)="displayDeleteVariable=false">No</a>
+        <button class="ui-button ui-button-cancelar" type="button" pButton (click)="displayDeleteVariable=false" label="Cancelar"></button>
+        <button class="ui-button" type="button" pButton (click)="trashClick()" label="Eliminar"></button>
     </p-footer>
 
 </p-dialog>
