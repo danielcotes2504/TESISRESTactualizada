@@ -2,6 +2,12 @@
     <div class="o-proyectos-title-page">
         <h5 class="o-title-style-page">Dispositivos</h5>
     </div>
+    
+    <div class="p-message-class">
+        <p-messages  [value]="msgs"></p-messages>
+    </div>
+  
+
     <div class="container">
         <div *ngFor="let project of projects" pDroppable="right" (onDrop)="dropDevice($event, project)" class="project-container">
             <div class="container-title">

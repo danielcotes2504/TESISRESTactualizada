@@ -32,6 +32,7 @@ export class RestDevicesComponent implements OnInit {
     variables: VariableModel[] = [];
     stringVariable = '';
     dvPass: DeviceModel;
+    public msg: Message[] = [];
     public displayDeleteDevice = false;
     public textLabel:string='Tutorial';
     constructor(private router: Router, private apiService: ApiService) {
@@ -44,18 +45,47 @@ export class RestDevicesComponent implements OnInit {
         this.getData();
     }
 
+      /**
+    * Método para mostrar los mensajes de alerta.
+    * @param severity  Severidad del mensaje (success, info, warn, error).
+    * @param title Título del mensaje.
+    * @param message Contenido del mensaje.
+    */
+       showToast(severity, title, message) {
+        this.msg = [];
+        this.msg.push({ severity: severity, summary: title, detail: message });
+    }
+
+    showToaster() {
+        this.msgs.push({
+            severity: 'warn',
+            summary: 'No existen dispositivos:',
+            detail: 'Para crear un dispositivo debes crear un proyecto. '
+        });
+    }
+
+
     getData() {
         this.apiService.getProjects(environment.restUrl + 'apiProjects/' + this.user)
             .subscribe(resProject => {
                 this.projects = resProject.body;
+
+                if (this.projects.length ==0) {
+                    this.showToaster();
+                   
+                }
 
                 for (let i = 0; i < this.projects.length; i++) {
                     this.apiService
                         .getDevices(environment.restUrl + 'apiDevices/' + this.user + '/' + this.projects[i].project)
                         .subscribe(resDevice => {
                             this.devices[i] = resDevice.body;
+
                         }, error => this.error = error);
-                }
+
+
+                        
+                } 
             }, error => this.error = error);
     }
 

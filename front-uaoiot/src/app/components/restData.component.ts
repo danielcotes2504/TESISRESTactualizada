@@ -65,7 +65,7 @@ export class RestDataComponent implements OnInit {
 
     show() {
         this.msgs.push({
-            severity: 'info',
+            severity: 'warn',
             summary: 'Valores insuficientes:',
             detail: 'Para construir la gráfica debes enviar por lo menos dos datos a esta variable. '
         });
