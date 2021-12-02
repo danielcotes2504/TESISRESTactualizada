@@ -6,17 +6,27 @@
             <div class="panel-info-content">
                 <p-panel class="panel-div" header="URL y tópico para enviar datos por REST o MQTT " [toggleable]="true" [transitionOptions]="'500ms'" toggler="header" collapsed="true">
                     <div class="info">
-                        <p><b>REST</b></p>
-                        <p> POST:{{postURL}}</p>
-                        <p> Body: <code>{{'{'}}"value": valor{{'}'}}</code></p>
+                        <h5><b>TOKEN</b></h5>
+                        <p>Para acceder al Token de usuario</p>
+                        <p>dirijase a su usuario => credenciales</p>
+                        <hr>
+                        <h5><b>REST</b></h5>
+                        <h6><b>Información para realizar un POST</b></h6>
+                        <p><b>URL: </b> {{postURL}}</p>
+                        <p> <b>Body:</b> {{'{'}}"value": [valor numérico]{{'}'}}</p>
     
                         <hr>
-                        <p><b>MQTT</b></p>
-                        <p>Tópico: {{currentVariable.user}}/{{currentVariable.project}}/{{currentVariable.deviceN}}/{{currentVariable.variableN}}</p>
-                        <p> Body: <code>{{'{'}}"token": "Token_de_usuario", "value": valor{{'}'}}</code></p>
+                        <h5><b>MQTT</b></h5>
+                        <h6><b>Información para conectarse al broker</b></h6>
+                        <p><b>Usuario:</b> {{currentVariable.user}}</p>
+                        <p><b>Contraseña:</b> [Token de usuario]</p>
+                        <br/>
+                        <h6><b>Información para públicar a un tópico</b></h6>
+                        <p><b>Tópico: </b>{{currentVariable.user}}/{{currentVariable.project}}/{{currentVariable.deviceN}}/{{currentVariable.variableN}}</p>
+                        <p><b>Body:</b>  {{'{'}}"token": "[Token de usuario]", "value": [valor numérico]{{'}'}}
+                        </p>
     
-                        <p>Usuario: {{currentVariable.user}}</p>
-                        <p>Contraseña: Token de usuario</p>
+                        
                     </div>
                 </p-panel>
 

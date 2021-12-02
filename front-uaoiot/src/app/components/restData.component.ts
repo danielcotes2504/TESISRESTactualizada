@@ -39,7 +39,7 @@ export class RestDataComponent implements OnInit {
       this.getMqttData();
         this.postURL = environment.restUrl + this.currentVariable.user + '/'
             + this.currentVariable.project + '/' + this.currentVariable.deviceN + '/' + this.currentVariable.variableN
-            + '/' + 'token_de_usuario';
+            + '/' + '[Token de usuario]';
 
        
     }
@@ -59,9 +59,8 @@ export class RestDataComponent implements OnInit {
    
        copyToClipboard(inputElement:String) {
          inputElement = "malambito"
-        document.execCommand('copy');
         
-        this.showToast('info', 'Credenciales', 'Texto copiado en el portapapeles.');
+        this.showToast('info', 'URL', 'Texto copiado en el portapapeles.');
     }
 
     show() {
