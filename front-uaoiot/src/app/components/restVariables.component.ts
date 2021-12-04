@@ -125,6 +125,13 @@ export class RestVariablesComponent implements OnInit {
             '/' + selectedVariable.deviceN + '/' + selectedVariable.variableN;
     }
 
+    getEditVariable(){
+        if(this.displayEditVariable === true){
+            return this.varPass.variableN;
+        }
+    
+    }
+
     updateVariableClick(event, variableName: string) {
         this.updatedVariable.variableN = variableName;
         if (this.updatedVariable.variableN !== '') {

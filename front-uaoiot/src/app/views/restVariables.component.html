@@ -59,7 +59,7 @@
 
 </footer>
 
-<p-dialog header="Añadir variable" [(visible)]="displayNewVariable" [modal]="true" [responsive]="true" [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
+<p-dialog header="Crear variable" [draggable]="false" [(visible)]="displayNewVariable" [modal]="true" [responsive]="true" [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
     <div class="dialogContent">
         <p-messages [value]="msgs"></p-messages>
         <div class="container">
@@ -118,16 +118,16 @@
     </div>
     <p-footer>
         <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear()" label="Cancelar"></button>
-        <button class="ui-button" type="button" pButton (click)="addVariableClick(newVariableName.value)" label="Añadir"></button>
+        <button class="ui-button" type="button" pButton (click)="addVariableClick(newVariableName.value)" label="Crear"></button>
        
     </p-footer>
 </p-dialog>
 
-<p-dialog header="Editar variable" [(visible)]="displayEditVariable" [modal]="true" [responsive]="true" [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
+<p-dialog header="Editar variable" [draggable]="false" [(visible)]="displayEditVariable" [modal]="true" [responsive]="true" [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
     <p-messages [value]="msgs"></p-messages>
     <div class="dialogEditContent">
         <span class="ui-float-label">
-            <input #updateVariableName class="textEditInput" id="float-input" type="text" size="30"  pInputText>
+            <input #updateVariableName class="textEditInput" id="float-input" type="text" size="30"  pInputText value={{getEditVariable()}}>
             <label for="float-input">Nombre de la variable</label>
         </span>
     </div>
@@ -139,7 +139,7 @@
 </p-dialog>
 
 <!--Confirmar borrar-->
-<p-dialog  header="Eliminar variable" [(visible)]="displayDeleteVariable" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
+<p-dialog  header="Eliminar variable" [draggable]="false" [(visible)]="displayDeleteVariable" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
 
     <p>¿Estás seguro que deseas eliminar la variable?</p>
 

@@ -32,6 +32,7 @@ export class RestDevicesComponent implements OnInit {
     variables: VariableModel[] = [];
     stringVariable = '';
     dvPass: DeviceModel;
+    selectedHardware: string="ArduinoYun";
     public msg: Message[] = [];
     public displayDeleteDevice = false;
     public textLabel:string='Tutorial';
@@ -39,7 +40,9 @@ export class RestDevicesComponent implements OnInit {
         this.user = this.apiService.getCurrentUser();
         this.devicesHardware = [{ hardware: 'RaspberryPi' }, { hardware: 'ArduinoYun' },
         { hardware: 'NodeMCU' }, { hardware: 'LinkItONE' }];
+     //  this.devicesHardware[0].hardware= this.selectedHardware;
     }
+    
 
     ngOnInit() {
         this.getData();
@@ -126,11 +129,23 @@ export class RestDevicesComponent implements OnInit {
     editClick(event, device: DeviceModel) {
         this.dvPass= device;
         this.displayEdit = true;
+        this.selectedHardware = this.dvPass.deviceH
+        this.devicesHardware[0].hardware= this.selectedHardware;
+          
+            
+        
         this.editedDevice = device;
         this.url = environment.restUrl + 'apiDevices/' + device.user + '/' + device.project + '/'
             + device.deviceN + '/' + device.deviceH;
 
     }
+    getEditDeviceN(){
+        if(this.displayEdit === true){
+            return this.dvPass.deviceN;
+        }
+    
+    }
+    
 
     updateDeviceClick(editDeviceName: string, editDeviceHardware: string) {
         this.editedDevice.deviceN = editDeviceName;

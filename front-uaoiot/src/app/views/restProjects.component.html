@@ -39,12 +39,14 @@
 
 
 
-<p-dialog header="Crear proyecto" [(visible)]="displayNewProject" [modal]="true" [responsive]="true" [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000" styleClass="o-modal-create-project">
-    <p-messages [value]="msgs"></p-messages>
+<p-dialog header="Crear proyecto"  [draggable]="false" [(visible)]="displayNewProject" [modal]="true" [responsive]="true" [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000" styleClass="o-modal-create-project">
+    <p-messages [value]="msgs" ></p-messages>
     <div class="dialog-content">
         <span class="ui-float-label">
-            <input #projectName class="text-input" id="float-input" type="text" pInputText>
+          
+            <input #projectName class="text-input" id="float-input" type="text"  (keypress)="keyPressAlphaNumericWithCharacters($event)" pInputText>
             <label for="float-input">Nombre del proyecto</label>
+          
         </span>
     </div>
     <p-footer>
@@ -54,11 +56,11 @@
     </p-footer>
 </p-dialog>
 
-<p-dialog header="Editar proyecto" [(visible)]="displayEditProject" [modal]="true" [responsive]="true" [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
+<p-dialog  [draggable]="false" header="Editar proyecto" [(visible)]="displayEditProject" [modal]="true" [responsive]="true" [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
     <p-messages [value]="msgs"></p-messages>
     <div class="dialog-content">
         <span class="ui-float-label">
-            <input #newProjectName class="text-input" id="float-input" type="text" size="30"  pInputText>
+            <input #newProjectName class="text-input" id="float-input" type="text" size="30" value={{getEditProject()}}  (keypress)="keyPressAlphaNumericWithCharacters($event)"  pInputText >
             <label for="float-input">Nombre del proyecto</label>
         </span>
     </div>
@@ -74,7 +76,7 @@
     </div>
 </footer>
 <!--Confirmar borrar-->
-<p-dialog  header="Eliminar proyecto" [(visible)]="displayDeleteProject" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
+<p-dialog [draggable]="false" header="Eliminar proyecto" [(visible)]="displayDeleteProject" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '400', minWidth:'300'}">
 
     <p>¿Estás seguro que deseas eliminar el proyecto?</p>
 

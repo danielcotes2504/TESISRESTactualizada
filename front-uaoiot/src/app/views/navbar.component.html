@@ -1,7 +1,7 @@
 <p-growl [(value)]="msg"></p-growl>
 
 <!--DIALOG CREDENCIALES-->
-<p-dialog header="Tus credenciales" [(visible)]="display" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '600', minWidth:'500'}">
+<p-dialog  [draggable]="false" header="Tus credenciales" [(visible)]="display" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '600', minWidth:'500'}">
 
     <div id="token-section">
         <span id="credential-title-token">Token</span>
@@ -24,7 +24,7 @@
 </p-dialog>
 
 <!--DIALOG CERRAR SESIÓN-->
-<p-dialog header="Cerrar sesión" [(visible)]="displayLogout" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
+<p-dialog [draggable]="false" header="Cerrar sesión" [(visible)]="displayLogout" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
 
     <p>¿Estás seguro que deseas cerrar sesión?</p>
 
