@@ -60,8 +60,9 @@
 </footer>
 
 <p-dialog header="Crear variable" [draggable]="false" [(visible)]="displayNewVariable" [modal]="true" [responsive]="true" [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
+    <p-messages [value]="msgs"></p-messages>
     <div class="dialogContent">
-        <p-messages [value]="msgs"></p-messages>
+       
         <div class="container">
             <label class="title">Seleccione el tipo de variable</label>
             
@@ -78,6 +79,7 @@
                 <p-inputSwitch (onChange)="handleChange($event)"> </p-inputSwitch>
             </div> -->  
         </div>
+  <br>
         <div *ngIf="displayDependentOptions == true" class="dependentOptions">
             <div class="subContainer">
                 <label>Seleccione la variable independiente</label>
@@ -106,7 +108,7 @@
         </div>
         <div class="subContainer">
             <span class="ui-float-label">
-                <input #newVariableName id="float-input" type="text" size="100%" pInputText onfocus="this.value=''">
+                <input #newVariableName id="float-input" type="text" size="100%" pInputText onfocus="this.value=''" (keypress)="keyPressAlphaNumericWithCharacters($event)" >
                 <label for="float-input">Nombre de la variable</label>
             </span>
         </div>
@@ -127,7 +129,7 @@
     <p-messages [value]="msgs"></p-messages>
     <div class="dialogEditContent">
         <span class="ui-float-label">
-            <input #updateVariableName class="textEditInput" id="float-input" type="text" size="30"  pInputText value={{getEditVariable()}}>
+            <input #updateVariableName class="textEditInput" id="float-input" type="text" size="30"  pInputText value={{getEditVariable()}} (keypress)="keyPressAlphaNumericWithCharacters($event)" >
             <label for="float-input">Nombre de la variable</label>
         </span>
     </div>

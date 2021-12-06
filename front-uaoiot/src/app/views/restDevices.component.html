@@ -4,7 +4,7 @@
     </div>
     
     <div class="p-message-class">
-        <p-messages  [value]="msgs"></p-messages>
+        <p-messages  [value]="msg"></p-messages>
     </div>
   
 
@@ -66,17 +66,17 @@
 </footer>
 
 <p-dialog header="Editar dispositivo" [draggable]="false" [(visible)]="displayEdit" [modal]="true" [responsive]="true" [style]="{width: '25em'}" [minY]="70" [baseZIndex]="10000" [closeOnEscape]="true">
+    <p-messages [value]="msgs"></p-messages>
     <div class="dialog-content">
-        <p-messages [value]="msgs"></p-messages>
-        <div class="text-input">
+              <div class="text-input">
             <span class="ui-float-label">
-                <input #editDeviceName id="float-input" type="text" size="30" pInputText value={{getEditDeviceN()}}>
+                <input #editDeviceName id="float-input" type="text" size="30" (keypress)="keyPressAlphaNumericWithCharacters($event)" pInputText value={{getEditDeviceN()}} >
                 <label for="float-input">Nombre del dispositivo</label>
             </span>
         </div>
         <div class="text-dropdown">
             <label id="subTitle">Seleccione el tipo de dispositivo</label>
-            <p-dropdown #editDeviceHardware [style]="{width: '100%'}" [scrollHeight]="5" [options]="devicesHardware" optionLabel="hardware" placeholder={{selectedHardware}} ></p-dropdown>
+            <p-dropdown #editDeviceHardware [style]="{width: '100%'}" [scrollHeight]="5" [options]="devicesHardware" optionLabel="hardware" ></p-dropdown>
         </div>
     </div>
     <p-footer>
@@ -90,13 +90,13 @@
     <div class="dialog-content">
         <div class="text-input">
             <span class="ui-float-label">
-                <input #newDeviceName id="float-input" type="text" size="30" pInputText>
+                <input #newDeviceName id="float-input" type="text" size="30"  (keypress)="keyPressAlphaNumericWithCharacters($event)" pInputText>
                 <label for="float-input">Nombre del dispositivo</label>
             </span>
         </div>
         <div class="text-dropdown">
             <label id="subTitle">Seleccione el tipo de dispositivo</label>
-            <p-dropdown #newDeviceHardware [style]="{width: '100%'}" [scrollHeight]="5" [options]="devicesHardware" optionLabel="hardware"></p-dropdown>
+            <p-dropdown #newDeviceHardware [style]="{width: '100%'}" [scrollHeight]="5" [options]="devicesHardware" optionLabel="hardware" ></p-dropdown>
         </div>
     </div>
     <p-footer>

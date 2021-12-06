@@ -48,7 +48,8 @@ export class RestVariablesComponent implements OnInit {
     varPass: VariableModel;
     public textLabel:string='Tutorial';
     selectedValue: string;
-    
+    counter:number=0;
+
     constructor(private router: Router, private apiService: ApiService) {
         this.user = this.apiService.getCurrentUser();
         this.project = this.apiService.getCurrentProject();
@@ -98,7 +99,7 @@ export class RestVariablesComponent implements OnInit {
     openDeleteDialog(event,selectedVariable: VariableModel) {
     this.displayDeleteVariable=true;
     this.varPass = selectedVariable;
-    console.log(this.varPass)
+   
  
     }
     trashClick() {
@@ -133,17 +134,48 @@ export class RestVariablesComponent implements OnInit {
     }
 
     updateVariableClick(event, variableName: string) {
-        this.updatedVariable.variableN = variableName;
-        if (this.updatedVariable.variableN !== '') {
-            this.clear();
-            this.apiService.updateVariable(this.updatedVariable, this.url).subscribe(resUpdateVariable => {
-                if (resUpdateVariable.message === 'Updated') {
-                    this.getData();
-                    this.displayEditVariable = false;
-                }
-            });
+        
+        if (variableName !== '') {
+            if(variableName.length<=30){
+                this.updatedVariable.variableN = variableName;
+                this.clear();
+                this.apiService.updateVariable(this.updatedVariable, this.url).subscribe(resUpdateVariable => {
+                    if (resUpdateVariable.message === 'Updated') {
+                        this.getData();
+                        this.displayEditVariable = false;
+                    }
+                });
+            }
+            else{
+                (async () => { 
+          
+                    // Do something before delay
+                    if(this.counter<=0){
+                        this.showLongName();
+                    }
+                    this.counter++;       
+            
+                    await this.delay(2000);
+            
+                    // Do something after
+                     this.hide();
+                })();
+            }
+
         } else {
-            this.show();
+            (async () => { 
+          
+                // Do something before delay
+                if(this.counter<=0){
+                    this.show();
+                }
+                this.counter++;       
+        
+                await this.delay(2000);
+        
+                // Do something after
+                 this.hide();
+            })();
         }
     }
 
@@ -162,7 +194,7 @@ export class RestVariablesComponent implements OnInit {
         this.url = environment.restUrl + 'apiVariables/' + this.newVariable.user + '/' + this.newVariable.project +
             '/' + this.newVariable.deviceN + '/' + this.newVariable.deviceH;
         if (this.newVariable.variableN !== '') {
-            console.log(this.newVariable.variableN.length);
+            
             if(this.newVariable.variableN.length<=30){
             
             this.clear();
@@ -175,12 +207,68 @@ export class RestVariablesComponent implements OnInit {
             });
         }
         else{
-            this.showLongName();
+            (async () => { 
+          
+                // Do something before delay
+                if(this.counter<=0){
+                    this.showLongName();
+                }
+                this.counter++;       
+        
+                await this.delay(2000);
+        
+                // Do something after
+                 this.hide();
+            })();
         }
         
         } else {
-            this.show();
+            (async () => { 
+          
+                // Do something before delay
+                if(this.counter<=0){
+                    this.show();
+                }
+                this.counter++;       
+        
+                await this.delay(2000);
+        
+                // Do something after
+                 this.hide();
+            })();
         }
+    }
+    keyPressAlphaNumericWithCharacters(event) {
+   
+        var inp = String.fromCharCode(event.keyCode);
+        // Allow numbers, alpahbets, space, underscore
+        if (/[a-zA-Z0-9-_ ]/.test(inp)) {
+           
+          return true;
+          
+        } else {
+            (async () => { 
+              
+                // Do something before delay
+                if(this.counter<=0){
+                    this.showCharacterError();
+                }
+                this.counter++;       
+        
+                await this.delay(2000);
+        
+                // Do something after
+                 this.hide();
+            })();
+          event.preventDefault();
+          
+        
+          return false;
+        }
+        
+      }
+      delay(ms: number) {
+        return new Promise( resolve => setTimeout(resolve, ms) );
     }
 
     handleChange() {
@@ -231,7 +319,7 @@ export class RestVariablesComponent implements OnInit {
     show() {
         this.msgs.push({
             severity: 'error',
-            summary: 'No se ingresó nombre'
+            summary: 'No se ingresó el nombre'
         });
     }
 
@@ -241,7 +329,19 @@ export class RestVariablesComponent implements OnInit {
             summary: 'El nombre es demasiado largo'
         });
     }
+    showCharacterError() {
+        this.msgs.push({
+          severity: "error",
+          summary: "No se permiten caracteres especiales",
+        });
+    
+      
+      }
 
+  hide(){
+      this.msgs=[]
+      this.counter=0;
+  }
     clear() {
         this.displayEditVariable = false;
         this.displayNewVariable = false;

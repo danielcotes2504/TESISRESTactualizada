@@ -34,7 +34,7 @@ export class RestProjectsComponent implements OnInit {
   ngOnInit() {
     this.user = this.apiService.getCurrentUser();
     this.getData();
-    let mask = '^((?![<>/?|\\*:"]).)+$';
+  
   }
   // Only AlphaNumeric with Some Characters [-_ ]
   keyPressAlphaNumericWithCharacters(event) {
@@ -101,6 +101,7 @@ export class RestProjectsComponent implements OnInit {
   editClick(event, project: ProjectModel) {
     this.pjPass = project;
     this.displayEditProject = true;
+    
     this.url =
       environment.restUrl +
       "apiProjects/" +
@@ -109,6 +110,8 @@ export class RestProjectsComponent implements OnInit {
       project.project;
 
     this.updatedProject = project;
+   
+   
   }
 
   getEditProject() {
@@ -117,17 +120,37 @@ export class RestProjectsComponent implements OnInit {
     }
   }
   updateProjectClick(event, newDeviceName: string) {
-    this.updatedProject.project = newDeviceName;
-    if (this.updatedProject.project !== "") {
-      this.clear();
-      this.apiService
-        .updateProject(this.updatedProject, this.url)
-        .subscribe((resUpdateProject) => {
-          if (resUpdateProject.message === "Updated") {
-            this.getData();
-            this.displayEditProject = false;
+   
+
+    if (newDeviceName !== "") {
+      if(newDeviceName.length<=30){
+        this.updatedProject.project = newDeviceName;
+        this.clear();
+        this.apiService
+          .updateProject(this.updatedProject, this.url)
+          .subscribe((resUpdateProject) => {
+            if (resUpdateProject.message === "Updated") {
+              this.getData();
+              this.displayEditProject = false;
+            }
+          });
+      }
+      else{
+        (async () => { 
+          
+          // Do something before delay
+          if(this.counter<=0){
+              this.showLongName();
           }
-        });
+          this.counter++;       
+  
+          await this.delay(2000);
+  
+          // Do something after
+           this.hide();
+      })();
+      }
+ 
     } else {
         (async () => { 
           
@@ -220,7 +243,7 @@ export class RestProjectsComponent implements OnInit {
   showCharacterError() {
     this.msgs.push({
       severity: "error",
-      summary: "No se permiten carácteres especiales",
+      summary: "No se permiten caracteres especiales",
     });
 
   
