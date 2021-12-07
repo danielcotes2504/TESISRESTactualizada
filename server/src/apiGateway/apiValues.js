@@ -94,7 +94,7 @@ router.post("/:user/:project/:deviceN/:variableN/:token", (req, res) => {
     const { deviceN } = req.params;
     const { variableN } = req.params;
     const { token } = req.params;
-
+    console.log(user,project,deviceN,variableN,token)
     const uriToken = hostToken + user;
 
     request.get(uriToken, (err, resp, body) => {

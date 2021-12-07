@@ -6,7 +6,7 @@ const router = express.Router();
 require("./requestMethods/get.js")();
 require("./requestMethods/post.js")();
 let state = {};
-
+var state2 = [];
 /* GET TOKEN */
 const getToken = async (string) => {
     const url = `http://localhost:3000/api/tokenuser/${string}`
@@ -50,15 +50,16 @@ router.get("/apiValuesMQTT/:user/:project/:deviceN/:variableN", (req, res) => {
             console.log("El tópico ya ha sido creado");
 
         } else {
-            client.on('connect', function () {
+           client.on('connect', function () {
 
 
 
                if (state[`${user}_topic`] !== undefined) {
 
-             //   client.end()
+               // client.end()
                                 
                }
+
               // client.reconnect()
        
                         client.subscribe(topico, function (err) {
@@ -87,8 +88,8 @@ router.get("/apiValuesMQTT/:user/:project/:deviceN/:variableN", (req, res) => {
                 console.log(json1);
                 if (json1.token === value) {
                     json2 = { 'value': json1.value }
-                    postMqttData(`${user}/${project}/${deviceN}/${variableN}/${value}`, json2)
-                
+                  const post= postMqttData(`${user}/${project}/${deviceN}/${variableN}/${value}`, json2)
+                    console.log(post)
                     
 
                 } else {
