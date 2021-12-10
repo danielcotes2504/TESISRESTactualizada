@@ -39,7 +39,7 @@ export class RestDataComponent implements OnInit {
     ngOnInit() {
         this.currentVariable = this.apiService.getCurrentVariable();
         this.getData();
-      this.getMqttData();
+     
         this.postURL = environment.restUrl + this.currentVariable.user + '/'
             + this.currentVariable.project + '/' + this.currentVariable.deviceN + '/' + this.currentVariable.variableN
             + '/' + '[Token de usuario]';
@@ -101,16 +101,7 @@ export class RestDataComponent implements OnInit {
             }
         });
     }
-    getMqttData() {
-       
-        this.Mqtt_url = environment.restUrl +"apiValuesMQTT"+"/"+ this.currentVariable.user + '/'
-        + this.currentVariable.project + '/' + this.currentVariable.deviceN + '/' + this.currentVariable.variableN;
-        this.apiService.getMQTTURL(this.Mqtt_url).subscribe();
-            
-            
-        
-        console.log(this.Mqtt_url);
-    }
+   
     
     isVariableIndependent() {
         if (this.currentVariable.variableT === 'Independiente') {

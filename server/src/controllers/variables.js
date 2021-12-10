@@ -4,6 +4,7 @@
 const Variables = require('../models/variable');
 const Values = require('../models/value');
 
+
 const variables = {};
 
 /* //Only Variables
@@ -29,14 +30,15 @@ function getVariablesU(req, res) {
         if (err) {
             res.status(500).send({ ERROR: 'Error searching' });
         } else {
-            res.status(200).send(results);
+           return res.status(200).send(results);
+           
         }
     });
 };
 
 //Variables whit User and Project
 function getVariablesUP(req, res) {
-
+   
     const { user } = req.params;
     const { project } = req.params;
 
@@ -119,10 +121,15 @@ function postVariable(req, res) {
     variable.positive = newPositive;
     variable.negative = newNegative;
 
+    
+ 
+
     variable.save((err, results) => {
         if (err) {
             res.status(500).send({ ERROR: 'Error saving' });
         } else {
+            
+
             res.status(200).send({ message: 'Saved' });
         }
     });
@@ -146,7 +153,7 @@ function putVariable(req, res) {
     const query = { 'user': user, 'project': project, 'deviceN': deviceN, 'variableN': variableN };
     const newValues = { $set: { 'variableN': newVariableN, 'variableT': newVariableT, 'variableInd': newVariableInd, 'constant': newConstant, 'operation': newOperation, 'positive': newPositive, 'negative': newNegative } };
 
-    Variables.updateOne(query, newValues, async(err, results) => {
+    Variables.updateOne(query, newValues, async (err, results) => {
         if (err) {
             res.status(500).send({ ERROR: 'Error updating' });
         } else {
@@ -173,7 +180,7 @@ function deleteVariable(req, res) {
     const query = { 'user': user, 'project': project, 'deviceN': deviceN, 'deviceH': deviceH, 'variableN': variableN, 'variableT': variableT };
 
     if (variableT === 'Dependiente') {
-        Variables.deleteOne(query, async(err, results) => {
+        Variables.deleteOne(query, async (err, results) => {
             if (err) {
                 res.status(500).send({ ERROR: 'Error removing' });
             } else {
@@ -191,14 +198,14 @@ function deleteVariable(req, res) {
         const query2 = { 'user': user, 'variableInd': variableN };
 
 
-        Variables.deleteOne(query, async(err, results) => {
+        Variables.deleteOne(query, async (err, results) => {
             if (err) {
                 res.status(500).send({ ERROR: 'Error removing' });
             } else {
                 if (results.n > 0) {
                     await Values.deleteMany(query);
                     res.status(200).send({ message: 'Deleted' });
-                    Variables.deleteMany(query2, async(err, results) => {
+                    Variables.deleteMany(query2, async (err, results) => {
                         if (err) {
                             res.status(500).send({ ERROR: 'Error removing' });
                         } else {

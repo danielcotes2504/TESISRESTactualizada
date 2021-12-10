@@ -6,6 +6,9 @@ var Userlogin = require("../models/userLogin");
 var UserLoginController = require("../controllers/userLogin");
 const config = require('../config/database');
 require("../request_api_methods/get.js")();
+let mqtt = require('mqtt');
+require("../request_api_methods/get.js")();
+
 
 
 //var auth = jwt({secret: 'MY_SECRET',userProperty: 'payload'});
@@ -35,9 +38,10 @@ router.post('/register', (req, res, next) => {
 
 //AUTH
 router.post('/auth', (req, res, next) => {
+   
     var username = req.body.user;
     var password = req.body.password;
-
+ 
     Userlogin.getUserByUsername(username, (err, user) => {
         if (err) throw err;
         if (!user) {
@@ -51,6 +55,7 @@ router.post('/auth', (req, res, next) => {
                     expiresIn: 604800 // Una semana
                 });
 
+               
                 res.json({
                     success: true,
                     token: `Bearer ${token}`,
@@ -60,6 +65,7 @@ router.post('/auth', (req, res, next) => {
                         name: user.name
                     }
                 });
+               
             } else {
                 return res.json({ success: false, msg: 'Contraseña incorrecta' });
             }
@@ -95,8 +101,8 @@ router.get('/usersLogin', (req, res, next) => {
 
 });
 
-
 module.exports = router;
+
 //module.exports = api;
 
 

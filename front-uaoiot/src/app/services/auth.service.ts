@@ -20,12 +20,14 @@ export class AuthService {
     token: String;
     user: any;
     url: String;
+    url2:String;
     name: String;
     public getLoggedInName = new Subject();
     public getLoggedInUser = new Subject();
 
     constructor(private http: Http, private router: Router, private _http: HttpClient) {
         this.url = environment.baseUrl;
+        this.url2= environment.restUrl;
     }
 
     /**
@@ -59,6 +61,19 @@ export class AuthService {
                 return res.json();
             }));
 
+            
+
+    }
+
+    public authBrokerUser(user){
+        const json = JSON.stringify(user);
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post(this.url2 + 'apiBroker/apiClientBroker', user, { headers: headers })
+        .pipe(map(res => {
+           
+            return res.json();
+        }));
     }
 
 

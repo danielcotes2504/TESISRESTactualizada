@@ -1,13 +1,21 @@
 let mqtt = require('mqtt');
-
-
 const express = require("express");
 const router = express.Router();
 require("./requestMethods/get.js")();
 require("./requestMethods/post.js")();
+let variablesController = require("../src/controllers/variables")
+
 let state = {};
-var state2 = [];
-/* GET TOKEN */
+
+
+/* SEND MQTT VALUES TO "apiValues"*/
+const postMqttData = async (string, body) => {
+    const url = `http://localhost:8000/${string}`;
+    const data = await postData(url, body)
+    console.log(data)
+
+
+}
 const getToken = async (string) => {
     const url = `http://localhost:3000/api/tokenuser/${string}`
     const data = await requestData(url)
@@ -16,14 +24,41 @@ const getToken = async (string) => {
     return token;
 
 }
-/* SEND MQTT VALUES TO "apiValues"*/
-const postMqttData = async (string, body) => {
-    const url = `http://localhost:8000/${string}`;
-    const data = await postData(url, body)
-    console.log(data)
+
+const getVariables = async (string) => {
+    const url = `http://localhost:8000/apiVariables/${string}`
+    const data = await requestData(url)
+    const variables = data;
+    //console.log(token)
+    return variables;
 
 }
+router.post("/apiClientBroker", (req, res) => {
+    let {user} = req.body;
+    console.log(user)
+    getToken(user).then(meta => {
+        const { value } = meta.token[0];
+        const options = { username: user, password: value, clean: true, keepAlive: 60 }
+        let client = mqtt.connect('mqtt://localhost', options);
 
+             
+        
+
+        /*
+            client.on('connect', function () {
+        
+                client.subscribe(topico, function (err) {
+                    console.log(`suscrito a ${topico}`)
+                    if (err) {
+                        console.log("error en la subscripcion")
+                    }
+                })
+        
+            })*/
+    })
+
+})
+/*
 router.get("/apiValuesMQTT/:user/:project/:deviceN/:variableN", (req, res) => {
 
 
@@ -50,16 +85,15 @@ router.get("/apiValuesMQTT/:user/:project/:deviceN/:variableN", (req, res) => {
             console.log("El tópico ya ha sido creado");
 
         } else {
-           client.on('connect', function () {
+            client.on('connect', function () {
 
 
 
                if (state[`${user}_topic`] !== undefined) {
 
-               // client.end()
+             //   client.end()
                                 
                }
-
               // client.reconnect()
        
                         client.subscribe(topico, function (err) {
@@ -88,8 +122,8 @@ router.get("/apiValuesMQTT/:user/:project/:deviceN/:variableN", (req, res) => {
                 console.log(json1);
                 if (json1.token === value) {
                     json2 = { 'value': json1.value }
-                  const post= postMqttData(`${user}/${project}/${deviceN}/${variableN}/${value}`, json2)
-                    console.log(post)
+                    postMqttData(`${user}/${project}/${deviceN}/${variableN}/${value}`, json2)
+                
                     
 
                 } else {
@@ -110,7 +144,7 @@ router.get("/apiValuesMQTT/:user/:project/:deviceN/:variableN", (req, res) => {
 });
 
 
-
+*/
 
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-
+//const cors=require("cors");
 const app = express();
 
 //connecting DB
@@ -17,14 +17,18 @@ const apiProjects = require("./apiGateway/apiProjects");
 const apiDevices = require("./apiGateway/apiDevices");
 const apiVariables = require("./apiGateway/apiVariables");
 const apiValues = require("./apiGateway/apiValues");
-const apiValuesMQTT = require("./app-mqtt")
+const apiClientBroker = require("./app-mqtt")
 
 const projects = require("./routes/routeProjects");
 const devices = require("./routes/routeDevices");
 const variables = require("./routes/routeVariables");
 const values = require("./routes/routeValues");
 
-
+/*const corsOptions ={
+    origin:'*', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200,
+ }*/
 
 //settings
 app.set("port", process.env.PORT1 || 8000);
@@ -51,9 +55,9 @@ app.use("/apiProjects", apiProjects);
 app.use("/apiDevices", apiDevices);
 app.use("/apiVariables", apiVariables);
 app.use("/", apiValues);
-app.use("/", apiValuesMQTT);
+app.use("/apiBroker", apiClientBroker);
 app.use(require('../../users/index'))
-
+//app.use(cors(corsOptions)) // Use this after the variable declaration
 
 //starting the server
 app.listen(app.get("port"), () => {

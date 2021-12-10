@@ -66,7 +66,8 @@ export class LoginComponent implements OnInit {
         } else {
             protocol = protocol;
         }
-
+       
+        
         this.authService.authenticateUser(user).subscribe(data => {
             if (data.success) {
                 this.authService.storeUserData(data.token, data.user);
@@ -74,8 +75,10 @@ export class LoginComponent implements OnInit {
                 if (this.authService.isAdminLoggedIn()) {
                     this.router.navigate(['/admin']);
                 } else if (protocol === 'REST') {
+                    this.authService.authBrokerUser(user).subscribe()
                     this.router.navigate(['/restProjects']);
                 } else {
+                  
                     const dataUserItem = data.user;
                     this.stringName = dataUserItem;
                     this.router.navigate(['/projects']);
@@ -86,6 +89,8 @@ export class LoginComponent implements OnInit {
             }
             this.navbar.getUserName();
         });
+
+        
     }
 
     showError() {
