@@ -81,6 +81,17 @@
             </div> -->  
         </div>
   <br>
+  <div class="subContainer">
+    <span class="ui-float-label">
+        <input #newVariableName id="float-input" type="text" size="100%" pInputText onfocus="this.value=''" (keypress)="keyPressAlphaNumericWithCharacters($event)" >
+        <label for="float-input">Nombre de la variable</label>
+    </span>
+</div>
+<div class="subContainer">
+    <label>Seleccione el dispositivo al cual desea vincular la variable</label>
+    <p-dropdown #selDev [style]="{width: '100%'}" [scrollHeight]="5" [options]="devices" optionLabel="deviceN" (onChange)="handleDev($event, selDev.selectedOption.value.deviceN, selDev.selectedOption.value.deviceH)">
+    </p-dropdown>
+</div>
         <div *ngIf="displayDependentOptions == true" class="dependentOptions">
             <div class="subContainer">
                 <label>Seleccione la variable independiente</label>
@@ -107,17 +118,7 @@
                 </p-spinner>
             </div>
         </div>
-        <div class="subContainer">
-            <span class="ui-float-label">
-                <input #newVariableName id="float-input" type="text" size="100%" pInputText onfocus="this.value=''" (keypress)="keyPressAlphaNumericWithCharacters($event)" >
-                <label for="float-input">Nombre de la variable</label>
-            </span>
-        </div>
-        <div class="subContainer">
-            <label>Seleccione el dispositivo al cual desea vincular la variable</label>
-            <p-dropdown #selDev [style]="{width: '100%'}" [scrollHeight]="5" [options]="devices" optionLabel="deviceN" (onChange)="handleDev($event, selDev.selectedOption.value.deviceN, selDev.selectedOption.value.deviceH)">
-            </p-dropdown>
-        </div>
+ 
     </div>
     <p-footer>
         <button class="ui-button ui-button-cancelar" type="button" pButton (click)="clear()" label="Cancelar"></button>
