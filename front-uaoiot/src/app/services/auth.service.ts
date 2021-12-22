@@ -66,10 +66,12 @@ export class AuthService {
     }
 
     public authBrokerUser(user){
-        const json = JSON.stringify(user);
+        const body = {"user":user}
+        const json = JSON.stringify(body);
+        console.log(body)
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post(this.url2 + 'apiBroker/apiClientBroker', user, { headers: headers })
+        return this.http.post(this.url2 + 'apiVariables/apiClientBroker', body, { headers: headers })
         .pipe(map(res => {
            
             return res.json();

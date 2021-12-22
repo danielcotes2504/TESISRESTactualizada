@@ -6,6 +6,17 @@
 
     <p-messages [value]="msgsDev"></p-messages>
     <div class="variablesContainer">
+        <p-card [style]="{width: '20em'}" styleClass="ui-card override-this" class="rest-card">
+            <p-header (click)="newVariableClick()">
+                <div class="new-card-header">
+                    <a><i class="material-icons add">add_circle </i></a>
+                    <h5>Crear variable</h5>
+                </div>
+            </p-header>
+            <div class="card-action">
+
+            </div>
+        </p-card>
         <p-card *ngFor="let variable of variables"  [style]="{width: '20em'}" styleClass="ui-card override-this" class="rest-card">
             <p-header class="imageContainer" (click)="previusVariablesClick($event, variable)">
                 <div *ngIf="variable.variableT === 'Dependiente'; then vardep else varind">
@@ -38,17 +49,7 @@
                 </div>
             </div>
         </p-card>
-        <p-card [style]="{width: '20em'}" styleClass="ui-card override-this" class="rest-card">
-            <p-header (click)="newVariableClick()">
-                <div class="new-card-header">
-                    <a><i class="material-icons add">add_circle </i></a>
-                    <h5>Crear variable</h5>
-                </div>
-            </p-header>
-            <div class="card-action">
-
-            </div>
-        </p-card>
+       
     </div>
 </section>
 <footer class="bottom">

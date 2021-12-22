@@ -10,6 +10,17 @@
     </div>
     
     <div class="project-container">
+                <p-card [style]="{width: '20em'}" styleClass="ui-card override-this" class="rest-card a">
+            <p-header (click)="newProjectClick()">
+                <div class="new-card-header">
+                    <a><i class="material-icons add">add_circle </i></a>
+                    <h5>Crear proyecto</h5>
+                </div>
+            </p-header>
+            <div class="card-action">
+
+            </div>
+        </p-card>
         <p-card *ngFor="let project of  projects" [style]="{width: '20em'}" styleClass="ui-card override-this" class="rest-card">
             <p-header (click)="previusProjectsClick($event, project)">
                 <div class="card-header">
@@ -23,17 +34,7 @@
                 </a>
             </div>
         </p-card>
-        <p-card [style]="{width: '20em'}" styleClass="ui-card override-this" class="rest-card a">
-            <p-header (click)="newProjectClick()">
-                <div class="new-card-header">
-                    <a><i class="material-icons add">add_circle </i></a>
-                    <h5>Crear proyecto</h5>
-                </div>
-            </p-header>
-            <div class="card-action">
 
-            </div>
-        </p-card>
     </div>
 </section>
 

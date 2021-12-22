@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const variableController = require('../controllers/variables');
 
 // router.get('/', variableController.getVariables);

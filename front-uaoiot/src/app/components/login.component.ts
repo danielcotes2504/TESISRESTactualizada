@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
                 if (this.authService.isAdminLoggedIn()) {
                     this.router.navigate(['/admin']);
                 } else if (protocol === 'REST') {
-                    this.authService.authBrokerUser(user).subscribe()
+                    //this.authService.authBrokerUser(user).subscribe()
                     this.router.navigate(['/restProjects']);
                 } else {
                   

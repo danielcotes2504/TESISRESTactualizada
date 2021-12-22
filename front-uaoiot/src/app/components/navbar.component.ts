@@ -137,9 +137,13 @@ export class NavbarComponent implements OnInit {
      * Cerrar sesión.
      */
     logout() {
+        /*Si se desea activar la parte de cerrar sesión y borrar los tópicos para cuando se haya podido
+        arreglar el prohblema del cliente, desbloquea esta linea*/
+     //   this.authService.authBrokerUser(this.userNameFromLogin).subscribe()
         this.displayLogout = false;
         this.authService.logout();
         this.router.navigate(['']);
+       
        
         return false;
     }

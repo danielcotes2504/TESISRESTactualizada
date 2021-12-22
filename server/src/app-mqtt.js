@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 require("./requestMethods/get.js")();
 require("./requestMethods/post.js")();
-let variablesController = require("../src/controllers/variables")
+
 
 let state = {};
 
@@ -25,26 +25,20 @@ const getToken = async (string) => {
 
 }
 
-const getVariables = async (string) => {
-    const url = `http://localhost:8000/apiVariables/${string}`
-    const data = await requestData(url)
-    const variables = data;
-    //console.log(token)
-    return variables;
-
-}
-router.post("/apiClientBroker", (req, res) => {
+/*
+router.post("/apiClientBroker", (req, res,next) => {
     let {user} = req.body;
     console.log(user)
     getToken(user).then(meta => {
         const { value } = meta.token[0];
         const options = { username: user, password: value, clean: true, keepAlive: 60 }
-        let client = mqtt.connect('mqtt://localhost', options);
+        const client = mqtt.connect('mqtt://localhost', options);
 
-             
+        req.client = client
+        next()        
         
 
-        /*
+        
             client.on('connect', function () {
         
                 client.subscribe(topico, function (err) {
@@ -54,10 +48,14 @@ router.post("/apiClientBroker", (req, res) => {
                     }
                 })
         
-            })*/
+            })
     })
 
 })
+
+
+*/
+
 /*
 router.get("/apiValuesMQTT/:user/:project/:deviceN/:variableN", (req, res) => {
 

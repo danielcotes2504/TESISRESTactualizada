@@ -61,7 +61,7 @@ function getVariablesUPD(req, res) {
     const { user } = req.params;
     const { project } = req.params;
     const { deviceN } = req.params;
-
+    console.log("fue tocado")
     const query = { 'user': user, 'project': project, 'deviceN': deviceN };
 
     Variables.find(query, (err, results) => {

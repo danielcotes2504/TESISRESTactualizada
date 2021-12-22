@@ -17,12 +17,16 @@ const apiProjects = require("./apiGateway/apiProjects");
 const apiDevices = require("./apiGateway/apiDevices");
 const apiVariables = require("./apiGateway/apiVariables");
 const apiValues = require("./apiGateway/apiValues");
-const apiClientBroker = require("./app-mqtt")
+const apiTopics = require("./apiGateway/apiTopics")
+//const apiClientBroker = require("./app-mqtt")
 
 const projects = require("./routes/routeProjects");
 const devices = require("./routes/routeDevices");
 const variables = require("./routes/routeVariables");
 const values = require("./routes/routeValues");
+const topics = require("./routes/routeTopics");
+//const api = require("../../users/routes/user");
+//const client_broker = require("./client-broker")
 
 /*const corsOptions ={
     origin:'*', 
@@ -50,12 +54,14 @@ app.use("/projects", projects);
 app.use("/devices", devices);
 app.use("/variables", variables);
 app.use("/values", values);
+app.use("/topics", topics);
 
 app.use("/apiProjects", apiProjects);
 app.use("/apiDevices", apiDevices);
 app.use("/apiVariables", apiVariables);
 app.use("/", apiValues);
-app.use("/apiBroker", apiClientBroker);
+app.use("/apiTopics",apiTopics);
+//app.use("/apiBroker", apiClientBroker, client_broker);
 app.use(require('../../users/index'))
 //app.use(cors(corsOptions)) // Use this after the variable declaration
 
