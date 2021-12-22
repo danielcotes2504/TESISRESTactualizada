@@ -213,16 +213,18 @@ router.get("/:user/:project", (req, res, next) => {
                         // message is Buffer
 
                         json1 = JSON.parse(message.toString()); //de esta manera se convierte el mensaje recibido en un json
-                        console.log(json1);
-                        //  if (json1.token === value) {
+                        //console.log(json1);
+                        const topicSplit = topic.split('/')
+                        console.log(topicSplit[0])
+                         if (json1.token === value ){
                         json2 = { 'value': json1.value }
                         postMqttData(`${topic}/${json1.token}`, json2)
 
 
 
-                        //  } else {
-                        //       console.log("Se está enviando a otro usuario el dato")
-                        //  }
+                         } else {
+                              console.log("Se está enviando a otro usuario el dato")
+                         }
 
 
                     })
