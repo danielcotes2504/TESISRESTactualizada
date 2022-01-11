@@ -311,7 +311,7 @@ export class RestVariablesComponent implements OnInit {
         this.msgsDev.push({
             severity: 'warn',
             summary: 'Para crear la variable es necesario un dispositivo:', 
-            detail:'Dirigite a la pestaña de dispositivos para crear uno.'
+            detail:'Dirigete a la pestaña de dispositivos para crear uno.'
         });
         
     }
