@@ -6,13 +6,13 @@ require("../request_api_methods/get.js")();
 require("../request_api_methods/post.js")();
 var fs = require('file-system');
 const { exec } = require("child_process");
-
+const { IP_ADDRESS } = require("../../server/src/enviroment");
 
 
 
 //GET ALL TOKENS
 const getAllTokens = async() => {
-    const url = `http://localhost:3000/api/tokenusers`
+    const url = `${IP_ADDRESS}3000/api/tokenusers`
     const data = await requestData(url)
     const tokens = data;
     // console.log(tokens)
@@ -26,8 +26,7 @@ function saveTokensInFile(texto) {
          { type: "text/plain;charset=utf-8" });
      saveAs(blob, "passwords.txt");*/
 
-    fs.writeFile('D:/mosquitto/passwords.txt', texto, function(err) {
-   // fs.writeFile('C:/Program Files (x86)/Mosquitto/passwords.txt', texto, function(err) {
+    fs.writeFile('/etc/mosquitto/passwords.txt', texto, function(err) {
         if (err) throw err;
         console.log('Results Received');
     });
@@ -36,6 +35,7 @@ function saveTokensInFile(texto) {
 
 
 let MongoClient = require('mongodb').MongoClient;
+
 let url = `mongodb://localhost:27017/`;
 /**
  * Método para crear un usuerio para el login.
@@ -135,7 +135,7 @@ function getUsers(req, res) {
                     console.log("el texto es " + txtfileText);
                     saveTokensInFile(txtfileText);
 
-                   exec(mosquittoCmd, { cwd: 'D:/mosquitto' }, (error, stdout, stderr) => {
+                   exec(mosquittoCmd, { cwd: '/etc/mosquitto' }, (error, stdout, stderr) => {
                     // exec(mosquittoCmd, { cwd: 'C:/Program Files (x86)/Mosquitto' }, (error, stdout, stderr) => {
                         if (error) {
                             console.log(`error: ${error.message}`);

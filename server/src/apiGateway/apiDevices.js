@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
-
 const request = require("request");
+const { IP_ADDRESS } = require("../enviroment");
+
 
 var port = process.env.PORT1 || 8000;
 //var hostURL = "http://192.168.20.42:" + port;
-var hostURL = "http://localhost:" + port;
+var hostURL = IP_ADDRESS + port;
 router.get("/:user/:project", (req, res) => {
     const { user } = req.params;
     const { project } = req.params;

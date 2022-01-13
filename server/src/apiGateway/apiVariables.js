@@ -3,6 +3,7 @@ const router = express.Router();
 const request = require("request");
 
 var mqtt = require('mqtt');
+const { IP_ADDRESS } = require("../enviroment.js");
 require("../requestMethods/get.js")();
 require("../requestMethods/post.js")();
 
@@ -13,17 +14,17 @@ var client;
 var options;
 var port = process.env.PORT1 || 8000;
 //var hostURL = "http://192.168.20.42:" + port;
-var hostURL = "http://localhost:" + port;
+var hostURL = IP_ADDRESS + port;
 /* SEND MQTT VALUES TO "apiValues"*/
 const postMqttData = async (string, body) => {
-    const url = `http://localhost:8000/${string}`;
+    const url = `${IP_ADDRESS}8000/${string}`;
     const data = await postData(url, body)
     console.log(data)
 
 
 }
 const getToken = async (string) => {
-    const url = `http://localhost:3000/api/tokenuser/${string}`
+    const url = `${IP_ADDRESS}3000/api/tokenuser/${string}`
     const data = await requestData(url)
     const token = data;
     //console.log(token)
@@ -80,7 +81,7 @@ router.post("/apiClientBroker", (req, res,next) => {
 router.post("/apiClientBroker", (req, res, next) => {
     const { user } = req.body
 
-    const uri = `http://localhost:3000/api/tokenuser/${user}`
+    const uri = `${IP_ADDRESS}3000/api/tokenuser/${user}`
 
     request.get(uri, (err, resp, body) => {
         body = JSON.parse(body);
@@ -117,7 +118,7 @@ router.post("/apiClientBroker", (req, res, next) => {
     /* getToken(user).then(meta => {
          const { value } = meta.token[0];
          options = { username: user, password: value, clean: true, keepAlive: 60 }
-         client = mqtt.connect('mqtt://localhost', options);
+         client = mqtt.connect('mqtt://192.168.20.49', options);
          client.end();
          const uri =
          hostURL +

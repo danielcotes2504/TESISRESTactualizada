@@ -2,13 +2,14 @@ const express = require("express");
 const router = express.Router();
 require("../requestMethods/post.js")();
 const request = require("request");
+const { IP_ADDRESS } = require("../enviroment.js");
 
 var port = process.env.PORT1 || 8000;
 //var hostURL = "http://192.168.20.42:" + port;
-var hostURL = "http://localhost:" + port;
+var hostURL = IP_ADDRESS + port;
 var portToken = process.env.PORT || 3000;
 //var hostToken = "http://192.168.20.42:" + portToken + "/api/tokenuser/";
-var hostToken = "http://localhost:" + portToken + "/api/tokenuser/";
+var hostToken = IP_ADDRESS + portToken + "/api/tokenuser/";
 
 const postMqttData = async(string, body) => {
     const url = string
