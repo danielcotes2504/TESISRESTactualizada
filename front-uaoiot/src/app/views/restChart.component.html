@@ -18,8 +18,8 @@
         </div>
     </div>
     <p-footer>
-        <button class="ui-button-danger" type="button" pButton label="Agregar" (click)="confirmSettings($event)"></button>
-        <button class="ui-button-danger" type="button" pButton (click)="displaySettings = false" label="Cancelar"></button>
+        <button class="ui-button ui-button-cancelar" type="button" pButton  (click)="displaySettings = false" label="Cancelar"></button>
+        <button class="ui-button" type="button" pButton label="Agregar" (click)="confirmSettings($event)"></button>
     </p-footer>
 </p-dialog>
 

@@ -190,3 +190,91 @@ body .ui-selectbutton .ui-button.ui-state-active:focus {
     border-color: #b8b8b8!important;
     color: #ffffff;
 }
+
+
+body .ui-dialog.o-admin-modal-create{
+
+    width:40em !important;
+}
+
+body .ui-dialog.o-modal-styles{
+
+    width:30em !important;
+}
+
+
+body .ui-dialog.o-modal-style-variables{
+
+    width:30em !important;
+}
+
+
+
+
+
+@media only screen and (max-width: 640px) {
+
+    body .ui-dialog.o-admin-modal-create{
+
+        //max-width: 30em !important;
+       // max-width:20em !important;
+        //margin: 0 2em 0 2em;
+       // align-content: center;
+
+
+        position: fixed !important;
+        top: 12em !important;
+        left: auto !important;
+        //z-index: 1050 !important;
+        width: 80% !important;
+        margin-right: 4em;
+        margin-left: -0.9em;
+       // height: 80% !important;
+       
+    }
+
+    body .ui-dialog.o-modal-styles{
+
+
+        //position: fixed !important;
+        //top: 12em !important;
+        left: auto !important;
+        //z-index: 1050 !important;
+        width: 80% !important;
+        margin-right: 4em;
+         margin-left: 2em;
+         
+       // height: 80% !important;
+       
+    }
+    
+   
+   
+}
+
+
+@media only screen and (max-width: 330px) {
+
+    body .ui-dialog.o-admin-modal-create{
+
+        //max-width: 30em !important;
+       // max-width:20em !important;
+        //margin: 0 2em 0 2em;
+       // align-content: center;
+
+
+        position: fixed !important;
+        top: 8em !important;
+        left: auto !important;
+        //z-index: 1050 !important;
+        width: 80% !important;
+        
+        margin-right: 4em;
+        margin-left: -1.3em;
+       // height: 80% !important;
+       
+    }
+
+
+   
+}
