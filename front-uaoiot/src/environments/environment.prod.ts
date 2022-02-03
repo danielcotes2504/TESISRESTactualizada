@@ -8,9 +8,9 @@
 
 export const environment = {
   production: true,
-  baseUrl: 'http://inteocav2.uao.edu.co:3000/',
-  baseUrlSocket: 'http://inteocav2.uao.edu.co:5000/',
-  restUrl: 'http://inteocav2.uao.edu.co:8000/'
+  baseUrl: 'http://localhost:3000/',
+  baseUrlSocket: 'http://localhost:5000/',
+  restUrl: 'http://localhost:8000/'
 };
 
 // export const environment = {

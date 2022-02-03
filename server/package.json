@@ -17,6 +17,7 @@
         "express": "^4.17.1",
         "mongoose": "^5.4.9",
         "mqtt": "^4.2.8",
+        "node-cron": "^3.0.0",
         "node-fetch": "^2.6.1",
         "request": "^2.88.0"
     },

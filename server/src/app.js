@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 //const cors=require("cors");
 const app = express();
 
+
 //connecting DB
 
 mongoose
@@ -25,6 +26,7 @@ const devices = require("./routes/routeDevices");
 const variables = require("./routes/routeVariables");
 const values = require("./routes/routeValues");
 const topics = require("./routes/routeTopics");
+const { PORT_1 } = require("./enviroment");
 //const api = require("../../users/routes/user");
 //const client_broker = require("./client-broker")
 
@@ -35,7 +37,7 @@ const topics = require("./routes/routeTopics");
  }*/
 
 //settings
-app.set("port", process.env.PORT1 || 8000);
+app.set("port", process.env.PORT1 || PORT_1);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 

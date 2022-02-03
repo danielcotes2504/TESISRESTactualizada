@@ -2,8 +2,10 @@
 const { Router } = require('express')
 const router = Router();
 var mongoose = require('mongoose');
+const { PORT_2 } = require('../server/src/enviroment');
 var app = require('./app');
-var port = process.env.PORT || 3000;
+
+var port = process.env.PORT || PORT_2;
 
 /**
  * Conexión a la base de datos.

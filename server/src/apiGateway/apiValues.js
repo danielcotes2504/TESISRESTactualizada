@@ -2,12 +2,13 @@ const express = require("express");
 const router = express.Router();
 require("../requestMethods/post.js")();
 const request = require("request");
-const { IP_ADDRESS } = require("../enviroment.js");
+const { IP_ADDRESS, PORT_2, PORT_1 } = require("../enviroment.js");
 
-var port = process.env.PORT1 || 8000;
+
+var port = process.env.PORT1 || PORT_1;
 //var hostURL = "http://192.168.20.42:" + port;
 var hostURL = IP_ADDRESS + port;
-var portToken = process.env.PORT || 3000;
+var portToken = process.env.PORT || PORT_2;
 //var hostToken = "http://192.168.20.42:" + portToken + "/api/tokenuser/";
 var hostToken = IP_ADDRESS + portToken + "/api/tokenuser/";
 

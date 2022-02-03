@@ -6,13 +6,14 @@ require("../request_api_methods/get.js")();
 require("../request_api_methods/post.js")();
 var fs = require('file-system');
 const { exec } = require("child_process");
-const { IP_ADDRESS } = require("../../server/src/enviroment");
+const { IP_ADDRESS, PORT_2 } = require("../../server/src/enviroment");
+
 
 
 
 //GET ALL TOKENS
 const getAllTokens = async() => {
-    const url = `${IP_ADDRESS}3000/api/tokenusers`
+    const url = `${IP_ADDRESS}${PORT_2}/api/tokenusers`
     const data = await requestData(url)
     const tokens = data;
     // console.log(tokens)

@@ -1,30 +1,32 @@
 const express = require("express");
 const router = express.Router();
 const request = require("request");
-
+const { exec } = require("child_process");
 var mqtt = require('mqtt');
-const { IP_ADDRESS } = require("../enviroment.js");
+const { IP_ADDRESS, PORT_2, PORT_1 } = require("../enviroment.js");
+
 require("../requestMethods/get.js")();
 require("../requestMethods/post.js")();
-
+//const { exec } = require("child_process");
+var cron = require('node-cron');
 
 let state = {};
 
 var client;
 var options;
-var port = process.env.PORT1 || 8000;
+var port = process.env.PORT1 || PORT_1;
 //var hostURL = "http://192.168.20.42:" + port;
 var hostURL = IP_ADDRESS + port;
 /* SEND MQTT VALUES TO "apiValues"*/
 const postMqttData = async (string, body) => {
-    const url = `${IP_ADDRESS}8000/${string}`;
+    const url = `${IP_ADDRESS}${PORT_1}/${string}`;
     const data = await postData(url, body)
     console.log(data)
 
 
 }
 const getToken = async (string) => {
-    const url = `${IP_ADDRESS}3000/api/tokenuser/${string}`
+    const url = `${IP_ADDRESS}${PORT_2}/api/tokenuser/${string}`
     const data = await requestData(url)
     const token = data;
     //console.log(token)
@@ -42,8 +44,38 @@ const postTopic = async (string) => {
 }
 
 
+/***Execute every 24 hours to delete unused topics and to restart the Mosquitto Broker***/
+cron.schedule('0 2 * * *', () => {
+    let mosquittoCmd = "sudo service mosquitto restart";
+    const uri =
+    hostURL +
+    "/apiTopics" +
+    "/deleteAllTopics"
+    request.del(uri, (err, resp, body) => {
+        body = JSON.parse(body);
 
-
+        if (err || resp.statusCode == 500) {
+           console.log(resp.statusCode)
+        } else {
+           /* exec(mosquittoCmd, { cwd: '/home/zsolarte/uaoiot_back/src' }, (error, stdout, stderr) => {
+                // exec(mosquittoCmd, { cwd: 'C:/Program Files (x86)/Mosquitto' }, (error, stdout, stderr) => {
+                    if (error) {
+                        console.log(`error: ${error.message}`);
+                        return;
+                    }
+                    if (stderr) {
+                        console.log(`stderr: ${stderr}`);
+                        return;
+                    }
+                    console.log(`stdout: ${stdout}`);
+                });*/
+           console.log(body)
+        }
+    });
+  },{
+      scheduled:true,
+      timezone:"America/New_York",
+  });
 
 
 router.get("/:user", (req, res) => {
@@ -81,7 +113,7 @@ router.post("/apiClientBroker", (req, res,next) => {
 router.post("/apiClientBroker", (req, res, next) => {
     const { user } = req.body
 
-    const uri = `${IP_ADDRESS}3000/api/tokenuser/${user}`
+    const uri = `${IP_ADDRESS}${PORT_2}/api/tokenuser/${user}`
 
     request.get(uri, (err, resp, body) => {
         body = JSON.parse(body);
@@ -138,6 +170,14 @@ router.post("/apiClientBroker", (req, res, next) => {
         })
  */
 })
+function isJSON(str) {
+    try { 
+      JSON.parse(str);
+    } catch (e) {
+      return false;
+    }
+    return true;
+}
 router.get("/:user/:project", (req, res, next) => {
     //  clientBrokerResponse(req.client)
     // console.log(client)
@@ -210,22 +250,23 @@ router.get("/:user/:project", (req, res, next) => {
 
                     client.on('message', function (topic, message) {
 
-
+                     //   console.log("es valido el json?"+ isJSON(message))
                         // message is Buffer
-
-                        json1 = JSON.parse(message.toString()); //de esta manera se convierte el mensaje recibido en un json
-                        //console.log(json1);
-                        const topicSplit = topic.split('/')
-                        console.log(topicSplit[0])
-                         if (json1.token === value ){
-                        json2 = { 'value': json1.value }
-                        postMqttData(`${topic}/${json1.token}`, json2)
-
-
-
-                         } else {
-                              console.log("Se está enviando a otro usuario el dato")
-                         }
+                        if(message.length > 0 && isJSON(message) && message !== "null"){
+                            json1 = JSON.parse(message.toString()); //de esta manera se convierte el mensaje recibido en un json
+                            //console.log(json1);
+                           
+                             if (json1.token === value ){
+                            json2 = { 'value': json1.value }
+                            postMqttData(`${topic}/${json1.token}`, json2)
+    
+    
+    
+                             } else {
+                                  console.log("Se está enviando a otro usuario el dato")
+                             }
+    
+                        }
 
 
                     })
@@ -398,5 +439,6 @@ router.delete(
         });
     }
 );
+
 
 module.exports = router;

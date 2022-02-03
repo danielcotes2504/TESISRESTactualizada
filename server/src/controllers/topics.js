@@ -80,9 +80,33 @@ function deleteTopics(req, res) {
 
 };
 
+function deleteAllTopics(req, res) {
+    const query ={}
+    console.log("blimblam")
+       Topics.deleteMany(query, async (err, results) => {
+           console.log(results)
+           console.log("blimblam")
+        if (err) {
+            res.status(500).send({ ERROR: 'Error removing' });
+        } else {
+          //  console.log("numero de resultados" + results.n);
+            if (results.n > 0) {
+                
+                    res.status(200).send({ message: 'Deleted' });
+            } else {
+                res.status(404).send({ message: 'Topics not found hijueputa' });
+            }
+        }
+    });
+
+
+
+};
+
 topics.getTopicsU = getTopicsU;
 topics.getTopicsUID = getTopicsUID;
 topics.postTopic = postTopic;
 topics.deleteTopics = deleteTopics;
+topics.deleteAllTopics = deleteAllTopics;
 module.exports = topics;
 
