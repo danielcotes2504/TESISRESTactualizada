@@ -47,7 +47,7 @@ export class RestVariablesComponent implements OnInit {
     tipoVariable:boolean;
     varPass: VariableModel;
     public textLabel:string='Tutorial';
-    selectedValue: string;
+    selectedValue: string='Independiente';
     counter:number=0;
 
     constructor(private router: Router, private apiService: ApiService) {

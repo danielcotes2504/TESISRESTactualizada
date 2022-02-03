@@ -60,7 +60,7 @@
 
 </footer>
 
-<p-dialog header="Crear variable" [draggable]="false" [(visible)]="displayNewVariable" [modal]="true" [responsive]="true" [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
+<p-dialog header="Crear variable" [draggable]="false" [(visible)]="displayNewVariable" [modal]="true" [responsive]="true" styleClass="o-modal-styles" [minY]="70" [baseZIndex]="10000">
     <p-messages [value]="msgs"></p-messages>
     <div class="dialogContent">
        
@@ -69,11 +69,19 @@
             
            
             <div class="labels">
-                <ul>
-                    <p-radioButton class="radio-label" name="groupname" value="Independiente"  (click)="handleChange()" [(ngModel)]="selectedValue"></p-radioButton>
-                    <li class="label1">Independiente</li>
-                    <p-radioButton class="radio-label" name="groupname" value="Dependiente" (click)="handleChange()" [(ngModel)]="selectedValue"></p-radioButton>
-                    <li class="label2">Dependiente</li>
+                <ul class="o-ul-style-vars">
+
+                    <div class="o-seleccion-var-style">
+                        <p-radioButton class="radio-label o-radio-style" name="groupname" value="Independiente"  (click)="handleChange()" [(ngModel)]="selectedValue"></p-radioButton>
+                        <li class="label1">Independiente</li>
+                    </div>
+
+                    <div class="o-seleccion-var-style">
+                        <p-radioButton class="radio-label o-radio-style" name="groupname" value="Dependiente" (click)="handleChange()" [(ngModel)]="selectedValue"></p-radioButton>
+                        <li class="label2">Dependiente</li>
+                    </div>
+                   
+                 
                 </ul>
             </div>
           <!--<div class="switch">
@@ -127,7 +135,7 @@
     </p-footer>
 </p-dialog>
 
-<p-dialog header="Editar variable" [draggable]="false" [(visible)]="displayEditVariable" [modal]="true" [responsive]="true" [style]="{width: '30em', minWidht: '10em'}" [minY]="70" [baseZIndex]="10000">
+<p-dialog header="Editar variable" [draggable]="false" [(visible)]="displayEditVariable" [modal]="true" [responsive]="true" styleClass="o-modal-styles" [minY]="70" [baseZIndex]="10000">
     <p-messages [value]="msgs"></p-messages>
     <div class="dialogEditContent">
         <span class="ui-float-label">
@@ -143,7 +151,7 @@
 </p-dialog>
 
 <!--Confirmar borrar-->
-<p-dialog  header="Eliminar variable" [draggable]="false" [(visible)]="displayDeleteVariable" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
+<p-dialog  header="Eliminar variable" [draggable]="false" [(visible)]="displayDeleteVariable" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" styleClass="o-modal-styles">
 
     <p>¿Estás seguro que deseas eliminar la variable?</p>
 

@@ -12,7 +12,21 @@
         <div *ngFor="let project of projects" pDroppable="right" (onDrop)="dropDevice($event, project)" class="project-container">
             <div class="container-title">
                 <h3>{{ project.project }} </h3>
+
+               
             </div>
+
+            <div class="o-add-device-btn-style">
+          
+                <div class="new-device-container">
+                    <!-- <img (click)="newDeviceClick(project)" src="assets/images/addRed.svg" class="add-icon"> -->
+
+                    <i class="material-icons add-icon" (click)="newDeviceClick(project)">add_circle</i>
+                </div>
+
+            </div>
+            
+
             <div *ngFor="let proj of devices" class="devices-cards">
                 <div *ngFor="let device of proj">
                     <div *ngIf="device.project == project.project" pDraggable="right" (onDragStart)="dragStart($event, device)" (onDragEnd)="dragEnd($event)">
@@ -49,11 +63,7 @@
                     </div>
                 </div>
             </div>
-            <div class="new-device-container">
-                <!-- <img (click)="newDeviceClick(project)" src="assets/images/addRed.svg" class="add-icon"> -->
-
-                <i class="material-icons add-icon" (click)="newDeviceClick(project)">add_circle</i>
-            </div>
+            
         </div>
     </div>
 </section>
@@ -65,7 +75,7 @@
     </div>
 </footer>
 
-<p-dialog header="Editar dispositivo" [draggable]="false" [(visible)]="displayEdit" [modal]="true" [responsive]="true" [style]="{width: '25em'}" [minY]="70" [baseZIndex]="10000" [closeOnEscape]="true">
+<p-dialog header="Editar dispositivo" [draggable]="false" [(visible)]="displayEdit" [modal]="true" [responsive]="true" styleClass="o-modal-styles" [minY]="70" [baseZIndex]="10000" [closeOnEscape]="true">
     <p-messages [value]="msgs"></p-messages>
     <div class="dialog-content">
               <div class="text-input">
@@ -85,7 +95,7 @@
     </p-footer>
 </p-dialog>
 
-<p-dialog header="Crear dispositivo" [draggable]="false" [(visible)]="displayNew" [modal]="true" [responsive]="true" [style]="{width: '25em'}" [minY]="70" [baseZIndex]="10000" [closeOnEscape]="true">
+<p-dialog header="Crear dispositivo" [draggable]="false" [(visible)]="displayNew" [modal]="true" [responsive]="true" styleClass="o-modal-styles" [minY]="70" [baseZIndex]="10000" [closeOnEscape]="true">
     <p-messages [value]="msgs"></p-messages>
     <div class="dialog-content">
         <div class="text-input">
@@ -105,7 +115,7 @@
     </p-footer>
 </p-dialog>
 <!--Confirmar borrar-->
-<p-dialog  header="Eliminar dispositivo" [draggable]="false" [(visible)]="displayDeleteDevice" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}">
+<p-dialog  header="Eliminar dispositivo" [draggable]="false" [(visible)]="displayDeleteDevice" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" styleClass="o-modal-styles">
 
     <p>¿Estás seguro que deseas eliminar el dispositivo?</p>
 
