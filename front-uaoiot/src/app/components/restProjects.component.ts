@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { ProjectModel, DeviceModel, ApiService } from "../services/api.service";
 import { Message } from "primeng/components/common/api";
 import { environment } from "../../environments/environment";
-
+import { ShepherdService } from 'angular-shepherd';
 
 @Component({
   selector: "app-rest-projects",
@@ -29,11 +29,14 @@ export class RestProjectsComponent implements OnInit {
 
   @Output() changeModeEvent = new EventEmitter<string>();
 
-  constructor(private router: Router, private apiService: ApiService) {}
+  constructor(private router: Router, private apiService: ApiService, private shepherdService: ShepherdService) {}
 
   ngOnInit() {
     this.user = this.apiService.getCurrentUser();
     this.getData();
+    if (this.router.url === '/restProjects') {
+      this.shepherdService.cancel();
+  }
   
   }
   // Only AlphaNumeric with Some Characters [-_ ]

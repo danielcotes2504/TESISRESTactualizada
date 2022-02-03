@@ -34,7 +34,7 @@
     <code class="c-gray">client.</code><code class="c-orange">setHeader</code><code class="c-gray">("Content-Type: application/json");</code>
 
     <code class="c-gray">//URL para petición GET</code>
-    <code class="c-aqua">String</code> <code class="c-gray">httpDestination = "http://inteocav.uao.edu.co:8000/usuario/proyecto/dispositivo/variable";</code>
+    <code class="c-aqua">String</code> <code class="c-gray">httpDestination = "{{getURL}}";</code>
 
     <code class="c-gray">//Petición GET</code>
     <code class="c-gray">client.</code><code class="c-orange">get</code><code class="c-gray">(httpDestination);</code>
@@ -84,7 +84,7 @@
     <code class="c-gray">//Se especifica la cabecera de envío</code>
     <code class="c-gray">//Se especifica la dirección URL para peticion POST</code>
     <code class="c-gray">client.</code><code class="c-orange">setHeader</code><code class="c-gray">("Content-Type: application/json");</code>
-    <code class="c-aqua">String</code> <code class="c-gray">httpDestination = "http://inteocav.uao.edu.co:8000/usuario/proyecto/dispositivo/variable";</code>
+    <code class="c-aqua">String</code> <code class="c-gray">httpDestination = "{{postURL}}";</code>
 
     <code class="c-gray">//Petición POST</code>
     <code class="c-gray">client.</code><code class="c-orange">post</code><code class="c-gray">(httpDestination, variable);</code>
@@ -123,7 +123,7 @@
   <code class="c-green">#define</code> <code class="c-gray">WIFI_AUTH</code> <code>LWIFI_WPA</code> <code class="c-gray">//Seguridad de la red WiFi</code>
 
   <code class="c-gray">//Dirección del servidor</code>
-  <code class="c-green">#define</code> <code class="c-gray">SITE_URL</code> <code>"inteocav.uao.edu.co"</code>
+  <code class="c-green">#define</code> <code class="c-gray">SITE_URL</code> <code>"{{host}}"</code>
 
   <code class="c-gray">//Se crea el cliente</code>
   <code class="c-gray">LWiFiClient c;</code>
@@ -145,7 +145,7 @@
   <code class="c-aqua">void</code><code class="c-green"> loop</code><code class="c-gray">(){{'{'}}</code>
     <code class="c-gray">//Conectando al servidor</code>
     <code class="c-orange">Serial.println</code><code class="c-gray">("Conecting to website");</code>
-    <code class="c-green">while </code><code class="c-gray">(0 == c.</code><code class="c-orange">connect</code><code class="c-gray">(SITE_URL, 8000)) {{'{'}}</code>
+    <code class="c-green">while </code><code class="c-gray">(0 == c.</code><code class="c-orange">connect</code><code class="c-gray">(SITE_URL, {{port}})) {{'{'}}</code>
       <code class="c-orange">Serial.println</code><code class="c-gray">("Re-Connecting to website");</code>
       <code class="c-orange">delay</code><code class="c-gray">(1000);</code>
     <code class="c-gray">{{'}'}}</code>
@@ -154,7 +154,7 @@
     <code class="c-orange">Serial.println</code><code class="c-gray">("send HTTP GET request");</code>
 
     <code class="c-gray">//Se agrega la URL para realizar la petición GET</code>
-    <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">("GET /usuario/proyecto/dispositivo/variable");</code>
+    <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">("GET {{getParameter}}");</code>
     <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">("Host: " SITE_URL");</code>
     <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">("Connection: close");</code>
     <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">();</code>
@@ -165,7 +165,7 @@
       <code class="c-orange">delay</code><code class="c-gray">(1000);</code>
     <code class="c-gray">{{'}'}}</code>
 
-    <code class="c-green">while </code><code class="c-gray">(c)) {{'{'}}</code>
+    <code class="c-green">while </code><code class="c-gray">(c) {{'{'}}</code>
       <code class="c-orange">Serial.print</code><code class="c-gray">((</code><code class="c-aqua">char</code><code class="c-gray">))c.</code><code class="c-orange">read</code><code class="c-gray">();</code>
     <code class="c-gray">{{'}'}}</code>
 
@@ -191,7 +191,7 @@
   <code class="c-green">#define</code> <code class="c-gray">WIFI_AUTH</code> <code>LWIFI_WPA</code> <code class="c-gray">//Seguridad de la red WiFi</code>
 
   <code class="c-gray">//Dirección del servidor</code>
-  <code class="c-green">#define</code> <code class="c-gray">SITE_URL</code> <code>"inteocav.uao.edu.co"</code>
+  <code class="c-green">#define</code> <code class="c-gray">SITE_URL</code> <code>"{{host}}"</code>
 
   <code class="c-gray">//Se crea el cliente</code>
   <code class="c-gray">LWiFiClient c;</code>
@@ -213,7 +213,7 @@
   <code class="c-aqua">void</code><code class="c-green"> loop</code><code class="c-gray">(){{'{'}}</code>
     <code class="c-gray">//Conectando al servidor</code>
     <code class="c-orange">Serial.println</code><code class="c-gray">("Conecting to website");</code>
-    <code class="c-green">while </code><code class="c-gray">(0 == c.</code><code class="c-orange">connect</code><code class="c-gray">(SITE_URL, 8000)) {{'{'}}</code>
+    <code class="c-green">while </code><code class="c-gray">(0 == c.</code><code class="c-orange">connect</code><code class="c-gray">(SITE_URL, {{port}})) {{'{'}}</code>
       <code class="c-orange">Serial.println</code><code class="c-gray">("Re-Connecting to website");</code>
       <code class="c-orange">delay</code><code class="c-gray">(1000);</code>
     <code class="c-gray">{{'}'}}</code>
@@ -226,7 +226,7 @@
 
     <code class="c-gray">//Petición POST</code>
     <code class="c-orange">Serial.println</code><code class="c-gray">("Connected. Sending HTTP POST Request...");</code>
-    <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">("POST /usuario/proyecto/dispositivo/variable");</code><code class="c-gray">//Modificar POST path</code>
+    <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">("POST {{postParameter}}");</code><code class="c-gray">//Modificar POST path</code>
     <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">("Host: " SITE_URL");</code>
     <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">("Content-Type: application/json");</code>
     <code class="c-gray">c.</code><code class="c-orange">println</code><code class="c-gray">(thisLength);</code>
@@ -266,7 +266,7 @@
   <code class="c-red">##Se crea la URL</code>
   <code class="c-red">##Debe cambiar user, project, device y variable por los respctivos nombres</code>
   <code class="c-red">##de usuario, proyecto, dispositivo y variable</code>
-  <code class="c-gray">url =</code> <code class="c-green">"http://inteocav.uao.edu.co:8000/usuario/proyecto/dispositivo/variable"</code>
+  <code class="c-gray">url =</code> <code class="c-green">"{{getURL}}"</code>
   
   <code class="c-red">##Petición GET</code>
   <code class="c-gray">r = requests.get(url)</code>
@@ -295,7 +295,7 @@
   <code class="c-red">##Se crea la URL</code>
   <code class="c-red">##Debe cambiar user, project, device y variable por los respctivos nombres</code>
   <code class="c-red">##de usuario, proyecto, dispositivo y variable</code>
-  <code class="c-gray">url =</code> <code class="c-green">"http://inteocav.uao.edu.co:8000/usuario/proyecto/dispositivo/variable"</code>
+  <code class="c-gray">url =</code> <code class="c-green">"{{postURL}}"</code>
 
   <code class="c-red">##Petición POST</code>
   <code class="c-red">##Se modifica la cabecera para el envío de datos</code>
@@ -337,10 +337,10 @@
   <code class="c-aqua">const char*</code> <code>password = STAPSK</code>
 
   <code class="c-gray">//Dirección del servidor</code>
-  <code class="c-aqua">const char</code><code>* host =</code> <code class="c-aqua">"inteocav.uao.edu.co"</code>
+  <code class="c-aqua">const char</code><code>* host =</code> <code class="c-aqua">"{{host}}"</code>
 
   <code class="c-gray">//Puerto del servidor</code>
-  <code class="c-aqua">const int</code><code>* hostPort = 8000</code>
+  <code class="c-aqua">const int</code><code>* hostPort = {{port}}</code>
   
   <code class="c-aqua">void</code><code class="c-green"> setup</code><code class="c-gray">(){{'{'}}</code>
     <code class="c-gray">//Inicialización del puerto serial</code>
@@ -376,7 +376,7 @@
     <code class="c-gray">{{'}'}}</code>
 
     <code class="c-gray">//URL para la petición GET</code>
-    <code class="c-aqua">String</code> <code>url =</code> <code class="c-aqua">/usuario/proyecto/dispositivo/variable</code>
+    <code class="c-aqua">String</code> <code>url =</code> <code class="c-aqua">{{getParameter}}</code>
     <code class="c-orange">Serial.print</code><code class="c-aqua">("requesting URL:");</code>
     <code class="c-orange">Serial.println</code><code>(url);</code>
 
@@ -428,10 +428,10 @@
   <code class="c-aqua">const char*</code> <code>password = STAPSK</code>
 
   <code class="c-gray">//Dirección del servidor</code>
-  <code class="c-aqua">const char</code><code>* host =</code> <code class="c-aqua">"inteocav.uao.edu.co"</code>
+  <code class="c-aqua">const char</code><code>* host =</code> <code class="c-aqua">"{{host}}</code>
 
   <code class="c-gray">//Puerto del servidor</code>
-  <code class="c-aqua">const int</code><code>* hostPort = 8000</code>
+  <code class="c-aqua">const int</code><code>* hostPort = {{port}}</code>
   
   <code class="c-aqua">void</code><code class="c-green"> setup</code><code class="c-gray">(){{'{'}}</code>
     <code class="c-gray">//Inicialización del puerto serial</code>
@@ -461,13 +461,13 @@
     <code class="c-orange">Serial.println</code><code class="c-aqua">("Conecting to website");</code>
 
     <code class="c-gray">//Esperamos a que se conecte al servidor</code>
-    <code class="c-green">if</code><code class="c-gray">(client.</code><code class="c-orange">connect</code><code>(host, 8000)) {{'{'}}</code>
+    <code class="c-green">if</code><code class="c-gray">(client.</code><code class="c-orange">connect</code><code>(host, {{port}})) {{'{'}}</code>
       <code class="c-orange">Serial.println</code><code class="c-aqua">("Connected to server");</code>
       <code class="c-gray">//Hacemos la petición HTTP</code>
       <code class="c-aqua">String <code class="c-gray">PostData =</code> "{{'{'}} \"value\" : 3 {{'}'}}";</code>
       <code class="c-aqua">String <code class="c-gray">thisLenght = </code>String</code><code class="c-gray">(PostData.<code class="c-orange">length</code>());</code> 
       
-      <code>client.</code><code class="c-orange">println</code><code>(<code class="c-aqua">"POST /usuario/proyecto/dispositivo/variable"</code>);</code>
+      <code>client.</code><code class="c-orange">println</code><code>(<code class="c-aqua">"POST {{postParameter}}"</code>);</code>
       <code>client.</code><code class="c-orange">println</code><code>(<code class="c-aqua">"Host: "</code>host);</code>
       <code>client.</code><code class="c-orange">println</code><code>(<code class="c-aqua">"Connection: close"</code>);</code>
       <code>client.</code><code class="c-orange">println</code><code>(<code class="c-aqua">"Content-Type: application/json"</code>);</code>

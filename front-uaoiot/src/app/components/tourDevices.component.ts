@@ -175,5 +175,7 @@ export class TourDevicesComponent implements OnInit, AfterViewInit {
         if (this.router.url === '/tourDevices') {
             this.shepherdService.start();
         }
+        
+       
     }
 }

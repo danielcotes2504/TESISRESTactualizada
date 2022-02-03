@@ -4,7 +4,7 @@ import { ApiService, VariableModel, DeviceModel } from '../services/api.service'
 import { SelectItem } from 'primeng/api';
 import { Message } from 'primeng/components/common/api';
 import { environment } from '../../environments/environment';
-
+import { ShepherdService } from 'angular-shepherd';
 
 @Component({
     selector: 'app-rest-variables',
@@ -50,7 +50,7 @@ export class RestVariablesComponent implements OnInit {
     selectedValue: string='Independiente';
     counter:number=0;
 
-    constructor(private router: Router, private apiService: ApiService) {
+    constructor(private router: Router, private apiService: ApiService, private shepherdService: ShepherdService) {
         this.user = this.apiService.getCurrentUser();
         this.project = this.apiService.getCurrentProject();
         this.comparatives = [
@@ -64,6 +64,9 @@ export class RestVariablesComponent implements OnInit {
     ngOnInit() {
         this.clear();
         this.getData();
+        if (this.router.url === '/restVariables') {
+            this.shepherdService.cancel();
+        }
     }
 
     getData() {

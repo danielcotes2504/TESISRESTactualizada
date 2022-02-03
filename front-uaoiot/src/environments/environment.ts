@@ -8,6 +8,7 @@ export const environment = {
   baseUrl: 'http://localhost:3000/',
   baseUrlSocket: 'http://localhost:5000/',
   restUrl: 'http://localhost:8000/',
+  mqttUrl: 'mqtt://localhost:1883'
 };
 
 // export const environment = {

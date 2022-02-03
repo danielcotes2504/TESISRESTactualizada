@@ -3,6 +3,7 @@ import { ApiService, VariableModel } from '../services/api.service';
 import { Router } from '@angular/router';
 import { Message } from 'primeng/components/common/api';
 import { environment } from '../../environments/environment';
+import { ShepherdService } from 'angular-shepherd';
 
 @Component({
     selector: 'app-rest-data',
@@ -23,13 +24,14 @@ export class RestDataComponent implements OnInit {
     interval: any;
     currentVariable: VariableModel;
     postURL: string;
+    publishURL: string;
     postBody: string = '{'+'"value": [valor numérico] }'
     publishBody: string = '{'+ '"token": [Token de usuario],'+'"value": [valor numérico] }'
     topic: string;
     public msg: Message[] = [];
     public textLabel:string='Tutorial';
 
-    constructor(private apiService: ApiService, private router: Router) {
+    constructor(private apiService: ApiService, private router: Router, private shepherdService: ShepherdService) {
         this.interval = setInterval(() => {
             this.getData();
            
@@ -43,7 +45,13 @@ export class RestDataComponent implements OnInit {
         this.postURL = environment.restUrl + this.currentVariable.user + '/'
             + this.currentVariable.project + '/' + this.currentVariable.deviceN + '/' + this.currentVariable.variableN
             + '/' + '[Token de usuario]';
+            
+        this.publishURL = environment.mqttUrl;
+
         this.topic = this.currentVariable.user + '/'+ this.currentVariable.project + '/' + this.currentVariable.deviceN + '/' + this.currentVariable.variableN;
+        if (this.router.url === '/restData') {
+            this.shepherdService.cancel();
+        }
 
        
     }

@@ -8,6 +8,7 @@ import {
 } from "../services/api.service";
 import { Message } from "primeng/components/common/api";
 import { environment } from "../../environments/environment";
+import { ShepherdService } from 'angular-shepherd';
 
 interface DeviceHardware {
   hardware: string;
@@ -46,7 +47,7 @@ export class RestDevicesComponent implements OnInit {
   public displayDeleteDevice = false;
   public textLabel: string = "Tutorial";
   counter: number = 0;
-  constructor(private router: Router, private apiService: ApiService) {
+  constructor(private router: Router, private apiService: ApiService, private shepherdService: ShepherdService) {
     this.user = this.apiService.getCurrentUser();
     this.devicesHardware = [
       { hardware: "RaspberryPi" },
@@ -59,6 +60,9 @@ export class RestDevicesComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+    if (this.router.url === '/restDevices') {
+      this.shepherdService.cancel();
+  }
   }
 
   /**
