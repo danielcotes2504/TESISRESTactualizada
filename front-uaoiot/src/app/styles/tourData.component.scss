@@ -3,7 +3,23 @@ section {
     
 }
 
-
+.o-proyectos-title-page {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: center;
+    padding: 1em;
+    //margin-left: 8.5%;
+    height: 2.5em;
+    //margin-top: 2em;
+    margin-bottom: 0.5em;
+    // padding: 0 1em 0 1em;
+    .o-title-style-page {
+        font-size: 1.8em;
+        font-weight: 700;
+        color: #545353;
+    }
+}
 
 .data-container {
     display: flex;
