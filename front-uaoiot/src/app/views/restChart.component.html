@@ -4,7 +4,7 @@
 </div>
 
 
-<p-dialog header="Ajustar gráfica" [(visible)]="displaySettings" [modal]="true" [responsive]="true" [style]="{width: '25em'}" [minY]="70" [baseZIndex]="10000" [closeOnEscape]="true">
+<p-dialog header="Ajustar gráfica" [draggable]="false"  [(visible)]="displaySettings" [modal]="true" [responsive]="true" [style]="{width: '25em'}" [minY]="70" [baseZIndex]="10000" [closeOnEscape]="true">
     <div class="dialog-content">
         <div class="text-dropdown">
             <label id="subTitle">Seleccione la escala de tiempo</label>
