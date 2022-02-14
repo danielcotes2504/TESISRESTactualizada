@@ -183,6 +183,46 @@ export class RestDevicesComponent implements OnInit {
       device.deviceN +
       "/" +
       device.deviceH;
+
+    
+       switch(device.deviceH) {
+        case 'RaspberryPi':
+          this.devicesHardware = [
+            { hardware: "RaspberryPi" },
+            { hardware: "ArduinoYun" },
+            { hardware: "NodeMCU" },
+            { hardware: "LinkItONE" }
+          ];
+          break;
+          case 'ArduinoYun':
+            this.devicesHardware = [
+              { hardware: "ArduinoYun" },
+              { hardware: "RaspberryPi" },
+              { hardware: "NodeMCU" },
+              { hardware: "LinkItONE" }
+            ];
+            break;
+          case 'NodeMCU':
+            this.devicesHardware = [
+              { hardware: "NodeMCU" },
+              { hardware: "RaspberryPi" },
+              { hardware: "ArduinoYun" },
+              { hardware: "LinkItONE" }
+            ];
+            break;
+          case 'LinkItONE':
+            this.devicesHardware = [
+              { hardware: "LinkItONE" },
+              { hardware: "RaspberryPi" },
+              { hardware: "ArduinoYun" },
+              { hardware: "NodeMCU" }
+             
+            ];
+            break;
+            
+       } 
+
+      
   }
   getEditDeviceN() {
     if (this.displayEdit === true) {
