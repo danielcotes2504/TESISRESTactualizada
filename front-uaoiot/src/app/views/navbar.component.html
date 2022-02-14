@@ -40,14 +40,20 @@
 
 <!--NAVBAR-->
 <nav *ngIf="authService.loggedIn(); else isnotLogged">
-    <div class="nav-elements">
-        <div *ngIf="authService.loggedIn()" class="nav-logo">
-            <a [routerLink]="['restProjects']">
+  <div class="nav-elements">
+         <div *ngIf="authService.isAdminLoggedIn(); else userLogo" class="nav-logo">
+            <a [routerLink]="['admin']">
                 <img src="assets/images/logo_navbar.png" width="172x" height="36px">
             </a>
         </div>
+        <ng-template #userLogo>
+                <a [routerLink]="['restProjects']">
+                    <img src="assets/images/logo_navbar.png" width="172x" height="36px">
+                </a>
+        </ng-template>
+        
         <div *ngIf="authService.isAdminLoggedIn();else user_content" class="nav-options">
-
+            
             <ul>
                 <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
                     <a [routerLink]="['admin']">Usuarios</a>

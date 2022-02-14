@@ -26,7 +26,7 @@ export class RestDataComponent implements OnInit {
     postURL: string;
     publishURL: string;
     postBody: string = '{'+'"value": [valor numérico] }'
-    publishBody: string = '{'+ '"token": [Token de usuario],'+'"value": [valor numérico] }'
+    publishBody: string = '{'+ '"token": "[Token de usuario]",'+'"value": [valor numérico] }'
     topic: string;
     public msg: Message[] = [];
     public textLabel:string='Tutorial';
