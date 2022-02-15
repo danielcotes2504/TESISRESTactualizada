@@ -60,26 +60,26 @@
     
 
 <p-dialog header="Crear usuario" [(visible)]="displayAdd" [draggable]="false"  [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [resizable]="true" styleClass="o-admin-modal-create" class="o-admin-modal-crea">
-
+    <p-messages [value]="msgs" ></p-messages>
 
     <div class="ui-fluid name-section">
         <p>Nombre</p>
         <div class="ui-inputgroup">
-            <input type="text" pInputText name="name" [(ngModel)]="name">
+            <input type="text" pInputText name="name" [(ngModel)]="name" (keypress)="keyPressAlphaNumericWithCharacters($event)">
         </div>
     </div>
 
     <div class="ui-fluid username-section">
         <p>Usuario</p>
         <div class="ui-inputgroup">
-            <input type="text" pInputText name="userName" [(ngModel)]="userName">
+            <input type="text" pInputText name="userName" [(ngModel)]="userName" (keypress)="keyPressAlphaNumericWithCharacters($event)">
         </div>
     </div>
 
     <div class="ui-fluid" id="password-section">
         <p>Contraseña</p>
         <div class="ui-inputgroup">
-            <input type="password" pInputText name="password" [(ngModel)]="password">
+            <input type="password" pInputText name="password" [(ngModel)]="password" >
         </div>
     </div>
 
@@ -93,7 +93,8 @@
 </div>
 
 <!--EDIT DIALOG-->
-<p-dialog header="Editar usuario" [(visible)]="displayUpdate"  [draggable]="false" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '400', minWidth:'300'}" [resizable]="true">
+<p-dialog header="Editar usuario" [(visible)]="displayUpdate"  [draggable]="false" [dismissableMask]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{minWidth:'400px'}" [resizable]="true">
+  <p-messages [value]="msgs" ></p-messages>
 
     <!--<div class="ui-fluid name-section">
         <p>Nombre</p>
@@ -110,9 +111,10 @@
     </div>-->
 
     <div class="ui-fluid">
+        
         <p>Nueva Contraseña</p>
         <div class="ui-inputgroup">
-            <input type="password" pInputText name="password" [(ngModel)]="newPassword">
+            <input type="password" pInputText name="password" [(ngModel)]="newPassword" >
         </div>
     </div>
 

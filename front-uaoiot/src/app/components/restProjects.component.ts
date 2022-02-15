@@ -21,6 +21,7 @@ export class RestProjectsComponent implements OnInit {
   user: string;
   url: string;
   msgs: Message[] = [];
+  msg: Message[] = [];
   navigationType = "";
   pjPass: ProjectModel;
   public displayDeleteProject = false;

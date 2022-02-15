@@ -23,17 +23,19 @@ export class UserListComponent implements OnInit {
     user: UserLogin;
     selectedUser: UserLogin;
     idUserToUpdate;
-    userName: String;
-    name: String;
-    password: String;
-    newPassword: String;
+    userName: String="";
+    name: String="";
+    password: String="";
+    newPassword: String ="";
     permission: String;
     readPermission: boolean;
     writePermission: boolean;
     displayUpdate = false;
     displayDelete = false;
     displayAdd = false;
+    msgs: Message[] = [];
     msg: Message[] = [];
+    counter:number=0;
     userToDelete;
     clickable = true;
 
@@ -64,6 +66,37 @@ export class UserListComponent implements OnInit {
 
 
     }
+
+      // Only AlphaNumeric with Some Characters [-_ ]
+  keyPressAlphaNumericWithCharacters(event) {
+   
+    var inp = String.fromCharCode(event.keyCode);
+    // Allow numbers, alpahbets, space, underscore
+    if (/[a-zA-Z0-9-_ ]/.test(inp)) {
+       
+      return true;
+      
+    } else {
+        (async () => { 
+          
+            // Do something before delay
+            if(this.counter<=0){
+                this.showCharacterError();
+            }
+            this.counter++;       
+    
+            await this.delay(2000);
+    
+            // Do something after
+             this.hide();
+        })();
+      event.preventDefault();
+      
+    
+      return false;
+    }
+    
+  }
 
     /**
      * Método para mostrar los mensajes de alerta.
@@ -102,11 +135,48 @@ export class UserListComponent implements OnInit {
         );
     }
 
+    show() {
+        this.msgs.push({
+          severity: "error",
+          summary: "No se ingresó el nombre, usuario o contraseña",
+        });
+      }
+      show2() {
+        this.msgs.push({
+          severity: "error",
+          summary: "No se ingresó la contraseña",
+        });
+      }
+      hide(){
+          this.msgs=[]
+          this.counter=0;
+      }
+    
+      showCharacterError() {
+        this.msgs.push({
+          severity: "error",
+          summary: "Solo se permiten caracteres especiales en la contraseña",
+        });
+    
+      
+      }
+      showLongName() {
+        this.msgs.push({
+            severity: 'error',
+            summary: 'El nombre, usuario o contraseña es demasiado largo'
+        });
+    }
+    showLongPassword() {
+        this.msgs.push({
+            severity: 'error',
+            summary: 'La contraseña es demasiado larga'
+        });
+    }
     /**
      * Agregar un usuario.
      */
     addUser() {
-        if(this.clickable==true){
+     /*   if(this.clickable==true){
             this.clickable =false;
         if (this.readPermission && this.writePermission) {
             this.permission = 'READWRITE';
@@ -114,7 +184,7 @@ export class UserListComponent implements OnInit {
             this.permission = 'READ';
         } else if (this.writePermission) {
             this.permission = 'WRITE';
-        }
+        }*/
 
         const userLogin = {
             user: this.userName,
@@ -128,25 +198,61 @@ export class UserListComponent implements OnInit {
             name: this.name
         };
 
-        const permission = {
-            user: user.login,
-            topic: 'test1',
-            permission: this.permission
-        };
-
-        if (!this.validateService.validateEmail(user.login)) {
+      
+      /*  if (!this.validateService.validateEmail(user.login)) {
             return false;
+        }*/
+
+    if (this.userName !== "" && this.name !== "" && this.password !== "") {
+        if(this.userName.length<=30 && this.name.length<=30) {
+       
+            this.clear();
+            this._userService.postUser(userLogin).subscribe(data => { }, Error => { });
+            this.userService.postUser(user).subscribe(data => {
+                this.showToast('success', 'Creado', 'Usuario creado exitosamente.');
+                this.initUserList();
+                this.displayAdd = false;
+            }, Error => {
+                this.showToast('error', 'Error', 'Error al crear el usuario.');
+            });
+        }
+        else{
+            (async () => { 
+          
+                // Do something before delay
+                if(this.counter<=0){
+                    this.showLongName();
+                }
+                this.counter++;       
+        
+                await this.delay(2000);
+        
+                // Do something after
+                 this.hide();
+            })();
         }
 
-        this._userService.postUser(userLogin).subscribe(data => { }, Error => { });
-        this.userService.postUser(user).subscribe(data => {
-            this.showToast('success', 'Creado', 'Usuario creado exitosamente.');
-            this.initUserList();
-            this.displayAdd = false;
-        }, Error => {
-            this.showToast('error', 'Error', 'Error al crear el usuario.');
-        });
+    
+    } else {
+        (async () => { 
+          
+            // Do something before delay
+            if(this.counter<=0){
+                this.show();
+            }
+            this.counter++;       
+    
+            await this.delay(2000);
+    
+            // Do something after
+             this.hide();
+        })();
     }
+
+
+
+ 
+   // }
     }
 
     /**
@@ -156,19 +262,58 @@ export class UserListComponent implements OnInit {
        
         const userJson = {
             password: this.newPassword
-           // user: this.userName,
-            //name: this.name,
-           
+                     
         };
+
+        if (this.newPassword !== "") {
+            if(this.newPassword.length<=30) {
+           
+                this.clear();
+                this._userService.updateUser(userJson, this.idUserToUpdate).subscribe(data => {
+                    this.showToast('success', 'Actualizado', 'Usuario actualizado exitosamente.');
+                    this.initUserList();
+                    this.newPassword = " ";
+                    this.displayUpdate = false;
+                    
+                }, Error => {
+                    this.showToast('error', 'Error', 'Error al actualizar el usuario.');
+                    this.displayUpdate = false;
+                });
+            }
+            else{
+                (async () => { 
+              
+                    // Do something before delay
+                    if(this.counter<=0){
+                        this.showLongPassword()
+                    }
+                    this.counter++;       
+            
+                    await this.delay(2000);
+            
+                    // Do something after
+                     this.hide();
+                })();
+            }
+    
         
-        this._userService.updateUser(userJson, this.idUserToUpdate).subscribe(data => {
-            this.showToast('success', 'Actualizado', 'Usuario actualizado exitosamente.');
-            this.initUserList();
-            this.displayUpdate = false;
-        }, Error => {
-            this.showToast('error', 'Error', 'Error al actualizar el usuario.');
-            this.displayUpdate = false;
-        });
+        } else {
+            (async () => { 
+              
+                // Do something before delay
+                if(this.counter<=0){
+                    this.show2();
+                }
+                this.counter++;       
+        
+                await this.delay(2000);
+        
+                // Do something after
+                 this.hide();
+            })();
+        }
+        
+       
     }
 
     /**
@@ -228,5 +373,15 @@ export class UserListComponent implements OnInit {
     showDialogDeleteUser(user) {
         this.userToDelete = user.userName;
         this.displayDelete = true;
+    }
+    clear() {
+        this.displayAdd=false;
+        this.displayUpdate=false;
+       // this.displayNewProject = false;
+        this.msgs = [];
+      }
+
+    delay(ms: number) {
+        return new Promise( resolve => setTimeout(resolve, ms) );
     }
 }
