@@ -86,21 +86,44 @@
                 </ul>
             </div>
         </ng-template>
-
         <div class="nav-profile">
+        <div *ngIf="authService.isAdminLoggedIn();else userNavProfile" >
             <ul class="cursor">
 
-                <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+               <!-- <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">     </li>--> 
 
-                    <p-menu #menu [popup]="true" [model]="itemsProfile"></p-menu>
+                   
+                            <p-menu #menu [popup]="true" [model]="itemsProfile2"></p-menu>
+                                         
+                                       
+                 
+                 
                     <div class="o-user-popup-style">
                         <a (click)="menu.toggle($event)"> {{ stringUserName }} <i class="material-icons">account_circle </i></a>
 
                     </div>
-
+            
 
             </ul>
         </div>
+        <ng-template #userNavProfile>
+            <ul class="cursor">
+
+                <!-- <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">     </li>--> 
+                     
+                             <p-menu #menu [popup]="true" [model]="itemsProfile"></p-menu>
+                                          
+                                  
+                                   
+                     <div class="o-user-popup-style">
+                         <a (click)="menu.toggle($event)"> {{ stringUserName }} <i class="material-icons">account_circle </i></a>
+ 
+                     </div>
+             
+ 
+             </ul>
+        </ng-template>
+    </div>
     </div>
 
 

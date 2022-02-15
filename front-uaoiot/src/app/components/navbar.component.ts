@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
     public tokenString: String;
     public userLogged: UserLogin;
     public itemsProfile: MenuItem[];
+    public itemsProfile2: MenuItem[];
     public msg: Message[] = [];
     
     constructor(
@@ -38,11 +39,19 @@ export class NavbarComponent implements OnInit {
 
         this.authService.getLoggedInName.subscribe(name => this.stringUserName = name);
         this.authService.getLoggedInUser.subscribe(user => this.userNameFromLogin = user);
-        console.log(this.authService.getLoggedInUser.subscribe(user => this.userNameFromLogin = user))
         this.getUserName();
-        this.getProfileSettings();
+        //this.getItems();
+       // this.getProfileSettings();
       
-        
+       
+        this.itemsProfile = [
+            { label: 'Credenciales', command: (onclick) => { this.showCredentials(); } },
+            { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
+    
+
+        this.itemsProfile2 = [
+            { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
+    
        
        
 
@@ -102,10 +111,10 @@ export class NavbarComponent implements OnInit {
             const userProfile = JSON.parse(sessionStorage.getItem('user'));
             this.userNameFromLogin = userProfile.user;
             this.stringUserName = userProfile.name;
-
-            
+                 
         }
     }
+ 
 
     getProfileSettings() {
       /*  const userProfile = JSON.parse(sessionStorage.getItem('user'));
@@ -122,9 +131,7 @@ export class NavbarComponent implements OnInit {
             { label: 'Credenciales', command: (onclick) => { this.showCredentials(); } },
             { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
     }*/
-    this.itemsProfile = [
-        { label: 'Credenciales', command: (onclick) => { this.showCredentials(); } },
-        { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
+    
     }
 
     setNameNavbar() {
@@ -140,6 +147,7 @@ export class NavbarComponent implements OnInit {
         /*Si se desea activar la parte de cerrar sesión y borrar los tópicos para cuando se haya podido
         arreglar el prohblema del cliente, desbloquea esta linea*/
      //   this.authService.authBrokerUser(this.userNameFromLogin).subscribe()
+         this.userNameFromLogin = " "
         this.displayLogout = false;
         this.authService.logout();
         this.router.navigate(['']);
@@ -147,4 +155,18 @@ export class NavbarComponent implements OnInit {
        
         return false;
     }
+
+    /*getItems(){
+        console.log(this.authService.isAdminLoggedIn())
+        if(this.authService.isAdminLoggedIn()){
+            this.itemsProfile = [
+                { label: 'Credenciales', command: (onclick) => { this.showCredentials(); } },
+  ];
+        }
+        else{
+            this.itemsProfile = [
+                { label: 'Credenciales', command: (onclick) => { this.showCredentials(); } },
+                { label: 'Cerrar sesión', command: (onclick) => (this.displayLogout = true) }];
+        }
+    }*/
 }
