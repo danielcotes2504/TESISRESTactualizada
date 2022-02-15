@@ -26,6 +26,7 @@ export class UserListComponent implements OnInit {
     userName: String;
     name: String;
     password: String;
+    newPassword: String;
     permission: String;
     readPermission: boolean;
     writePermission: boolean;
@@ -154,7 +155,7 @@ export class UserListComponent implements OnInit {
     updateUser() {
        
         const userJson = {
-            password: this.password
+            password: this.newPassword
            // user: this.userName,
             //name: this.name,
            
